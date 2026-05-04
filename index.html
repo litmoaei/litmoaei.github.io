@@ -6,115 +6,54 @@
     <title>LITMOAEI | The Calm Madness</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #C5A059;
-            --bg: #050505;
-            --card-bg: #0A0A0A;
-            --text: #F2F2F2;
-            --dim: #555;
-            --border: #1A1A1A;
+        :root { --gold: #C5A059; --bg: #050505; --text: #F2F2F2; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; text-align: center; overflow-x: hidden; }
+        
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
+        
+        /* This box crops your photo and turns the black ink into GOLD */
+        .logo-container {
+            width: 280px; 
+            height: 280px; 
+            overflow: hidden; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            /* Magic Filter: Turns the White background Black and the Black logo Gold */
+            filter: invert(1) sepia(1) saturate(5) hue-rotate(10deg) brightness(1.1);
         }
+        .logo-container img { width: 130%; height: auto; }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; }
-
-        /* THE LOGO - Bold and Unique */
-        nav {
-            position: fixed; width: 100%; padding: 30px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: rgba(5,5,5,0.95);
-            border-bottom: 1px solid var(--border); backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            letter-spacing: 12px;
-            color: var(--gold);
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(50px, 12vw, 100px); 
+            color: var(--gold); 
+            margin: -30px 0 0 0; 
+            letter-spacing: 8px;
             font-weight: 700;
-            text-decoration: none;
+        }
+        p { letter-spacing: 10px; font-size: 0.65rem; color: #666; text-transform: uppercase; margin-top: 25px; line-height: 2; }
+        
+        .btn {
+            margin-top: 50px; padding: 18px 45px;
+            background: none; border: 1px solid var(--gold);
+            color: var(--gold); text-decoration: none;
+            letter-spacing: 4px; font-size: 0.7rem; transition: 0.4s;
             text-transform: uppercase;
         }
-
-        /* SECTIONS */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(60px, 15vw, 150px); font-style: italic; margin: 0; color: var(--gold); line-height: 0.9; }
-        .hero p { letter-spacing: 12px; text-transform: uppercase; font-size: 0.7rem; color: var(--dim); margin-top: 20px; }
-
-        section { padding: 120px 5%; border-bottom: 1px solid var(--border); }
-        h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); text-align: center; margin-bottom: 60px; font-weight: 200; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; }
-        .card { background: var(--card-bg); border: 1px solid var(--border); padding: 40px; transition: 0.5s; text-align: center; }
-        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
-        
-        .section-tag { color: var(--gold); text-transform: uppercase; font-size: 0.6rem; letter-spacing: 4px; display: block; margin-bottom: 15px; }
-
-        .btn-buy {
-            width: 100%; background: none; border: 1px solid var(--gold); color: var(--gold);
-            padding: 18px; margin-top: 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; transition: 0.4s;
-        }
-        .btn-buy:hover { background: var(--gold); color: #000; }
-
-        footer { padding: 100px; text-align: center; color: #222; font-size: 0.7rem; letter-spacing: 8px; border-top: 1px solid var(--border); }
+        .btn:hover { background: var(--gold); color: #000; }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="#" class="logo">LITMOAEI</a>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="paypal">
-        <input type="hidden" name="cmd" value="_cart">
-        <input type="hidden" name="display" value="1">
-        <input type="hidden" name="business" value="Ronaldedochie@gmail.com">
-        <button type="submit" style="background:none; border:1px solid var(--gold); color:var(--gold); padding:10px 20px; cursor:pointer; font-family:'Playfair Display';">OPEN BAG</button>
-    </form>
-</nav>
-
 <div class="hero">
-    <h1>Insanity.</h1>
-    <p>LOST IN THE MADNESS OF AN ENDLESS INSANITY</p>
+    <div class="logo-container">
+        <img src="logo.jpg" alt="L">
+    </div>
+    <h1>ITMOAEI</h1>
+    <p>Lost in the madness<br>of an endless insanity</p>
+    <a href="#" class="btn">Explore the Madness</a>
 </div>
-
-<section id="elite">
-    <span class="section-tag">High-End • Casual • Elite</span>
-    <h2>The Executive Suite</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Elite Golf Blazer</h3>
-            <p style="color:var(--dim)">For the 1%.</p>
-            <button class="btn-buy">Inquire Piece</button>
-        </div>
-    </div>
-</section>
-
-<section id="street">
-    <span class="section-tag">Concrete • Cargo • Heavy</span>
-    <h2>The Pavement</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Dangling Rope Cargos</h3>
-            <p style="color:var(--dim)">Street-level Madness.</p>
-            <button class="btn-buy">Acquire Gear</button>
-        </div>
-    </div>
-</section>
-
-<section id="elixirs">
-    <span class="section-tag">Liquid • Fuel • Void</span>
-    <h2>The Elixirs</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Void Essence</h3>
-            <p style="color:var(--dim)">330ml of Calm Madness.</p>
-            <button class="btn-buy">Add to Bag</button>
-        </div>
-    </div>
-</section>
-
-<footer>
-    LITMOAEI &copy; 2026 | YOU WERE NEVER MEANT TO BE NORMAL.
-</footer>
 
 </body>
 </html>
