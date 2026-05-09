@@ -5,124 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LITMOAEI | Lost in the Madness</title>
     
-    <!-- FAVICON: Shows logo in browser tabs -->
+    <!-- BRANDING ASSETS -->
     <link rel="icon" type="image/png" href="Logo.png">
-    
-    <!-- OPEN GRAPH: Shows logo when link is shared (WhatsApp, Twitter, etc.) -->
     <meta property="og:title" content="LITMOAEI | Lost in the Madness">
-    <meta property="og:description" content="A calm madness. Litmoaei dictate the rhythm you flow.">
+    <meta property="og:description" content="A calm madness. High-end horology and couture.">
     <meta property="og:image" content="Logo.png">
-    <meta property="og:url" content="https://litmoaei.github.io">
     <meta property="og:type" content="website">
 
-    <!-- STYLES -->
+    <!-- FONTS & STYLES -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+
+    <style>
+        /* Essential Logic for "Separate Houses" */
+        .page-section { display: none; padding: 50px 20px; }
+        .page-section.active { display: block; animation: fadeIn 0.8s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .nav-active { border-bottom: 2px solid #d4af37; }
+    </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
     <header class="hero">
-        <div class="logo-container">
-            <!-- Signature Logo from your repository -->
+        <div class="logo-container" onclick="showPage('home')">
             <img src="Logo.png" alt="Litmoaei Logo" class="main-logo">
             <h1>LITMOAEI</h1>
             <p class="slogan">Lost in the madness of an endless insanity</p>
-            <p class="sub-slogan">A calm madness.</p>
         </div>
     </header>
 
-    <!-- NAVIGATION -->
     <nav>
         <ul>
-            <li><a href="#elixirs">Elixirs</a></li>
-            <li><a href="#classics">The Classics</a></li>
-            <li><a href="#pavement">The Pavement</a></li>
-            <li><a href="#art">Art</a></li>
-            <li><a href="#cart">Cart (0)</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('elixirs')">Elixirs</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('classics')">The Classics</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
         </ul>
     </nav>
 
-    <!-- THE ELIXIRS SECTION -->
-    <section id="elixirs" class="product-grid">
-        <h2>THE ELIXIRS</h2>
-        <p class="section-quote">"Litmoaei dictate the rhythm you flow."</p>
-        <div class="item">
-            <img src="Drink.jpg" alt="Calm Madness Drink">
-            <h3>Calm Madness</h3>
-            <button class="buy-btn" onclick="addToCart('Calm Madness', 25)">Add to Cart</button>
+    <!-- HOUSE 1: HOME/LANDING -->
+    <section id="home" class="page-section active">
+        <div class="welcome-center">
+            <h2 class="cinzel">WELCOME TO THE MADNESS</h2>
+            <p>Select a collection above to begin your journey.</p>
+            <img src="Painting.jpg" style="max-width: 100%; margin-top: 20px; border: 1px solid #333;">
         </div>
     </section>
 
-    <!-- THE CLASSICS SECTION (Organized 1-13) -->
-    <section id="classics" class="product-grid">
-        <h2>THE CLASSICS</h2>
-        <p class="section-quote">"Litmoaei you make the statement."</p>
-        <div class="pavement-gallery">
-            <div class="item"><img src="Classic.jpg" alt="Classic Base"></div>
-            <div class="item"><img src="Classic 1.jpg" alt="Classic 1"></div>
-            <div class="item"><img src="Classic 2.jpg" alt="Classic 2"></div>
-            <div class="item"><img src="Classic 3.jpg" alt="Classic 3"></div>
-            <div class="item"><img src="Classic 4.jpg" alt="Classic 4"></div>
-            <div class="item"><img src="Classic 5.png" alt="Classic 5"></div>
-            <div class="item"><img src="Classic 6.png" alt="Classic 6"></div>
-            <div class="item"><img src="Classic 7.jpg" alt="Classic 7"></div>
-            <div class="item"><img src="Classic 8.jpg" alt="Classic 8"></div>
-            <div class="item"><img src="Classic 9.jpg" alt="Classic 9"></div>
-            <div class="item"><img src="Classic 10.png" alt="Classic 10"></div>
-            <div class="item"><img src="Classic 11.png" alt="Classic 11"></div>
-            <div class="item"><img src="Classic 12.png" alt="Classic 12"></div>
-            <div class="item"><img src="Classic 13.png" alt="Classic 13"></div>
-        </div>
-    </section>
-
-    <!-- THE PAVEMENT SECTION (Organized 1-10) -->
-    <section id="pavement" class="product-grid">
-        <h2>THE PAVEMENT</h2>
-        <p class="section-quote">"Litmoaei define your own freedom."</p>
-        <div class="pavement-gallery">
-            <img src="Pavement.jpg" alt="Pavement Base">
-            <img src="Pavement 1.jpg" alt="Pavement 1">
-            <img src="Pavement 2.jpg" alt="Pavement 2">
-            <img src="Pavement 3.jpg" alt="Pavement 3">
-            <img src="Pavement 4.jpg" alt="Pavement 4">
-            <img src="Pavement 5.jpg" alt="Pavement 5">
-            <img src="Pavement 6.jpg" alt="Pavement 6">
-            <img src="Pavement 7.jpg" alt="Pavement 7">
-            <img src="Pavement 8.jpg" alt="Pavement 8">
-            <img src="Pavement 9.jpg" alt="Pavement 9">
-            <img src="Pavement 10.jpg" alt="Pavement 10">
-        </div>
-    </section>
-
-    <!-- THE ART SECTION -->
-    <section id="art">
-        <h2>LITMOAEI: FROM THE MIND OF A MADMAN</h2>
-        <div class="art-room">
-            <div class="wall-frame">
-                <img src="Painting.jpg" alt="Painting on Wall">
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER WITH UPDATED CONTACT & PAYPAL -->
-    <footer>
-        <div class="contact">
-            <p>Instagram: <a href="https://instagram.com/litmoaei">@litmoaei</a> | <a href="https://instagram.com/rony_willz">@rony_willz</a></p>
-            <p>X (Twitter): <a href="https://x.com/litmoaei">@litmoaei</a></p>
-            
-            <div class="payment-section">
-                <h3>Secure Checkout</h3>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <!-- HOUSE 2: ELIXIRS -->
+    <section id="elixirs" class="page-section">
+        <h2 class="section-title">THE ELIXIRS</h2>
+        <div class="product-grid">
+            <div class="item">
+                <img src="Drink.jpg" alt="Calm Madness">
+                <h3>Calm Madness</h3>
+                <p>$25.00</p>
+                <!-- FIXED PAYPAL BUTTON -->
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                    <input type="hidden" name="cmd" value="_xclick">
                     <input type="hidden" name="business" value="ronaldedochie@gmail.com">
-                    <input type="hidden" name="cmd" value="_cart">
-                    <input type="hidden" name="add" value="1">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <input type="hidden" name="item_name" value="Calm Madness Elixir">
+                    <input type="hidden" name="amount" value="25.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Buy Now">
                 </form>
             </div>
         </div>
+    </section>
+
+    <!-- HOUSE 3: THE CLASSICS (Matching your 20+ Images) -->
+    <section id="classics" class="page-section">
+        <h2 class="section-title">THE CLASSICS</h2>
+        <div class="pavement-gallery">
+            <!-- Starting with Base -->
+            <div class="item"><img src="Classic.jpg"></div>
+            <!-- Dynamic range based on your screenshot -->
+            <div class="item"><img src="Classic 1.jpg"></div>
+            <div class="item"><img src="Classic 2.jpg"></div>
+            <div class="item"><img src="Classic 3.jpg"></div>
+            <div class="item"><img src="Classic 4.jpg"></div>
+            <div class="item"><img src="Classic 5.png"></div>
+            <div class="item"><img src="Classic 6.png"></div>
+            <div class="item"><img src="Classic 7.jpg"></div>
+            <div class="item"><img src="Classic 8.jpg"></div>
+            <div class="item"><img src="Classic 9.jpg"></div>
+            <div class="item"><img src="Classic 10.png"></div>
+            <div class="item"><img src="Classic 11.png"></div>
+            <div class="item"><img src="Classic 12.png"></div>
+            <div class="item"><img src="Classic 13.png"></div>
+            <div class="item"><img src="Classic 14.png"></div>
+            <div class="item"><img src="Classic 15.jpg"></div>
+            <div class="item"><img src="Classic 16.jpg"></div>
+            <div class="item"><img src="Classic 17.jpg"></div>
+            <div class="item"><img src="Classic 18.jpg"></div>
+            <div class="item"><img src="Classic 19.jpg"></div>
+            <div class="item"><img src="Classic 20.jpg"></div>
+        </div>
+    </section>
+
+    <!-- HOUSE 4: THE PAVEMENT -->
+    <section id="pavement" class="page-section">
+        <h2 class="section-title">THE PAVEMENT</h2>
+        <div class="pavement-gallery">
+            <img src="Pavement.jpg">
+            <img src="Pavement 1.jpg">
+            <img src="Pavement 2.jpg">
+            <img src="Pavement 3.jpg">
+            <img src="Pavement 4.jpg">
+            <img src="Pavement 5.jpg">
+            <img src="Pavement 6.jpg">
+            <img src="Pavement 7.jpg">
+            <img src="Pavement 8.jpg">
+            <img src="Pavement 9.jpg">
+            <img src="Pavement 10.jpg">
+        </div>
+    </section>
+
+    <!-- HOUSE 5: THE MIND (ART) -->
+    <section id="art" class="page-section">
+        <h2 class="section-title">FROM THE MIND OF A MADMAN</h2>
+        <div class="art-room">
+            <img src="Painting.jpg" alt="The Vision" class="featured-art">
+        </div>
+    </section>
+
+    <footer>
+        <div class="contact">
+            <p>Instagram: <a href="https://instagram.com/litmoaei">@litmoaei</a> | <a href="https://instagram.com/rony_willz">@rony_willz</a></p>
+            <p>X: <a href="https://x.com/litmoaei">@litmoaei</a></p>
+            <p class="legal">© 2026 LITMOAEI. Time answers to you.</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- INTERACTIVE SCRIPT -->
+    <script>
+        function showPage(pageId) {
+            // Hide all houses
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // Show the selected house
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
