@@ -4,14 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LITMOAEI | Lost in the Madness</title>
+    
+    <!-- FAVICON: Shows logo in browser tabs -->
+    <link rel="icon" type="image/png" href="Logo.png">
+    
+    <!-- OPEN GRAPH: Shows logo when link is shared (WhatsApp, Twitter, etc.) -->
+    <meta property="og:title" content="LITMOAEI | Lost in the Madness">
+    <meta property="og:description" content="A calm madness. Litmoaei dictate the rhythm you flow.">
+    <meta property="og:image" content="Logo.png">
+    <meta property="og:url" content="https://litmoaei.github.io">
+    <meta property="og:type" content="website">
+
+    <!-- STYLES -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- HERO SECTION -->
     <header class="hero">
         <div class="logo-container">
-            <!-- Matches Logo.png in your repo -->
+            <!-- Signature Logo from your repository -->
             <img src="Logo.png" alt="Litmoaei Logo" class="main-logo">
             <h1>LITMOAEI</h1>
             <p class="slogan">Lost in the madness of an endless insanity</p>
@@ -19,6 +32,7 @@
         </div>
     </header>
 
+    <!-- NAVIGATION -->
     <nav>
         <ul>
             <li><a href="#elixirs">Elixirs</a></li>
@@ -29,26 +43,23 @@
         </ul>
     </nav>
 
-    <!-- THE ELIXIRS -->
+    <!-- THE ELIXIRS SECTION -->
     <section id="elixirs" class="product-grid">
         <h2>THE ELIXIRS</h2>
         <p class="section-quote">"Litmoaei dictate the rhythm you flow."</p>
         <div class="item">
-            <!-- Matches Drink.jpg in your repo -->
             <img src="Drink.jpg" alt="Calm Madness Drink">
             <h3>Calm Madness</h3>
             <button class="buy-btn" onclick="addToCart('Calm Madness', 25)">Add to Cart</button>
         </div>
     </section>
 
-    <!-- THE CLASSICS (14 Items Total) -->
+    <!-- THE CLASSICS SECTION (Organized 1-13) -->
     <section id="classics" class="product-grid">
         <h2>THE CLASSICS</h2>
         <p class="section-quote">"Litmoaei you make the statement."</p>
         <div class="pavement-gallery">
-            <!-- Base Classic -->
             <div class="item"><img src="Classic.jpg" alt="Classic Base"></div>
-            <!-- Numbered Classics 1 through 13 -->
             <div class="item"><img src="Classic 1.jpg" alt="Classic 1"></div>
             <div class="item"><img src="Classic 2.jpg" alt="Classic 2"></div>
             <div class="item"><img src="Classic 3.jpg" alt="Classic 3"></div>
@@ -65,14 +76,12 @@
         </div>
     </section>
 
-    <!-- THE PAVEMENT (11 Items Total) -->
+    <!-- THE PAVEMENT SECTION (Organized 1-10) -->
     <section id="pavement" class="product-grid">
         <h2>THE PAVEMENT</h2>
         <p class="section-quote">"Litmoaei define your own freedom."</p>
         <div class="pavement-gallery">
-            <!-- Base Pavement -->
             <img src="Pavement.jpg" alt="Pavement Base">
-            <!-- Numbered Pavements 1 through 10 -->
             <img src="Pavement 1.jpg" alt="Pavement 1">
             <img src="Pavement 2.jpg" alt="Pavement 2">
             <img src="Pavement 3.jpg" alt="Pavement 3">
@@ -86,21 +95,31 @@
         </div>
     </section>
 
-    <!-- THE ART -->
+    <!-- THE ART SECTION -->
     <section id="art">
         <h2>LITMOAEI: FROM THE MIND OF A MADMAN</h2>
         <div class="art-room">
             <div class="wall-frame">
-                <!-- Matches Painting.jpg in your repo -->
                 <img src="Painting.jpg" alt="Painting on Wall">
             </div>
         </div>
     </section>
 
+    <!-- FOOTER WITH UPDATED CONTACT & PAYPAL -->
     <footer>
         <div class="contact">
-            <p>Instagram: <a href="https://instagram.com/litmoaei">@litmoaei</a></p>
+            <p>Instagram: <a href="https://instagram.com/litmoaei">@litmoaei</a> | <a href="https://instagram.com/rony_willz">@rony_willz</a></p>
             <p>X (Twitter): <a href="https://x.com/litmoaei">@litmoaei</a></p>
+            
+            <div class="payment-section">
+                <h3>Secure Checkout</h3>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="business" value="ronaldedochie@gmail.com">
+                    <input type="hidden" name="cmd" value="_cart">
+                    <input type="hidden" name="add" value="1">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                </form>
+            </div>
         </div>
     </footer>
 
