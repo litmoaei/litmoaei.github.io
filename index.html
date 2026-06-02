@@ -33,23 +33,31 @@
         /* ASSETS */
         .flush-img { width: 100%; max-width: 1100px; display: block; margin: 0 auto; border: none !important; }
         .statement-text { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #b76e79; padding: 80px 20px; font-style: italic; max-width: 900px; margin: 0 auto; }
+        .scroll-hint { font-size: 0.8rem; color: #555; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; }
 
         /* GALLERY */
-        .gallery-wrap { width: 100%; overflow-x: auto; padding: 80px 0; display: flex; gap: 25px; justify-content: center; }
-        .gallery-item { flex: 0 0 auto; width: 450px; height: 650px; background: #0f0f0f; border: 1px solid #1a1a1a; overflow: hidden; }
+        .gallery-wrap { 
+            width: 100%; overflow-x: auto; padding: 40px 0 80px 0; display: flex; gap: 25px; justify-content: flex-start; scroll-snap-type: x mandatory; 
+            -webkit-overflow-scrolling: touch;
+        }
+        .gallery-wrap::-webkit-scrollbar { height: 8px; }
+        .gallery-wrap::-webkit-scrollbar-track { background: #1a1a1a; }
+        .gallery-wrap::-webkit-scrollbar-thumb { background: #b76e79; border-radius: 4px; }
+        .gallery-item { flex: 0 0 auto; width: 450px; height: 650px; background: #0f0f0f; border: 1px solid #1a1a1a; overflow: hidden; scroll-snap-align: start; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* PAYMENT PROTOCOLS - EXPANDED */
+        /* PAYMENT PROTOCOLS */
         .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 40px; }
         .payment-card { max-width: 900px; margin: 0 auto; border: 1px solid #b76e79; padding: 50px; text-align: left; background: #000; }
-        .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
-        .currency-block { border: 1px solid #222; padding: 20px; background: #0a0a0a; }
-        .security-warning { color: #b76e79; border: 1px solid #b76e79; padding: 15px; margin-top: 30px; text-align: center; font-family: 'Cinzel'; font-weight: bold; }
-        .qr-placeholder { width: 200px; height: 200px; background: #222; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border: 2px dashed #b76e79; }
+        .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .currency-block { border: 1px solid #222; padding: 20px; background: #0a0a0a; font-size: 0.9rem; }
+        .security-warning { color: #b76e79; border: 1px solid #b76e79; padding: 20px; margin-top: 20px; text-align: center; font-family: 'Cinzel'; font-weight: bold; font-size: 1.1rem; }
+        .qr-container { text-align: center; margin-top: 30px; border: 1px solid #222; padding: 20px; }
+        .qr-img { width: 200px; height: 200px; background: #fff; margin: 10px auto; }
         .btn-order { display: block; width: 100%; padding: 25px; border: 1px solid #b76e79; color: #fff; text-align: center; text-decoration: none; margin-top: 30px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 1.2rem; transition: background 0.3s ease; }
         .btn-order:hover { background: #b76e79; color: #000; }
 
-        /* FOOTER & QUOTE */
+        /* FOOTER */
         .footer-section { padding: 100px 20px; text-align: center; border-top: 1px solid #1a1a1a; margin-top: 100px; }
         .goodbye-quote { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #555; margin-bottom: 40px; font-style: italic; }
         .footer-links a { color: #888; margin: 0 25px; font-size: 1rem; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
@@ -77,21 +85,20 @@
     <div id="payment-overlay" class="overlay-dimmer">
         <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.5rem;">CLOSE X</button>
         <div class="payment-card">
-            <h2 style="font-family:Cinzel; margin-bottom:10px;">SECURE PAYMENT PROTOCOLS</h2>
+            <h2 style="font-family:Cinzel; margin-bottom:20px;">SECURE PAYMENT PROTOCOLS</h2>
             
-            <div class="security-warning">⚠️ WARNING: DO NOT TRANSACT WITH ANY OTHER ACCOUNT. OFFICIAL CHANNELS ONLY.</div>
-
             <div class="payment-grid">
-                <div class="currency-block"><strong>USD Account:</strong><br>Bank Name: [Insert]<br>Account: [Insert]</div>
-                <div class="currency-block"><strong>EUR Account:</strong><br>Bank Name: [Insert]<br>Account: [Insert]</div>
-                <div class="currency-block"><strong>GBP Account:</strong><br>Bank Name: [Insert]<br>Account: [Insert]</div>
-                <div class="currency-block"><strong>NGN Account:</strong><br>Bank Name: [Insert]<br>Account: [Insert]</div>
+                <div class="currency-block"><strong>USD Account:</strong><br>Bank: Lead Bank<br>Account: 211290637762<br>Routing: 101019644</div>
+                <div class="currency-block"><strong>GBP Account:</strong><br>Bank: Clear Junction Ltd<br>Account: 42592550<br>Sort Code: 04-13-07</div>
+                <div class="currency-block"><strong>EUR Account:</strong><br>Bank: Clear Junction Ltd<br>IBAN: GB57CLJU04130742592550<br>Swift: CLJUGB21XXX</div>
+                <div class="currency-block"><strong>NGN Account:</strong><br>Bank: Eco Bank<br>Account: 2971079059<br>Account Name: CHUKS EDOCHIE</div>
             </div>
 
-            <div class="currency-block" style="margin-top:20px; text-align:center;">
-                <strong>USDT (TRC20) PAYMENT:</strong><br>
-                <div class="qr-placeholder">QR CODE PLACEHOLDER</div>
-                <p>Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
+            <div class="qr-container">
+                <strong>USDT (TRC20) PAYMENT:</strong>
+                <div class="qr-img"><img src="ustd QR code.jpeg" alt="USDT QR Code" style="width:100%; height:100%;"></div>
+                <p style="font-size: 0.8rem; word-break: break-all;">Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
+                <div class="security-warning">⚠️ WARNING: DO NOT TRANSACT WITH ANY OTHER ACCOUNT. OFFICIAL CHANNELS ONLY.</div>
             </div>
 
             <a href="https://ig.me/m/rony_willz" class="btn-order">CONFIRM TRANSACTION ON INSTAGRAM</a>
@@ -107,12 +114,14 @@
     <section id="mind" class="page-section">
         <div class="statement-text">THE MIND</div>
         <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
         <div class="gallery-wrap"><div class="gallery-item"><img src="Painting.jpg"></div></div>
     </section>
     
     <section id="pavement" class="page-section">
         <div class="statement-text">THE PAVEMENT</div>
         <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
         <div class="gallery-wrap">
             <div class="gallery-item"><img src="Pavement.jpg"></div>
             <div class="gallery-item"><img src="Pavement 1.jpg"></div>
@@ -131,12 +140,14 @@
     <section id="elixirs" class="page-section">
         <div class="statement-text">THE ELIXIRS</div>
         <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
         <div class="gallery-wrap"><div class="gallery-item"><img src="Drink.jpg"></div></div>
     </section>
     
     <section id="classics" class="page-section">
         <div class="statement-text">THE CLASSICS</div>
         <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
         <div class="gallery-wrap">
             <div class="gallery-item"><img src="Classic.jpg"></div>
             <div class="gallery-item"><img src="Classic 1.jpg"></div>
@@ -165,6 +176,7 @@
     <section id="nudes" class="page-section">
         <div class="statement-text">NUDE PAINTINGS OF THE ARTIST HIMSELF</div>
         <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
         <div class="gallery-wrap">
             <div class="gallery-item"><img src="Nude.jpg"></div>
             <div class="gallery-item"><img src="Nude 1.jpg"></div>
