@@ -39,11 +39,14 @@
         .gallery-item { flex: 0 0 auto; width: 450px; height: 650px; background: #0f0f0f; border: 1px solid #1a1a1a; overflow: hidden; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* PAYMENT PROTOCOLS */
-        .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 60px; }
-        .payment-card { max-width: 900px; margin: 0 auto; border: 1px solid #b76e79; padding: 60px; text-align: left; background: #000; }
-        .currency-block { margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
-        .btn-order { display: inline-block; padding: 25px 50px; border: 1px solid #b76e79; color: #fff; text-decoration: none; margin-top: 40px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 1.2rem; transition: background 0.3s ease; }
+        /* PAYMENT PROTOCOLS - EXPANDED */
+        .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 40px; }
+        .payment-card { max-width: 900px; margin: 0 auto; border: 1px solid #b76e79; padding: 50px; text-align: left; background: #000; }
+        .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+        .currency-block { border: 1px solid #222; padding: 20px; background: #0a0a0a; }
+        .security-warning { color: #b76e79; border: 1px solid #b76e79; padding: 15px; margin-top: 30px; text-align: center; font-family: 'Cinzel'; font-weight: bold; }
+        .qr-placeholder { width: 200px; height: 200px; background: #222; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border: 2px dashed #b76e79; }
+        .btn-order { display: block; width: 100%; padding: 25px; border: 1px solid #b76e79; color: #fff; text-align: center; text-decoration: none; margin-top: 30px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 1.2rem; transition: background 0.3s ease; }
         .btn-order:hover { background: #b76e79; color: #000; }
 
         /* FOOTER & QUOTE */
@@ -72,12 +75,26 @@
     </nav>
 
     <div id="payment-overlay" class="overlay-dimmer">
-        <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:20px; cursor:pointer; font-size: 1.2rem;">CLOSE X</button>
+        <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.5rem;">CLOSE X</button>
         <div class="payment-card">
-            <h2 style="font-family:Cinzel; margin-bottom:40px;">SECURE PAYMENT PROTOCOLS</h2>
-            <div class="currency-block"><strong>USD:</strong> Lead Bank | Acct: 211290637762</div>
-            <div class="currency-block"><strong>USDT (TRC20):</strong> TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</div>
-            <a href="https://ig.me/m/rony_willz" class="btn-order">CONFIRM ON INSTAGRAM</a>
+            <h2 style="font-family:Cinzel; margin-bottom:10px;">SECURE PAYMENT PROTOCOLS</h2>
+            
+            <div class="security-warning">⚠️ WARNING: DO NOT TRANSACT WITH ANY OTHER ACCOUNT. OFFICIAL CHANNELS ONLY.</div>
+
+            <div class="payment-grid">
+                <div class="currency-block"><strong>USD Account:</strong><br>Bank Name: [Insert]<br>Account: [Insert]</div>
+                <div class="currency-block"><strong>EUR Account:</strong><br>Bank Name: [Insert]<br>Account: [Insert]</div>
+                <div class="currency-block"><strong>GBP Account:</strong><br>Bank Name: [Insert]<br>Account: [Insert]</div>
+                <div class="currency-block"><strong>NGN Account:</strong><br>Bank Name: [Insert]<br>Account: [Insert]</div>
+            </div>
+
+            <div class="currency-block" style="margin-top:20px; text-align:center;">
+                <strong>USDT (TRC20) PAYMENT:</strong><br>
+                <div class="qr-placeholder">QR CODE PLACEHOLDER</div>
+                <p>Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
+            </div>
+
+            <a href="https://ig.me/m/rony_willz" class="btn-order">CONFIRM TRANSACTION ON INSTAGRAM</a>
         </div>
     </div>
 
