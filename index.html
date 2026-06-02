@@ -4,47 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LITMOAEI | The Permanent Master Collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        /* CORE ARCHITECTURAL STYLES */
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.6; }
 
-        /* HEADER */
-        .header-wrapper { padding: 80px 20px; text-align: center; cursor: pointer; border-bottom: 1px solid #111; }
-        .main-logo { width: 500px; max-width: 95%; display: block; margin: 0 auto; }
+        /* HEADER & BRANDING */
+        .header-wrapper { padding: 120px 20px; text-align: center; cursor: pointer; border-bottom: 1px solid #1a1a1a; }
+        .main-logo { width: 500px; max-width: 90%; display: block; margin: 0 auto; filter: brightness(0.9); }
         .welcome-text { 
-            font-family: 'Cinzel'; font-size: 3.5rem; margin-top: 40px; letter-spacing: 8px; text-transform: uppercase; 
+            font-family: 'Cinzel', serif; font-size: 3.5rem; margin-top: 40px; letter-spacing: 12px; text-transform: uppercase; 
             background: linear-gradient(to right, #ffffff, #b76e79, #d4af37);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;
         }
 
         /* NAVIGATION */
-        nav { width: 100%; padding: 30px 0; background: #000; position: sticky; top: 0; z-index: 999; }
-        nav ul { display: flex; list-style: none; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel'; font-size: 1rem; padding: 10px; transition: 0.3s; }
-        nav a:hover { color: #b76e79; }
+        nav { width: 100%; padding: 40px 0; background: rgba(0, 0, 0, 0.95); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #222; }
+        nav ul { display: flex; list-style: none; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel', serif; font-size: 1.1rem; padding: 10px 15px; transition: all 0.4s ease; border: 1px solid transparent; }
+        nav a:hover { color: #b76e79; border-bottom: 1px solid #b76e79; }
 
         /* SECTIONS */
-        .page-section { display: none; padding: 0; min-height: 100vh; text-align: center; }
-        .page-section.active { display: block; }
+        .page-section { display: none; padding: 40px 20px; min-height: 80vh; text-align: center; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        .page-section.active { display: block; opacity: 1; }
 
-        /* IMAGES */
-        .flush-img { width: 100%; max-width: 1000px; display: block; margin: 0 auto; border: none !important; }
-        .statement-text { font-family: 'Cinzel', serif; font-size: 2rem; color: #b76e79; padding: 60px 20px; font-style: italic; max-width: 800px; margin: 0 auto; }
+        /* ASSETS */
+        .flush-img { width: 100%; max-width: 1100px; display: block; margin: 0 auto; border: none !important; }
+        .statement-text { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #b76e79; padding: 80px 20px; font-style: italic; max-width: 900px; margin: 0 auto; }
 
-        /* GALLERIES */
-        .gallery-wrap { width: 100%; overflow-x: auto; padding: 50px 0; display: flex; gap: 20px; justify-content: center; }
-        .gallery-item { flex: 0 0 auto; width: 400px; height: 600px; background: #111; border: 1px solid #222; }
+        /* GALLERY */
+        .gallery-wrap { width: 100%; overflow-x: auto; padding: 80px 0; display: flex; gap: 25px; justify-content: center; }
+        .gallery-item { flex: 0 0 auto; width: 450px; height: 650px; background: #0f0f0f; border: 1px solid #1a1a1a; overflow: hidden; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* PAYMENTS - LOCKED */
-        .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; overflow-y: auto; padding: 50px; }
-        .payment-card { max-width: 800px; margin: 0 auto; border: 1px solid #b76e79; padding: 50px; text-align: left; background: #000; }
-        .currency-block { margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 15px; }
-        .btn-order { display: inline-block; padding: 20px 40px; border: 1px solid #b76e79; color: #fff; text-decoration: none; margin-top: 30px; cursor: pointer; }
-        
-        .footer-section { padding: 60px 20px; text-align: center; border-top: 1px solid #222; margin-top: 50px; }
-        .footer-links a { color: #aaa; margin: 0 15px; font-size: 0.9rem; text-decoration: none; }
+        /* PAYMENT PROTOCOLS */
+        .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 60px; }
+        .payment-card { max-width: 900px; margin: 0 auto; border: 1px solid #b76e79; padding: 60px; text-align: left; background: #000; }
+        .currency-block { margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        .btn-order { display: inline-block; padding: 25px 50px; border: 1px solid #b76e79; color: #fff; text-decoration: none; margin-top: 40px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 1.2rem; transition: background 0.3s ease; }
+        .btn-order:hover { background: #b76e79; color: #000; }
+
+        /* FOOTER & QUOTE */
+        .footer-section { padding: 100px 20px; text-align: center; border-top: 1px solid #1a1a1a; margin-top: 100px; }
+        .goodbye-quote { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #555; margin-bottom: 40px; font-style: italic; }
+        .footer-links a { color: #888; margin: 0 25px; font-size: 1rem; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
 <body>
@@ -61,15 +66,15 @@
             <li><a href="#" onclick="showPage('pavement')">THE PAVEMENT</a></li>
             <li><a href="#" onclick="showPage('elixirs')">ELIXIRS</a></li>
             <li><a href="#" onclick="showPage('classics')">THE CLASSICS</a></li>
-            <li><a href="#" onclick="showPage('nudes')">NUDE PAINTINGS OF THE ARTIST HIMSELF</a></li>
+            <li><a href="#" onclick="showPage('nudes')">NUDE PAINTINGS</a></li>
             <li><a href="#" onclick="showPage('music')">MUSIC</a></li>
         </ul>
     </nav>
 
     <div id="payment-overlay" class="overlay-dimmer">
-        <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer;">CLOSE X</button>
+        <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:20px; cursor:pointer; font-size: 1.2rem;">CLOSE X</button>
         <div class="payment-card">
-            <h2>SECURE PAYMENT PROTOCOLS</h2>
+            <h2 style="font-family:Cinzel; margin-bottom:40px;">SECURE PAYMENT PROTOCOLS</h2>
             <div class="currency-block"><strong>USD:</strong> Lead Bank | Acct: 211290637762</div>
             <div class="currency-block"><strong>USDT (TRC20):</strong> TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</div>
             <a href="https://ig.me/m/rony_willz" class="btn-order">CONFIRM ON INSTAGRAM</a>
@@ -79,31 +84,97 @@
     <section id="home" class="page-section active">
         <div class="statement-text">"I got lost in the madness to find myself. So I ask, what about you?"</div>
         <img src="I got lost in the madness to find myself.jpeg" class="flush-img">
-        <video autoplay muted loop playsinline class="flush-img"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
+        <video autoplay muted loop playsinline class="flush-img" style="margin-top:20px;"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
     </section>
 
-    <section id="mind" class="page-section"><div class="statement-text">THE MIND</div><a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a><div class="gallery-wrap"><div class="gallery-item"><img src="Painting.jpg"></div></div></section>
+    <section id="mind" class="page-section">
+        <div class="statement-text">THE MIND</div>
+        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="gallery-wrap"><div class="gallery-item"><img src="Painting.jpg"></div></div>
+    </section>
     
-    <section id="pavement" class="page-section"><div class="statement-text">THE PAVEMENT</div><a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a><div class="gallery-wrap"><div class="gallery-item"><img src="Pavement.jpg"></div><div class="gallery-item"><img src="Pavement 1.jpg"></div><div class="gallery-item"><img src="Pavement 2.jpg"></div></div></section>
+    <section id="pavement" class="page-section">
+        <div class="statement-text">THE PAVEMENT</div>
+        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="gallery-wrap">
+            <div class="gallery-item"><img src="Pavement.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 1.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 2.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 3.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 4.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 5.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 6.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 7.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 8.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 9.jpg"></div>
+            <div class="gallery-item"><img src="Pavement 10.jpg"></div>
+        </div>
+    </section>
     
-    <section id="elixirs" class="page-section"><div class="statement-text">THE ELIXIRS</div><a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a><div class="gallery-wrap"><div class="gallery-item"><img src="Drink.jpg"></div></div></section>
+    <section id="elixirs" class="page-section">
+        <div class="statement-text">THE ELIXIRS</div>
+        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="gallery-wrap"><div class="gallery-item"><img src="Drink.jpg"></div></div>
+    </section>
     
-    <section id="classics" class="page-section"><div class="statement-text">THE CLASSICS</div><a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a><div class="gallery-wrap"><div class="gallery-item"><img src="Classic.jpg"></div><div class="gallery-item"><img src="Classic 1.jpg"></div><div class="gallery-item"><img src="Classic 2.jpg"></div></div></section>
+    <section id="classics" class="page-section">
+        <div class="statement-text">THE CLASSICS</div>
+        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="gallery-wrap">
+            <div class="gallery-item"><img src="Classic.jpg"></div>
+            <div class="gallery-item"><img src="Classic 1.jpg"></div>
+            <div class="gallery-item"><img src="Classic 2.jpg"></div>
+            <div class="gallery-item"><img src="Classic 3.jpg"></div>
+            <div class="gallery-item"><img src="Classic 4.jpg"></div>
+            <div class="gallery-item"><img src="Classic 5.png"></div>
+            <div class="gallery-item"><img src="Classic 6.png"></div>
+            <div class="gallery-item"><img src="Classic 7.jpg"></div>
+            <div class="gallery-item"><img src="Classic 8.jpg"></div>
+            <div class="gallery-item"><img src="Classic 9.jpg"></div>
+            <div class="gallery-item"><img src="Classic 10.png"></div>
+            <div class="gallery-item"><img src="Classic 11.png"></div>
+            <div class="gallery-item"><img src="Classic 12.png"></div>
+            <div class="gallery-item"><img src="Classic 13.png"></div>
+            <div class="gallery-item"><img src="Classic 14.png"></div>
+            <div class="gallery-item"><img src="Classic 15.jpg"></div>
+            <div class="gallery-item"><img src="Classic 16.jpg"></div>
+            <div class="gallery-item"><img src="Classic 17.jpg"></div>
+            <div class="gallery-item"><img src="Classic 18.jpg"></div>
+            <div class="gallery-item"><img src="Classic 19.jpg"></div>
+            <div class="gallery-item"><img src="Classic 20.jpg"></div>
+        </div>
+    </section>
     
-    <section id="nudes" class="page-section"><div class="statement-text">NUDE PAINTINGS OF THE ARTIST HIMSELF</div><a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a><div class="gallery-wrap"><div class="gallery-item"><img src="Nude.jpg"></div><div class="gallery-item"><img src="Nude 1.jpg"></div><div class="gallery-item"><img src="Nude 2.jpg"></div></div></section>
+    <section id="nudes" class="page-section">
+        <div class="statement-text">NUDE PAINTINGS OF THE ARTIST HIMSELF</div>
+        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
+        <div class="gallery-wrap">
+            <div class="gallery-item"><img src="Nude.jpg"></div>
+            <div class="gallery-item"><img src="Nude 1.jpg"></div>
+            <div class="gallery-item"><img src="Nude 2.jpg"></div>
+        </div>
+    </section>
     
-    <section id="music" class="page-section"><div class="statement-text">MUSIC</div></section>
+    <section id="music" class="page-section">
+        <div class="statement-text">MUSIC</div>
+    </section>
 
     <footer class="footer-section">
+        <div class="goodbye-quote">"Remember, the world was created as a gift to you."</div>
         <div class="footer-links">
             <a href="https://www.instagram.com/rony_willz/" target="_blank">INSTAGRAM</a>
             <a href="https://www.youtube.com/@LITMOAEI" target="_blank">YOUTUBE</a>
-            <a href="mailto:Litmoaei@gmail.com">Litmoaei@gmail.com</a>
+            <a href="mailto:Litmoaei@gmail.com">EMAIL</a>
         </div>
     </footer>
 
     <script>
-        function showPage(id) { document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
+        function showPage(id) { 
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(s => s.classList.remove('active')); 
+            document.getElementById(id).classList.add('active'); 
+            window.scrollTo(0, 0); 
+        }
         function openOrder() { document.getElementById('payment-overlay').style.display = 'block'; }
         function closeOrder() { document.getElementById('payment-overlay').style.display = 'none'; }
     </script>
