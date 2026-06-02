@@ -1,121 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="Logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LITMOAEI | Lost in the Madness</title>
+    
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
-
-        /* Loader */
-        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; justify-content: center; align-items: center; z-index: 9999; animation: fadeOut 1.5s ease 1s forwards; }
-        @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
-
-        /* Layout */
-        .page-section { display: none; padding: 50px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .page-section { display: none; padding: 50px 20px; }
         .page-section.active { display: block; animation: fadeIn 0.8s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Home/Hero Section */
-        .hero-section { height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .video-bg { position: absolute; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3); z-index: -1; }
         
-        /* Navigation */
-        nav { padding: 40px 0; }
-        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
-        nav a { color: #d4af37; text-decoration: none; font-family: 'Cinzel'; font-size: 0.9rem; cursor: pointer; }
-
-        /* Art Elements */
-        .art-hero { margin-bottom: 60px; }
-        .art-hero img { width: 100%; max-width: 500px; border: 1px solid #333; }
-        .art-name { margin-top: 20px; letter-spacing: 4px; font-family: 'Cinzel'; color: #d4af37; }
-
-        .final-portrait { width: 100%; max-width: 400px; margin: 50px auto 0; mask-image: linear-gradient(to bottom, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%); }
+        .art-display { max-width: 400px; width: 100%; margin-top: 20px; border: 1px solid #333; }
+        .narrative-scroll { margin-top: 100px; padding: 50px 20px; text-align: center; border-top: 1px solid #333; }
+        .narrative-label { font-family: 'Cinzel'; color: #d4af37; margin-top: 15px; letter-spacing: 2px; display: block; }
+        .final-message { margin-top: 40px; font-family: 'Cinzel'; color: #d4af37; font-size: 1.2rem; }
         
-        .pavement-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .pavement-gallery img { width: 100%; border: 1px solid #333; }
-        
-        .home-link { display: inline-block; margin-bottom: 30px; color: #d4af37; border: 1px solid #d4af37; padding: 8px 20px; cursor: pointer; }
+        .pavement-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .item img { width: 100%; }
     </style>
 </head>
 <body>
 
-    <div id="loader"><img src="Logo.png" style="width: 100px;"></div>
+    <header class="hero">
+        <div class="logo-container" onclick="showPage('home')">
+            <img src="Logo.png" alt="Litmoaei Logo" class="main-logo">
+            <h1>LITMOAEI</h1>
+            <p class="slogan">Lost in the madness of an endless insanity</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('elixirs')">Elixirs</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('classics')">The Classics</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
+        </ul>
+    </nav>
 
     <section id="home" class="page-section active">
-        <div class="hero-section">
-            <video autoplay muted loop playsinline class="video-bg">
-                <source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4">
-            </video>
-            <h1 style="font-family: 'Cinzel'; font-size: 3rem; letter-spacing: 10px;">LITMOAEI</h1>
+        <div class="welcome-center">
+            <h2 class="cinzel">WELCOME TO THE MADNESS</h2>
+            <p>Select a collection above to begin your journey.</p>
         </div>
-
-        <nav>
-            <ul>
-                <li><a onclick="showPage('stories')">STORIES</a></li>
-                <li><a onclick="showPage('elixirs')">ELIXIRS</a></li>
-                <li><a onclick="showPage('classics')">CLASSICS</a></li>
-                <li><a onclick="showPage('pavement')">PAVEMENT</a></li>
-                <li><a onclick="showPage('art')">THE MIND</a></li>
-            </ul>
-        </nav>
-
-        <div class="art-hero">
-            <img src="Picture1.jpg" alt="The Process of Madness">
-            <p class="art-name">THE PROCESS OF MADNESS</p>
+        <div class="narrative-scroll">
+            <img src="The Process of Madness.jpg" class="art-display" alt="The Process of Madness">
+            <span class="narrative-label">THE PROCESS OF MADNESS</span>
+            <div style="margin-top: 80px;">
+                <img src="I got lost to find myself.jpg" class="art-display" alt="I got lost to find myself">
+                <p class="final-message">I GOT LOST TO FIND MYSELF, AND SO I ASK, HAVE YOU FOUND YOURSELF?</p>
+            </div>
         </div>
-    </section>
-
-    <section id="stories" class="page-section">
-        <div class="home-link" onclick="showPage('home')">← HOME</div>
-        <h2>STORIES STOLEN FROM MADNESS</h2>
     </section>
 
     <section id="elixirs" class="page-section">
-        <div class="home-link" onclick="showPage('home')">← HOME</div>
-        <h2>THE ELIXIRS</h2>
-        <img src="Drink.jpg" style="max-width: 300px; margin-top: 20px;">
+        <h2 class="section-title">THE ELIXIRS</h2>
+        <div class="product-grid">
+            <div class="item">
+                <img src="Drink.jpg" alt="Calm Madness">
+                <h3>Calm Madness</h3>
+                <p>$25.00</p>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="ronaldedochie@gmail.com">
+                    <input type="hidden" name="item_name" value="Calm Madness Elixir">
+                    <input type="hidden" name="amount" value="25.00">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit">
+                </form>
+            </div>
+        </div>
     </section>
 
     <section id="classics" class="page-section">
-        <div class="home-link" onclick="showPage('home')">← HOME</div>
-        <h2>THE CLASSICS</h2>
+        <h2 class="section-title">THE CLASSICS</h2>
         <div class="pavement-gallery">
-            </div>
+            <div class="item"><img src="Classic.jpg"></div>
+            <div class="item"><img src="Classic 1.jpg"></div>
+            <div class="item"><img src="Classic 2.jpg"></div>
+            <div class="item"><img src="Classic 3.jpg"></div>
+            <div class="item"><img src="Classic 4.jpg"></div>
+            <div class="item"><img src="Classic 5.png"></div>
+            <div class="item"><img src="Classic 6.png"></div>
+            <div class="item"><img src="Classic 7.jpg"></div>
+            <div class="item"><img src="Classic 8.jpg"></div>
+            <div class="item"><img src="Classic 9.jpg"></div>
+            <div class="item"><img src="Classic 10.png"></div>
+            <div class="item"><img src="Classic 11.png"></div>
+            <div class="item"><img src="Classic 12.png"></div>
+            <div class="item"><img src="Classic 13.png"></div>
+            <div class="item"><img src="Classic 14.png"></div>
+            <div class="item"><img src="Classic 15.jpg"></div>
+            <div class="item"><img src="Classic 16.jpg"></div>
+            <div class="item"><img src="Classic 17.jpg"></div>
+            <div class="item"><img src="Classic 18.jpg"></div>
+            <div class="item"><img src="Classic 19.jpg"></div>
+            <div class="item"><img src="Classic 20.jpg"></div>
+        </div>
     </section>
 
     <section id="pavement" class="page-section">
-        <div class="home-link" onclick="showPage('home')">← HOME</div>
-        <h2>THE PAVEMENT</h2>
+        <h2 class="section-title">THE PAVEMENT</h2>
         <div class="pavement-gallery">
-            </div>
+            <img src="Pavement.jpg">
+            <img src="Pavement 1.jpg">
+            <img src="Pavement 2.jpg">
+            <img src="Pavement 3.jpg">
+            <img src="Pavement 4.jpg">
+            <img src="Pavement 5.jpg">
+            <img src="Pavement 6.jpg">
+            <img src="Pavement 7.jpg">
+            <img src="Pavement 8.jpg">
+            <img src="Pavement 9.jpg">
+            <img src="Pavement 10.jpg">
+        </div>
     </section>
 
     <section id="art" class="page-section">
-        <div class="home-link" onclick="showPage('home')">← HOME</div>
-        <h2>THE MIND</h2>
-        <img src="Picture1.jpg" style="max-width: 400px;">
+        <h2 class="section-title">FROM THE MIND OF A MADMAN</h2>
+        <div class="art-room">
+            <img src="Painting.jpg" alt="The Vision" class="featured-art">
+        </div>
     </section>
 
-    <footer style="padding: 50px 20px; text-align: center;">
-        <div class="final-portrait">
-            <img src="Picture2.jpg" alt="I got lost in the madness to find myself">
-        </div>
-        <div style="margin: 30px 0; font-family: 'Cinzel'; line-height: 1.8;">
-            <p>LOST IN THE MADNESS OF AN ENDLESS INSANITY.</p>
-            <p>I GOT LOST IN THE MADNESS TO FIND MYSELF, AND SO I ASK, HAVE YOU FOUND YOURSELF?</p>
-        </div>
-        <div class="links">
-            <p>Instagram: <a href="https://instagram.com/rony_willz" style="color:#d4af37;">rony_willz</a></p>
-            <p>YouTube: <a href="https://youtube.com/@rony_willz" style="color:#d4af37;">rony_willz</a></p>
+    <footer>
+        <div class="contact">
+            <p>Instagram: <a href="https://instagram.com/litmoaei">@litmoaei</a> | <a href="https://instagram.com/rony_willz">@rony_willz</a></p>
+            <p>X: <a href="https://x.com/litmoaei">@litmoaei</a></p>
+            <p class="legal">©️ 2026 LITMOAEI. Time answers to you.</p>
         </div>
     </footer>
 
     <script>
         function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             window.scrollTo(0, 0);
         }
