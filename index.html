@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="Logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LITMOAEI | Lost in the Madness</title>
     
-    <meta property="og:title" content="LITMOAEI | Lost in the Madness">
-    <meta property="og:description" content="A calm madness. High-end horology and couture.">
-    <meta property="og:image" content="Logo.png">
-    <meta property="og:type" content="website">
-
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
 
     <style>
-        .page-section { display: none; padding: 50px 20px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; color: #fff; background-color: #000; overflow-x: hidden; }
+
+        .video-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .video-background video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
+
+        .hero { text-align: center; padding: 50px 20px; cursor: pointer; }
+        .main-logo { width: 150px; margin-bottom: 10px; }
+        
+        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px; }
+        nav a { color: #d4af37; text-decoration: none; font-family: 'Cinzel'; font-size: 0.9rem; }
+
+        .page-section { display: none; padding: 40px 10px; text-align: center; max-width: 800px; margin: 0 auto; }
         .page-section.active { display: block; animation: fadeIn 0.8s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .video-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
-        .video-background video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4) contrast(1.2); }
-        
-        .home-link { display: inline-block; margin-bottom: 20px; color: #d4af37; text-decoration: none; font-family: 'Cinzel'; border: 1px solid #d4af37; padding: 5px 15px; cursor: pointer; }
+
+        .home-link { display: inline-block; margin-bottom: 30px; color: #d4af37; border: 1px solid #d4af37; padding: 8px 20px; cursor: pointer; }
+
+        .pavement-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .pavement-gallery img, .item img { width: 100%; height: auto; border: 1px solid #333; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .main-logo { width: 100px; }
+        }
     </style>
 </head>
 <body>
@@ -33,87 +43,75 @@
         </video>
     </div>
 
-    <header class="hero">
-        <div class="logo-container" onclick="showPage('home')">
-            <img src="Logo.png" alt="Litmoaei Logo" class="main-logo">
-            <h1>LITMOAEI</h1>
-            <p class="slogan">Lost in the madness of an endless insanity</p>
-        </div>
+    <header class="hero" onclick="showPage('home')">
+        <img src="Logo.png" alt="Logo" class="main-logo">
+        <h1>LITMOAEI</h1>
+        <p>Lost in the madness of an endless insanity</p>
     </header>
 
     <nav>
         <ul>
-            <li><a href="javascript:void(0)" onclick="showPage('stories')">STORIES STOLEN FROM MADNESS ITSELF</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('elixirs')">Elixirs</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('classics')">The Classics</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('stories')">STORIES</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('elixirs')">ELIXIRS</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('classics')">CLASSICS</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('pavement')">PAVEMENT</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('art')">THE MIND</a></li>
         </ul>
     </nav>
 
     <section id="home" class="page-section active">
-        <div class="welcome-center">
-            <h2 class="cinzel">WELCOME TO THE MADNESS</h2>
-            <p>Select a collection above to begin your journey.</p>
+        <h2 style="font-family: Cinzel;">WELCOME TO THE MADNESS</h2>
+        <div style="animation: fadeIn 3s;">
+            <img src="Painting.jpg" style="max-width: 400px; width: 100%; margin-top: 30px; border: 1px solid #d4af37;">
         </div>
     </section>
 
     <section id="stories" class="page-section">
-        <div onclick="showPage('home')" class="home-link">← HOME</div>
-        <h2 class="section-title">STORIES STOLEN FROM MADNESS ITSELF</h2>
+        <div class="home-link" onclick="showPage('home')">← HOME</div>
+        <h2>STORIES STOLEN FROM MADNESS</h2>
     </section>
 
     <section id="elixirs" class="page-section">
-        <div onclick="showPage('home')" class="home-link">← HOME</div>
-        <h2 class="section-title">THE ELIXIRS</h2>
-        <div class="product-grid">
-            <div class="item">
-                <img src="Drink.jpg" alt="Calm Madness">
-                <h3>Calm Madness</h3>
-                <p>$25.00</p>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                    <input type="hidden" name="cmd" value="_xclick">
-                    <input type="hidden" name="business" value="ronaldedochie@gmail.com">
-                    <input type="hidden" name="item_name" value="Calm Madness Elixir">
-                    <input type="hidden" name="amount" value="25.00">
-                    <input type="hidden" name="currency_code" value="USD">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Buy Now">
-                </form>
-            </div>
+        <div class="home-link" onclick="showPage('home')">← HOME</div>
+        <h2>THE ELIXIRS</h2>
+        <div class="item">
+            <img src="Drink.jpg" alt="Calm Madness" style="max-width: 300px;">
+            <h3>Calm Madness</h3>
+            <p>$25.00</p>
         </div>
     </section>
 
     <section id="classics" class="page-section">
-        <div onclick="showPage('home')" class="home-link">← HOME</div>
-        <h2 class="section-title">THE CLASSICS</h2>
+        <div class="home-link" onclick="showPage('home')">← HOME</div>
+        <h2>THE CLASSICS</h2>
         <div class="pavement-gallery">
-            <div class="item"><img src="Classic.jpg"></div>
-            <div class="item"><img src="Classic 1.jpg"></div>
-            <div class="item"><img src="Classic 2.jpg"></div>
-            <div class="item"><img src="Classic 3.jpg"></div>
-            <div class="item"><img src="Classic 4.jpg"></div>
-            <div class="item"><img src="Classic 5.png"></div>
-            <div class="item"><img src="Classic 6.png"></div>
-            <div class="item"><img src="Classic 7.jpg"></div>
-            <div class="item"><img src="Classic 8.jpg"></div>
-            <div class="item"><img src="Classic 9.jpg"></div>
-            <div class="item"><img src="Classic 10.png"></div>
-            <div class="item"><img src="Classic 11.png"></div>
-            <div class="item"><img src="Classic 12.png"></div>
-            <div class="item"><img src="Classic 13.png"></div>
-            <div class="item"><img src="Classic 14.png"></div>
-            <div class="item"><img src="Classic 15.jpg"></div>
-            <div class="item"><img src="Classic 16.jpg"></div>
-            <div class="item"><img src="Classic 17.jpg"></div>
-            <div class="item"><img src="Classic 18.jpg"></div>
-            <div class="item"><img src="Classic 19.jpg"></div>
-            <div class="item"><img src="Classic 20.jpg"></div>
+            <img src="Classic.jpg">
+            <img src="Classic 1.jpg">
+            <img src="Classic 2.jpg">
+            <img src="Classic 3.jpg">
+            <img src="Classic 4.jpg">
+            <img src="Classic 5.png">
+            <img src="Classic 6.png">
+            <img src="Classic 7.jpg">
+            <img src="Classic 8.jpg">
+            <img src="Classic 9.jpg">
+            <img src="Classic 10.png">
+            <img src="Classic 11.png">
+            <img src="Classic 12.png">
+            <img src="Classic 13.png">
+            <img src="Classic 14.png">
+            <img src="Classic 15.jpg">
+            <img src="Classic 16.jpg">
+            <img src="Classic 17.jpg">
+            <img src="Classic 18.jpg">
+            <img src="Classic 19.jpg">
+            <img src="Classic 20.jpg">
         </div>
     </section>
 
     <section id="pavement" class="page-section">
-        <div onclick="showPage('home')" class="home-link">← HOME</div>
-        <h2 class="section-title">THE PAVEMENT</h2>
+        <div class="home-link" onclick="showPage('home')">← HOME</div>
+        <h2>THE PAVEMENT</h2>
         <div class="pavement-gallery">
             <img src="Pavement.jpg">
             <img src="Pavement 1.jpg">
@@ -130,27 +128,16 @@
     </section>
 
     <section id="art" class="page-section">
-        <div onclick="showPage('home')" class="home-link">← HOME</div>
-        <h2 class="section-title">FROM THE MIND OF A MADMAN</h2>
-        <div class="art-room">
-            <img src="Painting.jpg" alt="The Vision" class="featured-art">
-        </div>
+        <div class="home-link" onclick="showPage('home')">← HOME</div>
+        <h2>THE MIND</h2>
+        <img src="Painting.jpg" style="max-width: 100%;">
     </section>
-
-    <footer>
-        <div class="contact">
-            <p>Instagram: <a href="https://instagram.com/litmoaei">@litmoaei</a> | <a href="https://instagram.com/rony_willz">@rony_willz</a></p>
-            <p>X: <a href="https://x.com/litmoaei">@litmoaei</a></p>
-            <p class="legal">©️ 2026 LITMOAEI. Time answers to you.</p>
-        </div>
-    </footer>
 
     <script>
         function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            const videoBg = document.querySelector('.video-background');
-            videoBg.style.display = (pageId === 'home') ? 'block' : 'none';
+            document.querySelector('.video-background').style.display = (pageId === 'home') ? 'block' : 'none';
             window.scrollTo(0, 0);
         }
     </script>
