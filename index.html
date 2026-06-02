@@ -3,47 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LITMOAEI - The official portal of high-end horology and couture.">
-    <title>LITMOAEI | Master Collection</title>
+    <title>LITMOAEI | The Permanent Collection</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
     <style>
-        /* CORE SYSTEM RESET */
+        /* CORE ARCHITECTURE */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.6; }
+        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; min-height: 200vh; }
 
-        /* HERO & BRANDING */
-        .header-wrapper { padding: 80px 20px; text-align: center; cursor: pointer; border-bottom: 1px solid #333; }
-        .main-logo { width: 450px; max-width: 90%; display: block; margin: 0 auto; transition: transform 0.3s; }
+        /* HEADER */
+        .header-wrapper { padding: 100px 20px; text-align: center; cursor: pointer; border-bottom: 2px solid #333; }
+        .main-logo { width: 500px; max-width: 95%; display: block; margin: 0 auto; }
         .welcome-text { 
-            font-family: 'Cinzel'; font-size: 3rem; margin-top: 30px; letter-spacing: 6px; text-transform: uppercase; 
+            font-family: 'Cinzel'; font-size: 3.5rem; margin-top: 40px; letter-spacing: 8px; text-transform: uppercase; 
             background: linear-gradient(to right, #ffffff, #b76e79, #d4af37);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;
         }
 
-        /* NAVIGATION SYSTEM */
-        nav { width: 100%; padding: 25px 0; background: #050505; position: sticky; top: 0; z-index: 500; border-bottom: 1px solid #444; }
-        nav ul { display: flex; list-style: none; justify-content: center; gap: 25px; flex-wrap: wrap; }
-        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel'; font-size: 1rem; padding: 5px 10px; transition: color 0.3s; }
+        /* NAVIGATION - STICKY */
+        nav { width: 100%; padding: 30px 0; background: rgba(0,0,0,0.98); position: sticky; top: 0; z-index: 999; border-bottom: 2px solid #444; }
+        nav ul { display: flex; list-style: none; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel'; font-size: 1.1rem; padding: 10px; transition: 0.3s; }
         nav a:hover { color: #b76e79; }
 
         /* SECTION ARCHITECTURE */
-        .page-section { display: none; padding: 100px 20px; min-height: 80vh; text-align: center; }
+        .page-section { display: none; padding: 100px 20px; min-height: 100vh; text-align: center; }
         .page-section.active { display: block; animation: fadeIn 0.8s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* FLUID SCROLL CONTAINERS */
-        .gallery-wrap { width: 100%; overflow-x: auto; padding: 40px 0; display: flex; gap: 20px; scroll-snap-type: x mandatory; }
-        .gallery-item { flex: 0 0 auto; width: 300px; height: 450px; scroll-snap-align: start; border: 1px solid #333; overflow: hidden; }
+        /* GALLERY - FLUID SCROLLING (NO HOOKING) */
+        .gallery-wrap { width: 100%; overflow-x: auto; padding: 50px 0; display: flex; gap: 20px; }
+        .gallery-item { flex: 0 0 auto; width: 400px; height: 600px; border: 2px solid #333; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* PAYMENT ENGINE */
-        .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; overflow-y: auto; padding: 50px 20px; }
-        .payment-card { max-width: 650px; margin: 0 auto; border: 1px solid #b76e79; padding: 40px; text-align: left; background: #080808; }
-        .currency-block { margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
-        
-        /* UTILS */
-        .btn-order { display: inline-block; padding: 15px 30px; border: 1px solid #b76e79; color: #fff; text-decoration: none; margin-top: 20px; font-family: 'Cinzel'; transition: 0.3s; }
-        .btn-order:hover { background: #b76e79; color: #000; }
+        /* CONTACT FOOTER */
+        .footer-section { padding: 80px 20px; text-align: center; border-top: 2px solid #333; margin-top: 50px; }
+        .footer-links a { color: #b76e79; text-decoration: none; margin: 0 20px; font-family: 'Cinzel'; font-size: 1.2rem; }
+
+        /* OVERLAYS & BUTTONS */
+        .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.99); z-index: 2000; overflow-y: auto; padding: 50px; }
+        .payment-card { max-width: 700px; margin: 0 auto; border: 2px solid #b76e79; padding: 50px; text-align: left; background: #080808; }
+        .btn-order { display: inline-block; padding: 20px 40px; border: 2px solid #b76e79; color: #fff; text-decoration: none; margin-top: 30px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -55,57 +54,48 @@
 
     <nav>
         <ul>
-            <li><a href="#" onclick="showPage('home')">Home</a></li>
-            <li><a href="#" onclick="showPage('mind')">The Mind</a></li>
-            <li><a href="#" onclick="showPage('pavement')">The Pavement</a></li>
-            <li><a href="#" onclick="showPage('elixirs')">Elixirs</a></li>
-            <li><a href="#" onclick="showPage('classics')">The Classics</a></li>
-            <li><a href="#" onclick="showPage('nudes')">Nude Paintings</a></li>
+            <li><a href="#" onclick="showPage('home')">⌂ HOME</a></li>
+            <li><a href="#" onclick="showPage('mind')">THE MIND</a></li>
+            <li><a href="#" onclick="showPage('pavement')">THE PAVEMENT</a></li>
+            <li><a href="#" onclick="showPage('elixirs')">ELIXIRS</a></li>
+            <li><a href="#" onclick="showPage('classics')">THE CLASSICS</a></li>
+            <li><a href="#" onclick="showPage('nudes')">NUDE PAINTINGS</a></li>
         </ul>
     </nav>
 
     <div id="payment-overlay" class="overlay-dimmer">
-        <button onclick="closeOrder()" style="float:right; background:none; border:1px solid #fff; color:#fff; padding:10px; cursor:pointer;">CLOSE X</button>
+        <button onclick="closeOrder()" style="float:right; background:none; border:2px solid #fff; color:#fff; padding:15px; cursor:pointer;">CLOSE X</button>
         <div class="payment-card">
-            <h2 style="font-family:Cinzel; margin-bottom:20px;">TRANSACTION PROTOCOLS</h2>
-            <div class="currency-block"><strong>USD:</strong> Lead Bank | Acct: 211290637762 | Routing: 101019644</div>
-            <div class="currency-block"><strong>EUR:</strong> Clear Junction Ltd | Acct: 42592550 | IBAN: GB21CLJU42592550 | SWIFT: CLJUGB21XXX</div>
-            <div class="currency-block"><strong>GBP:</strong> Clear Junction Ltd | Acct: 42592550 | Sort: 041307 | SWIFT: CLJUGB21XXX</div>
-            <div class="currency-block"><strong>NGN:</strong> Ecobank | Acct: 2971079059 | Name: CHUCK EDOCHIE</div>
-            <div class="currency-block"><strong>USDT (TRC20):</strong> TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</div>
-            <a href="https://ig.me/m/rony_willz" class="btn-order">SECURE YOUR ORDER VIA INSTAGRAM</a>
+            <h2 style="font-family:Cinzel; margin-bottom:20px;">ORDER PROTOCOLS</h2>
+            <div style="margin-bottom:20px; border-bottom:1px solid #333;"><strong>USD:</strong> Lead Bank | 211290637762</div>
+            <div style="margin-bottom:20px; border-bottom:1px solid #333;"><strong>USDT (TRC20 ONLY):</strong> TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</div>
+            <a href="https://ig.me/m/rony_willz" class="btn-order">CONFIRM ON INSTAGRAM</a>
         </div>
     </div>
 
     <section id="home" class="page-section active">
-        <img src="1000035944.jpg" style="width:100%; max-width:800px; margin-bottom:40px;">
-        <img src="I got lost in the madness to find myself.jpeg" style="width:100%; max-width:800px; mix-blend-mode:lighten;">
-        <video autoplay muted loop playsinline style="width:100%; max-width:800px; margin-top:50px;"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
+        <img src="1000035924.jpg" style="width:100%; max-width:1000px; margin-bottom:40px;">
+        <img src="the process of madness.jpeg" style="width:100%; max-width:1000px; margin-bottom:40px;">
+        <img src="I got lost in the madness to find myself.jpeg" style="width:100%; max-width:1000px; margin-bottom:40px;">
+        <video autoplay muted loop playsinline style="width:100%; max-width:1000px;"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
     </section>
 
-    <section id="mind" class="page-section">
-        <h2>THE MIND</h2>
-        <a class="btn-order" onclick="openOrder()">SPECIFY SIZE & ORDER NOW</a>
-        <div class="gallery-wrap"><div class="gallery-item"><img src="Painting.jpg"></div></div>
-    </section>
+    <section id="mind" class="page-section"><h2>THE MIND</h2><div class="gallery-wrap"><div class="gallery-item"><img src="Painting.jpg"></div></div></section>
+    <section id="pavement" class="page-section"><h2>THE PAVEMENT</h2><div class="gallery-wrap"><div class="gallery-item"><img src="Pavement.jpg"></div></div></section>
+    <section id="elixirs" class="page-section"><h2>THE ELIXIRS</h2><div class="gallery-wrap"><div class="gallery-item"><img src="Drink.jpg"></div></div></section>
+    <section id="classics" class="page-section"><h2>THE CLASSICS</h2><div class="gallery-wrap"><div class="gallery-item"><img src="Classic.jpg"></div></div></section>
+    <section id="nudes" class="page-section"><h2>NUDE PAINTINGS</h2><div class="gallery-wrap"><div class="gallery-item"><img src="Nude.jpg"></div></div></section>
 
-    <section id="nudes" class="page-section">
-        <h2>NUDE PAINTINGS</h2>
-        <p>Intimate works of the soul.</p>
-        <a class="btn-order" onclick="openOrder()">SPECIFY SIZE & ORDER NOW</a>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Nude.jpg"></div>
-            <div class="gallery-item"><img src="Nude 1.jpg"></div>
-            <div class="gallery-item"><img src="Nude 2.jpg"></div>
+    <footer class="footer-section">
+        <div class="footer-links">
+            <a href="https://instagram.com/rony_willz" target="_blank">INSTAGRAM</a>
+            <a href="https://youtube.com/@LITMOAEI" target="_blank">YOUTUBE</a>
+            <a href="mailto:DeleteMoyet@gmail.com">DeleteMoyet@gmail.com</a>
         </div>
-    </section>
+    </footer>
 
     <script>
-        function showPage(id) {
-            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            window.scrollTo(0,0);
-        }
+        function showPage(id) { document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
         function openOrder() { document.getElementById('payment-overlay').style.display = 'block'; }
         function closeOrder() { document.getElementById('payment-overlay').style.display = 'none'; }
     </script>
