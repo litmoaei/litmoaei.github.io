@@ -10,44 +10,45 @@
     <style>
         * { box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
-        .main-logo { width: 450px; display: block; margin: 0 auto; }
+        
         .hero { text-align: center; padding: 50px 0; cursor: pointer; }
+        .main-logo { width: 450px; display: block; margin: 0 auto; }
+        .slogan { font-family: 'Cinzel'; font-size: 1.2rem; color: #fff; margin-top: 15px; letter-spacing: 2px; }
         
         nav { width: 100%; overflow-x: auto; padding: 20px 0; border-bottom: 1px solid #333; }
-        nav ul { display: flex; list-style: none; padding: 0 20px; gap: 40px; white-space: nowrap; }
+        nav ul { display: flex; list-style: none; padding: 0 20px; gap: 30px; white-space: nowrap; justify-content: center; }
         nav a { color: #d4af37; text-decoration: none; font-family: 'Cinzel'; font-size: 1.1rem; }
         
         .page-section { display: none; padding: 40px 0; }
         .page-section.active { display: block; animation: fadeIn 0.8s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* Titles & Order Trigger */
         .section-header { text-align: center; margin-bottom: 30px; }
         .section-title { font-family: 'Cinzel'; font-size: 2rem; color: #fff; margin: 0; }
         .order-trigger { color: #d4af37; cursor: pointer; font-family: 'Montserrat'; font-size: 0.9rem; text-decoration: underline; margin-top: 5px; display: block; }
 
-        /* The Overlay "Folder" */
-        .order-overlay { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.95); z-index: 1000; padding: 50px 20px; overflow-y: auto; text-align: center;
-        }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; padding: 20px; }
+        .gallery-grid img { width: 100%; height: auto; display: block; border: 1px solid #333; }
+
+        .order-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; padding: 50px 20px; overflow-y: auto; text-align: center; }
         .order-content { max-width: 500px; margin: auto; border: 1px solid #d4af37; padding: 30px; }
         .close-btn { color: #d4af37; cursor: pointer; font-size: 1.5rem; margin-bottom: 20px; display: block; }
 
-        /* Art & Gallery */
         .art-small { max-width: 300px; width: 80%; display: block; margin: 0 auto; position: relative; z-index: 2; }
         .art-full { width: 100%; display: block; object-fit: cover; }
         .smoke-blend-zone { position: relative; width: 100%; margin-top: -50px; }
         .smoke-layer { position: absolute; top: -100px; width: 100%; height: 300px; background: linear-gradient(to bottom, rgba(0,0,0,0), #000); pointer-events: none; animation: drift 15s infinite alternate ease-in-out; }
         @keyframes drift { from { transform: translateX(-5%); opacity: 0.3; } to { transform: translateX(5%); opacity: 0.6; } }
-        .pavement-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; padding: 0 5px; }
+        
+        .bottom-video-section { width: 100%; margin: 40px 0 0 0; }
+        .bottom-video-section video { width: 100%; display: block; filter: brightness(0.6); aspect-ratio: 16/9; object-fit: cover; }
     </style>
 </head>
 <body>
 
     <header class="hero" onclick="showPage('home')">
         <img src="Logo.png" alt="Litmoaei Logo" class="main-logo">
-        <h1>LITMOAEI</h1>
+        <p class="slogan">Lost in the madness of an endless insanity</p>
     </header>
 
     <nav>
@@ -55,8 +56,9 @@
             <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('elixirs')">Elixirs</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('classics')">The Classics</a></li>
+            <li><a href="https://instagram.com/rony_willz" target="_blank">Instagram</a></li>
+            <li><a href="https://youtube.com/@YOUR_CHANNEL" target="_blank">YouTube</a></li>
         </ul>
     </nav>
 
@@ -64,20 +66,21 @@
         <span class="close-btn" onclick="closeOrder()">✕ Close</span>
         <div class="order-content">
             <h2 style="font-family: 'Cinzel';">ORDER & PAYMENT</h2>
-            <p style="color: #d4af37;">Pre-order with your size, and we will sew it for you.</p>
             <div style="text-align: left; margin: 20px 0;">
-                <p><strong>USD Account:</strong> [Insert]</p>
-                <p><strong>EUR Account:</strong> [Insert]</p>
-                <p><strong>GBP Account:</strong> [Insert]</p>
-                <p><strong>PayPal:</strong> [Insert Link/Email]</p>
+                <p><strong>USD:</strong> [Insert Account]</p>
+                <p><strong>EUR:</strong> [Insert Account]</p>
+                <p><strong>GBP:</strong> [Insert Account]</p>
             </div>
             <a href="https://ig.me/m/rony_willz" target="_blank" style="color:#d4af37; font-weight:bold;">MESSAGE RECEIPT & SIZE ON INSTAGRAM</a>
         </div>
     </div>
 
     <section id="home" class="page-section active">
+        <h2 style="text-align:center; font-family:'Cinzel';">PROCESS OF MADNESS</h2>
         <img src="the process of madnness.jpeg" class="art-small">
         <div class="smoke-blend-zone"><div class="smoke-layer"></div><img src="I got lost in the madness to find myself.jpeg" class="art-full"></div>
+        <p style="text-align:center; color:#d4af37; padding: 20px;">I GOT LOST TO FIND MYSELF, HAVE YOU FOUND YOURSELF?</p>
+        <div class="bottom-video-section"><video autoplay muted loop playsinline><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video></div>
     </section>
 
     <section id="art" class="page-section">
@@ -93,8 +96,8 @@
             <h2 class="section-title">THE PAVEMENT</h2>
             <span class="order-trigger" onclick="openOrder()">[Order & Pre-order with your size]</span>
         </div>
-        <div class="pavement-gallery">
-            <img src="Pavement.jpg"><img src="Pavement 1.jpg"><img src="Pavement 2.jpg"><img src="Pavement 3.jpg">
+        <div class="gallery-grid">
+            <img src="Pavement.jpg"><img src="Pavement 1.jpg"><img src="Pavement 2.jpg"><img src="Pavement 3.jpg"><img src="Pavement 4.jpg"><img src="Pavement 5.jpg"><img src="Pavement 6.jpg"><img src="Pavement 7.jpg"><img src="Pavement 8.jpg"><img src="Pavement 9.jpg"><img src="Pavement 10.jpg">
         </div>
     </section>
 
@@ -103,10 +106,16 @@
             <h2 class="section-title">THE CLASSICS</h2>
             <span class="order-trigger" onclick="openOrder()">[Order & Pre-order with your size]</span>
         </div>
-        <div class="pavement-gallery">
-            <img src="Classic.jpg"><img src="Classic 1.jpg"><img src="Classic 2.jpg">
+        <div class="gallery-grid">
+            <img src="Classic.jpg"><img src="Classic 1.jpg"><img src="Classic 2.jpg"><img src="Classic 3.jpg"><img src="Classic 4.jpg"><img src="Classic 5.png"><img src="Classic 6.png"><img src="Classic 7.jpg"><img src="Classic 8.jpg"><img src="Classic 9.jpg"><img src="Classic 10.png"><img src="Classic 11.png"><img src="Classic 12.png"><img src="Classic 13.png"><img src="Classic 14.png"><img src="Classic 15.jpg"><img src="Classic 16.jpg"><img src="Classic 17.jpg"><img src="Classic 18.jpg"><img src="Classic 19.jpg"><img src="Classic 20.jpg">
         </div>
     </section>
+
+    <footer>
+        <div style="text-align: center; padding: 50px; font-size: 0.8rem;">
+            <p>©️ 2026 LITMOAEI. Time answers to you.</p>
+        </div>
+    </footer>
 
     <script>
         function showPage(pageId) {
