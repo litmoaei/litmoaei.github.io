@@ -15,21 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
 
     <style>
-        /* Essential Logic for "Separate Houses" */
         .page-section { display: none; padding: 50px 20px; }
         .page-section.active { display: block; animation: fadeIn 0.8s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .nav-active { border-bottom: 2px solid #d4af37; }
-
-        /* Video Background */
-        .video-background {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; overflow: hidden;
-        }
-        .video-background video {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: brightness(0.4) contrast(1.2);
-        }
+        
+        .video-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .video-background video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4) contrast(1.2); }
+        
+        .home-link { display: inline-block; margin-bottom: 20px; color: #d4af37; text-decoration: none; font-family: 'Cinzel'; border: 1px solid #d4af37; padding: 5px 15px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -50,11 +43,11 @@
 
     <nav>
         <ul>
+            <li><a href="javascript:void(0)" onclick="showPage('stories')">STORIES STOLEN FROM MADNESS ITSELF</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('elixirs')">Elixirs</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('classics')">The Classics</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('stories')">STORIES STOLEN FROM MADNESS ITSELF</a></li>
         </ul>
     </nav>
 
@@ -62,11 +55,16 @@
         <div class="welcome-center">
             <h2 class="cinzel">WELCOME TO THE MADNESS</h2>
             <p>Select a collection above to begin your journey.</p>
-            <img src="Painting.jpg" style="max-width: 100%; margin-top: 20px; border: 1px solid #333;">
         </div>
     </section>
 
+    <section id="stories" class="page-section">
+        <div onclick="showPage('home')" class="home-link">← HOME</div>
+        <h2 class="section-title">STORIES STOLEN FROM MADNESS ITSELF</h2>
+    </section>
+
     <section id="elixirs" class="page-section">
+        <div onclick="showPage('home')" class="home-link">← HOME</div>
         <h2 class="section-title">THE ELIXIRS</h2>
         <div class="product-grid">
             <div class="item">
@@ -86,6 +84,7 @@
     </section>
 
     <section id="classics" class="page-section">
+        <div onclick="showPage('home')" class="home-link">← HOME</div>
         <h2 class="section-title">THE CLASSICS</h2>
         <div class="pavement-gallery">
             <div class="item"><img src="Classic.jpg"></div>
@@ -113,6 +112,7 @@
     </section>
 
     <section id="pavement" class="page-section">
+        <div onclick="showPage('home')" class="home-link">← HOME</div>
         <h2 class="section-title">THE PAVEMENT</h2>
         <div class="pavement-gallery">
             <img src="Pavement.jpg">
@@ -130,14 +130,11 @@
     </section>
 
     <section id="art" class="page-section">
+        <div onclick="showPage('home')" class="home-link">← HOME</div>
         <h2 class="section-title">FROM THE MIND OF A MADMAN</h2>
         <div class="art-room">
             <img src="Painting.jpg" alt="The Vision" class="featured-art">
         </div>
-    </section>
-
-    <section id="stories" class="page-section">
-        <h2 class="section-title">STORIES STOLEN FROM MADNESS ITSELF</h2>
     </section>
 
     <footer>
@@ -150,9 +147,10 @@
 
     <script>
         function showPage(pageId) {
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
+            const videoBg = document.querySelector('.video-background');
+            videoBg.style.display = (pageId === 'home') ? 'block' : 'none';
             window.scrollTo(0, 0);
         }
     </script>
