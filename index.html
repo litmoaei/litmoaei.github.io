@@ -43,8 +43,8 @@
         .gallery-wrap::-webkit-scrollbar { height: 8px; }
         .gallery-wrap::-webkit-scrollbar-track { background: #1a1a1a; }
         .gallery-wrap::-webkit-scrollbar-thumb { background: #b76e79; border-radius: 4px; }
-        .gallery-item { flex: 0 0 auto; width: 450px; height: 650px; background: #0f0f0f; border: 1px solid #1a1a1a; overflow: hidden; scroll-snap-align: start; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-item { flex: 0 0 auto; width: 450px; background: #0f0f0f; border: 1px solid #1a1a1a; padding: 10px; scroll-snap-align: start; display: flex; flex-direction: column; }
+        .gallery-item img { width: 100%; height: 500px; object-fit: cover; }
 
         /* PAYMENT PROTOCOLS */
         .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 40px; }
@@ -54,7 +54,7 @@
         .security-warning { color: #b76e79; border: 1px solid #b76e79; padding: 20px; margin-top: 20px; text-align: center; font-family: 'Cinzel'; font-weight: bold; font-size: 1.1rem; }
         .qr-container { text-align: center; margin-top: 30px; border: 1px solid #222; padding: 20px; }
         .qr-img { width: 200px; height: 200px; background: #fff; margin: 10px auto; }
-        .btn-order { display: block; width: 100%; padding: 25px; border: 1px solid #b76e79; color: #fff; text-align: center; text-decoration: none; margin-top: 30px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 1.2rem; transition: background 0.3s ease; }
+        .btn-order { display: block; width: 100%; padding: 20px; border: 1px solid #b76e79; color: #fff; text-align: center; text-decoration: none; margin-top: 15px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 1.1rem; transition: background 0.3s ease; }
         .btn-order:hover { background: #b76e79; color: #000; }
 
         /* FOOTER */
@@ -98,10 +98,19 @@
                 <strong>USDT (TRC20) PAYMENT:</strong>
                 <div class="qr-img"><img src="ustd QR code.jpeg" alt="USDT QR Code" style="width:100%; height:100%;"></div>
                 <p style="font-size: 0.8rem; word-break: break-all;">Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
-                <div class="security-warning">⚠️ WARNING: DO NOT TRANSACT WITH ANY OTHER ACCOUNT. OFFICIAL CHANNELS ONLY.</div>
+                <div class="security-warning">
+                    ⚠️ WARNING: ONLY SEND VIA THE TRC20 NETWORK. USING A DIFFERENT NETWORK WILL RESULT IN THE PERMANENT LOSS OF FUNDS. DO NOT TRANSACT WITH ANY OTHER ACCOUNT. OFFICIAL CHANNELS ONLY.
+                </div>
             </div>
 
-            <a href="https://ig.me/m/rony_willz" class="btn-order">CONFIRM TRANSACTION ON INSTAGRAM</a>
+            <div style="margin-top: 40px; border-top: 1px solid #b76e79; padding-top: 30px; text-align: center;">
+                <h3 style="font-family:Cinzel; color:#fff; margin-bottom:10px;">COMMISSION YOUR PIECE</h3>
+                <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px; letter-spacing: 1px;">(Bespoke: Made exclusively to your unique specifications.)</p>
+                <a href="https://ig.me/m/rony_willz?text=Hello,%20I%20would%20like%20to%20commission%20a%20piece.%20My%20specifications%20are:%20Size:%20_____%20Color:%20_____%20Custom%20Details:%20_____" 
+                   style="display:block; padding:20px; background:#b76e79; color:#000; text-decoration:none; font-family:'Cinzel'; font-weight:bold; letter-spacing:2px; font-size:1.1rem; border:1px solid #fff;">
+                   SEND BESPOKE SPECIFICATIONS
+                </a>
+            </div>
         </div>
     </div>
 
@@ -113,74 +122,73 @@
 
     <section id="mind" class="page-section">
         <div class="statement-text">THE MIND</div>
-        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
-        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
-        <div class="gallery-wrap"><div class="gallery-item"><img src="Painting.jpg"></div></div>
+        <div class="gallery-wrap">
+            <div class="gallery-item">
+                <img src="Painting.jpg" alt="Painting">
+                <a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Painting.jpg.%20Size:%20_____%20Color:%20_____%20Details:%20_____" class="btn-order">COMMISSION THIS</a>
+            </div>
+        </div>
     </section>
     
     <section id="pavement" class="page-section">
         <div class="statement-text">THE PAVEMENT</div>
-        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
-        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
         <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Pavement.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 1.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 2.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 3.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 4.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 5.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 6.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 7.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 8.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 9.jpg"></div>
-            <div class="gallery-item"><img src="Pavement 10.jpg"></div>
+            <div class="gallery-item"><img src="Pavement.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 1.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%201.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 2.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%202.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 3.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%203.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 4.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%204.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 5.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%205.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 6.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%206.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 7.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%207.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 8.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%208.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 9.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%209.jpg" class="btn-order">COMMISSION THIS</a></div>
+            <div class="gallery-item"><img src="Pavement 10.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Pavement%2010.jpg" class="btn-order">COMMISSION THIS</a></div>
         </div>
     </section>
     
     <section id="elixirs" class="page-section">
         <div class="statement-text">THE ELIXIRS</div>
-        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
-        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
-        <div class="gallery-wrap"><div class="gallery-item"><img src="Drink.jpg"></div></div>
+        <div class="gallery-wrap">
+            <div class="gallery-item">
+                <img src="Drink.jpg"><a href="https://ig.me/m/rony_willz?text=I%20want%20to%20order%20Drink.jpg" class="btn-order">COMMISSION THIS</a>
+            </div>
+        </div>
     </section>
     
     <section id="classics" class="page-section">
         <div class="statement-text">THE CLASSICS</div>
-        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
-        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
         <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Classic.jpg"></div>
-            <div class="gallery-item"><img src="Classic 1.jpg"></div>
-            <div class="gallery-item"><img src="Classic 2.jpg"></div>
-            <div class="gallery-item"><img src="Classic 3.jpg"></div>
-            <div class="gallery-item"><img src="Classic 4.jpg"></div>
-            <div class="gallery-item"><img src="Classic 5.png"></div>
-            <div class="gallery-item"><img src="Classic 6.png"></div>
-            <div class="gallery-item"><img src="Classic 7.jpg"></div>
-            <div class="gallery-item"><img src="Classic 8.jpg"></div>
-            <div class="gallery-item"><img src="Classic 9.jpg"></div>
-            <div class="gallery-item"><img src="Classic 10.png"></div>
-            <div class="gallery-item"><img src="Classic 11.png"></div>
-            <div class="gallery-item"><img src="Classic 12.png"></div>
-            <div class="gallery-item"><img src="Classic 13.png"></div>
-            <div class="gallery-item"><img src="Classic 14.png"></div>
-            <div class="gallery-item"><img src="Classic 15.jpg"></div>
-            <div class="gallery-item"><img src="Classic 16.jpg"></div>
-            <div class="gallery-item"><img src="Classic 17.jpg"></div>
-            <div class="gallery-item"><img src="Classic 18.jpg"></div>
-            <div class="gallery-item"><img src="Classic 19.jpg"></div>
-            <div class="gallery-item"><img src="Classic 20.jpg"></div>
+            <div class="gallery-item"><img src="Classic.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 1.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%201.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 2.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%202.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 3.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%203.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 4.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%204.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 5.png"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%205.png" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 6.png"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%206.png" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 7.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%207.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 8.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%208.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 9.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%209.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 10.png"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2010.png" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 11.png"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2011.png" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 12.png"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2012.png" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 13.png"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2013.png" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 14.png"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2014.png" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 15.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2015.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 16.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2016.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 17.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2017.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 18.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2018.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 19.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2019.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Classic 20.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Classic%2020.jpg" class="btn-order">COMMISSION</a></div>
         </div>
     </section>
     
     <section id="nudes" class="page-section">
         <div class="statement-text">NUDE PAINTINGS OF THE ARTIST HIMSELF</div>
-        <a class="btn-order" onclick="openOrder()">ORDER & SPECIFY SIZE</a>
-        <div class="scroll-hint">▼ SWIPE/SCROLL TO VIEW COLLECTION ▼</div>
         <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Nude.jpg"></div>
-            <div class="gallery-item"><img src="Nude 1.jpg"></div>
-            <div class="gallery-item"><img src="Nude 2.jpg"></div>
+            <div class="gallery-item"><img src="Nude.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Nude.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Nude 1.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Nude%201.jpg" class="btn-order">COMMISSION</a></div>
+            <div class="gallery-item"><img src="Nude 2.jpg"><a href="https://ig.me/m/rony_willz?text=Order%20Nude%202.jpg" class="btn-order">COMMISSION</a></div>
         </div>
     </section>
     
