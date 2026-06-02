@@ -3,37 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LITMOAEI | Lost in the Madness</title>
+    <title>LITMOAEI | Welcome to the Madness</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
-
     <style>
         * { box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
-        .hero { text-align: center; padding: 50px 0; cursor: pointer; }
-        .main-logo { width: 450px; display: block; margin: 0 auto; }
-        nav { width: 100%; overflow-x: auto; padding: 20px 0; border-bottom: 1px solid #333; }
-        nav ul { display: flex; list-style: none; padding: 0 20px; margin: 0; gap: 30px; white-space: nowrap; justify-content: center; }
-        nav a { color: #d4af37; text-decoration: none; font-family: 'Cinzel'; font-size: 1.1rem; }
-        .page-section { display: none; padding: 40px 0; }
+        .gold-line { width: 100px; height: 2px; background: #d4af37; margin: 20px auto; }
+        
+        .hero { text-align: center; padding: 80px 20px; }
+        .main-logo { width: 450px; max-width: 90%; display: block; margin: 0 auto; }
+        .welcome-text { font-family: 'Cinzel'; font-size: 1.8rem; margin-top: 20px; letter-spacing: 4px; color: #d4af37; }
+
+        nav { width: 100%; padding: 20px 0; border-top: 1px solid #333; border-bottom: 1px solid #333; }
+        nav ul { display: flex; list-style: none; padding: 0; margin: 0; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel'; font-size: 1rem; transition: 0.3s; }
+        nav a:hover { color: #d4af37; }
+
+        .page-section { display: none; padding: 60px 20px; text-align: center; }
         .page-section.active { display: block; animation: fadeIn 0.8s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .section-title { text-align: center; font-family: 'Cinzel'; margin-bottom: 30px; }
-        .order-trigger { color: #d4af37; cursor: pointer; text-decoration: underline; display: block; text-align: center; margin-bottom: 30px; }
-        .order-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 1000; padding: 40px 20px; overflow-y: auto; text-align: center; }
-        .order-content { max-width: 500px; margin: auto; border: 1px solid #d4af37; padding: 25px; text-align: left; background: #000; }
-        .close-btn { color: #d4af37; cursor: pointer; font-size: 1.2rem; margin-bottom: 20px; display: block; text-transform: uppercase; text-align: center; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 20px; }
-        .gallery-grid img { width: 100%; display: block; }
-        .art-full { width: 100%; display: block; margin: 20px 0; }
-        .contact-section { text-align: center; padding: 50px 20px; border-top: 1px solid #333; }
-        .contact-links a { color: #d4af37; display: block; margin: 10px 0; text-decoration: none; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 30px; }
+        .gallery-grid img { width: 100%; display: block; border: 1px solid #222; }
+        .art-full { width: 100%; max-width: 800px; display: block; margin: 30px auto; }
+
+        /* Payment Styles */
+        .order-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.99); z-index: 1000; padding: 20px; overflow-y: auto; text-align: center; }
+        .order-content { max-width: 500px; margin: auto; padding: 20px; text-align: left; }
+        .currency-box { border: 1px solid #d4af37; padding: 15px; margin-bottom: 15px; background: #080808; }
+        .close-btn { color: #d4af37; cursor: pointer; display: block; margin-bottom: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header class="hero" onclick="showPage('home')">
         <img src="Logo.png" alt="Litmoaei Logo" class="main-logo">
-        <p style="font-family:'Cinzel'; margin-top:10px; letter-spacing:2px;">Lost in the madness of an endless insanity</p>
+        <div class="gold-line"></div>
+        <h1 class="welcome-text">WELCOME TO THE MADNESS</h1>
     </header>
 
     <nav>
@@ -41,70 +47,89 @@
             <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('elixirs')">Elixirs</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('classics')">The Classics</a></li>
         </ul>
     </nav>
 
     <div id="order-overlay" class="order-overlay">
-        <span class="close-btn" onclick="closeOrder()">✕ Close</span>
+        <span class="close-btn" onclick="closeOrder()">✕ CLOSE PAYMENT</span>
         <div class="order-content">
-            <h2 style="font-family: 'Cinzel'; text-align: center;">PAYMENT METHODS</h2>
-            <div style="border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px;">
-                <p style="color: #d4af37; font-weight: bold;">NAIRA (NGN)</p>
-                <p style="font-size: 0.85rem;">Bank: Ecobank | Acct: 2971079059 | Name: CHUCK EDOCHIE</p>
+            <h2 style="font-family: 'Cinzel'; text-align: center; color: #d4af37; margin-bottom: 25px;">ORDER & PAYMENT</h2>
+            
+            <div class="currency-box">
+                <p style="color: #d4af37; font-weight: bold; margin:0;">UNITED STATES DOLLARS (USD)</p>
+                <p style="margin:5px 0 0 0; font-size: 0.9rem;">Bank: Lead Bank | Acct: 211290637762 | Routing: 101019644</p>
             </div>
-            <div style="border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px;">
-                <p style="color: #d4af37; font-weight: bold;">INTERNATIONAL WIRE</p>
-                <p style="font-size: 0.85rem;">USD: 211290637762 | GBP/EUR: 42592550 (Swift: CLJUGB21XXX)</p>
+
+            <div class="currency-box">
+                <p style="color: #d4af37; font-weight: bold; margin:0;">EURO (EUR) / POUNDS (GBP)</p>
+                <p style="margin:5px 0 0 0; font-size: 0.9rem;">Bank: Clear Junction | Acct: 42592550 | Sort: 041307 | SWIFT: CLJUGB21XXX</p>
             </div>
-            <div style="text-align: center; margin-bottom: 20px;">
-                <p style="color: #d4af37; font-weight: bold;">USDT (KUCOIN)</p>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9" style="background:white; padding:5px; margin:5px 0;">
-                <p style="font-family: monospace; font-size: 0.75rem; background: #222; padding: 8px;">TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
-                <p style="color: #ff4444; font-weight: bold; font-size: 0.7rem;">USE TRC20 NETWORK ONLY</p>
+
+            <div class="currency-box">
+                <p style="color: #d4af37; font-weight: bold; margin:0;">NAIRA (NGN)</p>
+                <p style="margin:5px 0 0 0; font-size: 0.9rem;">Bank: Ecobank | Acct: 2971079059 | Name: CHUCK EDOCHIE</p>
             </div>
+
+            <div class="currency-box" style="text-align: center;">
+                <p style="color: #d4af37; font-weight: bold; text-align: left; margin:0;">USDT (KUCOIN)</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9" style="background:white; padding:5px; margin:10px 0;">
+                <p style="font-family: monospace; font-size: 0.8rem; background: #222; padding: 10px; word-break: break-all;">TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
+                <div style="background: #300; padding: 10px; margin-top: 10px;">
+                    <p style="color: #ff4444; font-weight: bold; font-size: 0.8rem; margin: 0;">WARNING: USE TRC20 NETWORK ONLY.</p>
+                </div>
+            </div>
+
             <a href="https://ig.me/m/rony_willz" target="_blank" style="display:block; text-align:center; padding:15px; background: #d4af37; color:#000; font-weight:bold; text-decoration:none;">SEND RECEIPT & SIZE ON INSTAGRAM</a>
         </div>
     </div>
 
     <section id="home" class="page-section active">
-        <h2 class="section-title">PROCESS OF MADNESS</h2>
+        <h2 style="font-family:'Cinzel';">THE PROCESS OF ART</h2>
+        <div class="gold-line"></div>
         <img src="1000035944.jpg" class="art-full">
-        <div class="contact-section">
-            <h3>CONTACT</h3>
-            <div class="contact-links">
-                <a href="https://instagram.com/rony_willz" target="_blank">INSTAGRAM</a>
-                <a href="https://youtube.com/@LITMOAEI" target="_blank">YOUTUBE</a>
-            </div>
+        <img src="I got lost in the madness to find myself.jpeg" class="art-full">
+        <video autoplay muted loop playsinline style="width:100%; max-width:800px; margin-top:30px; filter:brightness(0.7);"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
+        <div style="margin-top:60px;">
+            <h2 style="font-family:'Cinzel';">CONNECT</h2>
+            <a href="https://instagram.com/rony_willz" target="_blank" style="color:#d4af37; display:block; margin:10px;">INSTAGRAM</a>
+            <a href="https://youtube.com/@LITMOAEI" target="_blank" style="color:#d4af37; display:block; margin:10px;">YOUTUBE</a>
         </div>
     </section>
 
     <section id="art" class="page-section">
-        <h2 class="section-title">FROM THE MIND</h2>
-        <span class="order-trigger" onclick="openOrder()">Order & Pre-order with your size</span>
+        <h2 class="section-title">THE MIND</h2>
+        <span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span>
         <img src="Painting.jpg" class="art-full">
     </section>
 
     <section id="pavement" class="page-section">
         <h2 class="section-title">THE PAVEMENT</h2>
-        <span class="order-trigger" onclick="openOrder()">Order & Pre-order with your size</span>
+        <span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span>
         <div class="gallery-grid">
             <img src="Pavement.jpg"><img src="Pavement 1.jpg"><img src="Pavement 2.jpg">
         </div>
     </section>
 
+    <section id="elixirs" class="page-section">
+        <h2 class="section-title">THE ELIXIRS</h2>
+        <span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span>
+        <div class="gallery-grid"><img src="Drink.jpg"></div>
+    </section>
+
     <section id="classics" class="page-section">
         <h2 class="section-title">THE CLASSICS</h2>
-        <span class="order-trigger" onclick="openOrder()">Order & Pre-order with your size</span>
+        <span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span>
         <div class="gallery-grid">
-            <img src="Classic.jpg"><img src="Classic 1.jpg"><img src="Classic 2.jpg">
+            <img src="Classic.jpg"><img src="Classic 1.jpg"><img src="Classic 2.jpg"><img src="Classic 3.jpg"><img src="Classic 4.jpg"><img src="Classic 5.png"><img src="Classic 6.png"><img src="Classic 7.jpg"><img src="Classic 8.jpg"><img src="Classic 9.jpg"><img src="Classic 10.png"><img src="Classic 11.png"><img src="Classic 12.png"><img src="Classic 13.png"><img src="Classic 14.png"><img src="Classic 15.jpg"><img src="Classic 16.jpg"><img src="Classic 17.jpg"><img src="Classic 18.jpg"><img src="Classic 19.jpg"><img src="Classic 20.jpg">
         </div>
     </section>
 
     <script>
-        function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+        function showPage(id) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
             window.scrollTo(0, 0);
         }
         function openOrder() { document.getElementById('order-overlay').style.display = 'block'; }
