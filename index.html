@@ -10,17 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
 
     <style>
+        * { box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; }
         .page-section { display: none; padding: 50px 20px; }
         .page-section.active { display: block; animation: fadeIn 0.8s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        .art-display { max-width: 400px; width: 100%; margin-top: 20px; border: 1px solid #333; }
-        .narrative-scroll { margin-top: 100px; padding: 50px 20px; text-align: center; border-top: 1px solid #333; }
+        /* Home Narrative Styling */
+        .art-display { max-width: 400px; width: 100%; margin-top: 20px; border: 1px solid #333; display: block; margin-left: auto; margin-right: auto; }
+        .narrative-scroll { margin-top: 50px; padding: 50px 20px; text-align: center; }
         .narrative-label { font-family: 'Cinzel'; color: #d4af37; margin-top: 15px; letter-spacing: 2px; display: block; }
-        .final-message { margin-top: 40px; font-family: 'Cinzel'; color: #d4af37; font-size: 1.2rem; }
+        .final-message { margin-top: 40px; font-family: 'Cinzel'; color: #d4af37; font-size: 1.2rem; margin-bottom: 50px; }
         
+        /* Video Section */
+        .bottom-video-section { width: 100%; max-width: 800px; margin: 40px auto; border: 1px solid #333; }
+        .bottom-video-section video { width: 100%; display: block; filter: brightness(0.6); }
+
+        /* Gallery Styling */
         .pavement-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
         .item img { width: 100%; }
+        .section-title { text-align: center; font-family: 'Cinzel'; margin-bottom: 30px; }
     </style>
 </head>
 <body>
@@ -36,109 +45,69 @@
     <nav>
         <ul>
             <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('elixirs')">Elixirs</a></li>
             <li><a href="javascript:void(0)" onclick="showPage('classics')">The Classics</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
         </ul>
     </nav>
 
     <section id="home" class="page-section active">
-        <div class="welcome-center">
+        <div class="welcome-center" style="text-align: center;">
             <h2 class="cinzel">WELCOME TO THE MADNESS</h2>
-            <p>Select a collection above to begin your journey.</p>
         </div>
         <div class="narrative-scroll">
-            <img src="The Process of Madness.jpg" class="art-display" alt="The Process of Madness">
+            <img src="the process of madnness.jpeg" class="art-display" alt="The Process of Madness">
             <span class="narrative-label">THE PROCESS OF MADNESS</span>
+            
             <div style="margin-top: 80px;">
-                <img src="I got lost to find myself.jpg" class="art-display" alt="I got lost to find myself">
+                <img src="I got lost in the madness to find myself.jpeg" class="art-display" alt="I got lost in the madness to find myself">
                 <p class="final-message">I GOT LOST TO FIND MYSELF, AND SO I ASK, HAVE YOU FOUND YOURSELF?</p>
             </div>
-        </div>
-    </section>
 
-    <section id="elixirs" class="page-section">
-        <h2 class="section-title">THE ELIXIRS</h2>
-        <div class="product-grid">
-            <div class="item">
-                <img src="Drink.jpg" alt="Calm Madness">
-                <h3>Calm Madness</h3>
-                <p>$25.00</p>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                    <input type="hidden" name="cmd" value="_xclick">
-                    <input type="hidden" name="business" value="ronaldedochie@gmail.com">
-                    <input type="hidden" name="item_name" value="Calm Madness Elixir">
-                    <input type="hidden" name="amount" value="25.00">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit">
-                </form>
+            <div class="bottom-video-section">
+                <video autoplay muted loop playsinline>
+                    <source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4">
+                </video>
             </div>
-        </div>
-    </section>
-
-    <section id="classics" class="page-section">
-        <h2 class="section-title">THE CLASSICS</h2>
-        <div class="pavement-gallery">
-            <div class="item"><img src="Classic.jpg"></div>
-            <div class="item"><img src="Classic 1.jpg"></div>
-            <div class="item"><img src="Classic 2.jpg"></div>
-            <div class="item"><img src="Classic 3.jpg"></div>
-            <div class="item"><img src="Classic 4.jpg"></div>
-            <div class="item"><img src="Classic 5.png"></div>
-            <div class="item"><img src="Classic 6.png"></div>
-            <div class="item"><img src="Classic 7.jpg"></div>
-            <div class="item"><img src="Classic 8.jpg"></div>
-            <div class="item"><img src="Classic 9.jpg"></div>
-            <div class="item"><img src="Classic 10.png"></div>
-            <div class="item"><img src="Classic 11.png"></div>
-            <div class="item"><img src="Classic 12.png"></div>
-            <div class="item"><img src="Classic 13.png"></div>
-            <div class="item"><img src="Classic 14.png"></div>
-            <div class="item"><img src="Classic 15.jpg"></div>
-            <div class="item"><img src="Classic 16.jpg"></div>
-            <div class="item"><img src="Classic 17.jpg"></div>
-            <div class="item"><img src="Classic 18.jpg"></div>
-            <div class="item"><img src="Classic 19.jpg"></div>
-            <div class="item"><img src="Classic 20.jpg"></div>
-        </div>
-    </section>
-
-    <section id="pavement" class="page-section">
-        <h2 class="section-title">THE PAVEMENT</h2>
-        <div class="pavement-gallery">
-            <img src="Pavement.jpg">
-            <img src="Pavement 1.jpg">
-            <img src="Pavement 2.jpg">
-            <img src="Pavement 3.jpg">
-            <img src="Pavement 4.jpg">
-            <img src="Pavement 5.jpg">
-            <img src="Pavement 6.jpg">
-            <img src="Pavement 7.jpg">
-            <img src="Pavement 8.jpg">
-            <img src="Pavement 9.jpg">
-            <img src="Pavement 10.jpg">
         </div>
     </section>
 
     <section id="art" class="page-section">
         <h2 class="section-title">FROM THE MIND OF A MADMAN</h2>
-        <div class="art-room">
-            <img src="Painting.jpg" alt="The Vision" class="featured-art">
+        <div class="art-room"><img src="Painting.jpg" class="art-display"></div>
+    </section>
+
+    <section id="pavement" class="page-section">
+        <h2 class="section-title">THE PAVEMENT</h2>
+        <div class="pavement-gallery">
+            <img src="Pavement.jpg"><img src="Pavement 1.jpg"><img src="Pavement 2.jpg"><img src="Pavement 3.jpg"><img src="Pavement 4.jpg"><img src="Pavement 5.jpg"><img src="Pavement 6.jpg"><img src="Pavement 7.jpg"><img src="Pavement 8.jpg"><img src="Pavement 9.jpg"><img src="Pavement 10.jpg">
+        </div>
+    </section>
+
+    <section id="elixirs" class="page-section">
+        <h2 class="section-title">THE ELIXIRS</h2>
+        <div class="item"><img src="Drink.jpg" style="max-width: 300px; display: block; margin: auto;"></div>
+    </section>
+
+    <section id="classics" class="page-section">
+        <h2 class="section-title">THE CLASSICS</h2>
+        <div class="pavement-gallery">
+            <div class="item"><img src="Classic.jpg"></div><div class="item"><img src="Classic 1.jpg"></div><div class="item"><img src="Classic 2.jpg"></div><div class="item"><img src="Classic 3.jpg"></div><div class="item"><img src="Classic 4.jpg"></div><div class="item"><img src="Classic 5.png"></div><div class="item"><img src="Classic 6.png"></div><div class="item"><img src="Classic 7.jpg"></div><div class="item"><img src="Classic 8.jpg"></div><div class="item"><img src="Classic 9.jpg"></div><div class="item"><img src="Classic 10.png"></div><div class="item"><img src="Classic 11.png"></div><div class="item"><img src="Classic 12.png"></div><div class="item"><img src="Classic 13.png"></div><div class="item"><img src="Classic 14.png"></div><div class="item"><img src="Classic 15.jpg"></div><div class="item"><img src="Classic 16.jpg"></div><div class="item"><img src="Classic 17.jpg"></div><div class="item"><img src="Classic 18.jpg"></div><div class="item"><img src="Classic 19.jpg"></div><div class="item"><img src="Classic 20.jpg"></div>
         </div>
     </section>
 
     <footer>
-        <div class="contact">
-            <p>Instagram: <a href="https://instagram.com/litmoaei">@litmoaei</a> | <a href="https://instagram.com/rony_willz">@rony_willz</a></p>
-            <p>X: <a href="https://x.com/litmoaei">@litmoaei</a></p>
-            <p class="legal">©️ 2026 LITMOAEI. Time answers to you.</p>
+        <div class="contact" style="text-align: center; padding: 50px;">
+            <p>Instagram: <a href="https://instagram.com/rony_willz">rony_willz</a></p>
+            <p>YouTube: <a href="https://youtube.com/@rony_willz">rony_willz</a></p>
+            <p>©️ 2026 LITMOAEI. Time answers to you.</p>
         </div>
     </footer>
 
     <script>
         function showPage(pageId) {
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             window.scrollTo(0, 0);
         }
