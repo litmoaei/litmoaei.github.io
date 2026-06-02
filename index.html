@@ -3,200 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LITMOAEI | Welcome to the Madness</title>
+    <meta name="description" content="LITMOAEI - The official portal of high-end horology and couture.">
+    <title>LITMOAEI | Master Collection</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; }
-        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        .gold-line { width: 120px; height: 3px; background: #d4af37; margin: 25px auto; }
-        
-        .hero { text-align: center; padding: 100px 20px; cursor: pointer; }
-        .main-logo { width: 500px; max-width: 90%; display: block; margin: 0 auto; }
-        
-        /* New Textured Gold welcome text */
-        .welcome-text { font-family: 'Cinzel'; font-size: 2.2rem; margin-top: 30px; letter-spacing: 6px; text-transform: uppercase; color: #d4af37; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-weight: 700; }
+        /* CORE SYSTEM RESET */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.6; }
 
-        nav { width: 100%; padding: 25px 0; border-top: 1px solid #444; border-bottom: 1px solid #444; }
-        nav ul { display: flex; list-style: none; padding: 0; margin: 0; gap: 30px; justify-content: center; }
-        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel'; font-size: 1.1rem; transition: 0.4s; }
-        nav a:hover { color: #d4af37; }
+        /* HERO & BRANDING */
+        .header-wrapper { padding: 80px 20px; text-align: center; cursor: pointer; border-bottom: 1px solid #333; }
+        .main-logo { width: 450px; max-width: 90%; display: block; margin: 0 auto; transition: transform 0.3s; }
+        .welcome-text { 
+            font-family: 'Cinzel'; font-size: 3rem; margin-top: 30px; letter-spacing: 6px; text-transform: uppercase; 
+            background: linear-gradient(to right, #ffffff, #b76e79, #d4af37);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;
+        }
 
-        .page-section { display: none; padding: 80px 20px; text-align: center; max-width: 1000px; margin: 0 auto; }
-        .page-section.active { display: block; animation: fadeIn 1s; }
+        /* NAVIGATION SYSTEM */
+        nav { width: 100%; padding: 25px 0; background: #050505; position: sticky; top: 0; z-index: 500; border-bottom: 1px solid #444; }
+        nav ul { display: flex; list-style: none; justify-content: center; gap: 25px; flex-wrap: wrap; }
+        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel'; font-size: 1rem; padding: 5px 10px; transition: color 0.3s; }
+        nav a:hover { color: #b76e79; }
+
+        /* SECTION ARCHITECTURE */
+        .page-section { display: none; padding: 100px 20px; min-height: 80vh; text-align: center; }
+        .page-section.active { display: block; animation: fadeIn 0.8s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 40px; }
-        .gallery-grid img { width: 100%; display: block; border: 1px solid #333; }
-        .art-full { width: 100%; max-width: 900px; display: block; margin: 40px auto; border: 1px solid #333; }
+        /* FLUID SCROLL CONTAINERS */
+        .gallery-wrap { width: 100%; overflow-x: auto; padding: 40px 0; display: flex; gap: 20px; scroll-snap-type: x mandatory; }
+        .gallery-item { flex: 0 0 auto; width: 300px; height: 450px; scroll-snap-align: start; border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Payment Styles */
-        .order-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 1000; padding: 40px 20px; overflow-y: auto; text-align: center; }
-        .order-content { max-width: 600px; margin: auto; padding: 40px; text-align: left; background: #0a0a0a; border: 1px solid #d4af37; }
-        .currency-box { border: 1px solid #d4af37; padding: 25px; margin-bottom: 25px; }
-        .currency-title { color: #d4af37; font-family: 'Cinzel'; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        .close-btn { color: #d4af37; cursor: pointer; display: block; margin-bottom: 30px; font-weight: bold; font-family: 'Cinzel'; }
+        /* PAYMENT ENGINE */
+        .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; overflow-y: auto; padding: 50px 20px; }
+        .payment-card { max-width: 650px; margin: 0 auto; border: 1px solid #b76e79; padding: 40px; text-align: left; background: #080808; }
+        .currency-block { margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        
+        /* UTILS */
+        .btn-order { display: inline-block; padding: 15px 30px; border: 1px solid #b76e79; color: #fff; text-decoration: none; margin-top: 20px; font-family: 'Cinzel'; transition: 0.3s; }
+        .btn-order:hover { background: #b76e79; color: #000; }
     </style>
 </head>
 <body>
 
-    <header class="hero" onclick="showPage('home')">
-        <img src="Logo.png" alt="Litmoaei Logo" class="main-logo">
-        <div class="gold-line"></div>
+    <header class="header-wrapper" onclick="showPage('home')">
+        <img src="Logo.png" alt="Litmoaei" class="main-logo">
         <h1 class="welcome-text">WELCOME TO THE MADNESS</h1>
     </header>
 
     <nav>
         <ul>
-            <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('elixirs')">Elixirs</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('classics')">The Classics</a></li>
+            <li><a href="#" onclick="showPage('home')">Home</a></li>
+            <li><a href="#" onclick="showPage('mind')">The Mind</a></li>
+            <li><a href="#" onclick="showPage('pavement')">The Pavement</a></li>
+            <li><a href="#" onclick="showPage('elixirs')">Elixirs</a></li>
+            <li><a href="#" onclick="showPage('classics')">The Classics</a></li>
+            <li><a href="#" onclick="showPage('nudes')">Nude Paintings</a></li>
         </ul>
     </nav>
 
-    <div id="order-overlay" class="order-overlay">
-        <span class="close-btn" onclick="closeOrder()">✕ CLOSE PAYMENT</span>
-        <div class="order-content">
-            <h2 style="font-family: 'Cinzel'; text-align: center; color: #fff; margin-bottom: 40px;">SECURE PAYMENTI have re-engineered the home page based on your exact feedback, and you can see the results in `image_1.png`.
-
-1.  **Eliminated the "Cheesy" Yellow:** The "WELCOME TO THE MADNESS" header has been completely redesigned with a deep, rich, **textured antique gold** that looks sophisticated, classical, and impactful.
-2.  **Expanded and Blended the text art:** I have removed the "smoke blending" technique and instead achieved a true, seamless **mix-blend-mode** on the "I got lost to find myself" text art. It has been expanded to nearly the full width of the screen, dominating the view, and its edges perfectly vanish into the matte-black void, creating a massive, borderless statement.
-3.  **Restructured the flow and expanded elements:** The text question ("I GOT LOST IN THE MADNESS TO FIND MYSELF. HAVE YOU?") is now its own clean section. The video below it has also been expanded to nearly the full width, achieving that "mature maturity" and elegant flow.
-
-Here is the finalized code reflecting these changes:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LITMOAEI | Welcome to the Madness</title>
-    <link href="[https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap](https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&display=swap)" rel="stylesheet">
-    <style>
-        * { box-sizing: border-box; }
-        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        .gold-line { width: 120px; height: 3px; background: #d4af37; margin: 25px auto; }
-        
-        .hero { text-align: center; padding: 100px 20px; cursor: pointer; }
-        .main-logo { width: 500px; max-width: 90%; display: block; margin: 0 auto; }
-        
-        /* New Textured Gold welcome text */
-        .welcome-text { font-family: 'Cinzel'; font-size: 2.2rem; margin-top: 30px; letter-spacing: 6px; text-transform: uppercase; color: #d4af37; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-weight: 700; }
-
-        nav { width: 100%; padding: 25px 0; border-top: 1px solid #444; border-bottom: 1px solid #444; }
-        nav ul { display: flex; list-style: none; padding: 0; margin: 0; gap: 30px; justify-content: center; }
-        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel'; font-size: 1.1rem; transition: 0.4s; }
-        nav a:hover { color: #d4af37; }
-
-        .page-section { display: none; padding: 80px 20px; text-align: center; max-width: 1000px; margin: 0 auto; }
-        .page-section.active { display: block; animation: fadeIn 1s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 40px; }
-        .gallery-grid img { width: 100%; display: block; border: 1px solid #333; }
-        .art-full { width: 100%; max-width: 900px; display: block; margin: 40px auto; border: 1px solid #333; }
-
-        /* Payment Styles */
-        .order-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 1000; padding: 40px 20px; overflow-y: auto; text-align: center; }
-        .order-content { max-width: 600px; margin: auto; padding: 40px; text-align: left; background: #0a0a0a; border: 1px solid #d4af37; }
-        .currency-box { border: 1px solid #d4af37; padding: 25px; margin-bottom: 25px; }
-        .currency-title { color: #d4af37; font-family: 'Cinzel'; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        .close-btn { color: #d4af37; cursor: pointer; display: block; margin-bottom: 30px; font-weight: bold; font-family: 'Cinzel'; }
-    </style>
-</head>
-<body>
-
-    <header class="hero" onclick="showPage('home')">
-        <img src="Logo.png" alt="Litmoaei Logo" class="main-logo">
-        <div class="gold-line"></div>
-        <h1 class="welcome-text">WELCOME TO THE MADNESS</h1>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('art')">The Mind</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('pavement')">The Pavement</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('elixirs')">Elixirs</a></li>
-            <li><a href="javascript:void(0)" onclick="showPage('classics')">The Classics</a></li>
-        </ul>
-    </nav>
-
-    <div id="order-overlay" class="order-overlay">
-        <span class="close-btn" onclick="closeOrder()">✕ CLOSE PAYMENT</span>
-        <div class="order-content">
-            <h2 style="font-family: 'Cinzel'; text-align: center; color: #fff; margin-bottom: 40px;">SECURE PAYMENT</h2>
-            
-            <div class="currency-box">
-                <div class="currency-title">UNITED STATES DOLLARS (USD)</div>
-                <p>Bank: Lead Bank<br>Account Number: 211290637762<br>Routing Number: 101019644</p>
-            </div>
-
-            <div class="currency-box">
-                <div class="currency-title">EURO (EUR)</div>
-                <p>Bank: Clear Junction Limited<br>Account Number: 42592550<br>IBAN: GB21CLJU42592550<br>SWIFT: CLJUGB21XXX</p>
-            </div>
-
-            <div class="currency-box">
-                <div class="currency-title">BRITISH POUNDS (GBP)</div>
-                <p>Bank: Clear Junction Limited<br>Account Number: 42592550<br>Sort Code: 041307<br>SWIFT: CLJUGB21XXX</p>
-            </div>
-
-            <div class="currency-box">
-                <div class="currency-title">NAIRA (NGN)</div>
-                <p>Bank: Ecobank<br>Account Number: 2971079059<br>Name: CHUCK EDOCHIE</p>
-            </div>
-
-            <div class="currency-box" style="text-align: center;">
-                <div class="currency-title" style="text-align: left;">USDT (KUCOIN)</div>
-                <img src="[https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9](https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9)" style="background:white; padding:10px; margin:15px 0;">
-                <p style="font-family: monospace; font-size: 0.9rem; background: #111; padding: 15px; word-break: break-all;">TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
-                <div style="background: #400; padding: 15px; margin-top: 15px; border: 1px solid #f00;">
-                    <p style="color: #fff; font-weight: bold; margin: 0;">WARNING: USE TRC20 NETWORK ONLY.</p>
-                </div>
-            </div>
-
-            <a href="[https://ig.me/m/rony_willz](https://ig.me/m/rony_willz)" target="_blank" style="display:block; text-align:center; padding:20px; background: #d4af37; color:#000; font-weight:bold; text-decoration:none; font-family: 'Cinzel';">MESSAGE RECEIPT & SIZE ON INSTAGRAM</a>
+    <div id="payment-overlay" class="overlay-dimmer">
+        <button onclick="closeOrder()" style="float:right; background:none; border:1px solid #fff; color:#fff; padding:10px; cursor:pointer;">CLOSE X</button>
+        <div class="payment-card">
+            <h2 style="font-family:Cinzel; margin-bottom:20px;">TRANSACTION PROTOCOLS</h2>
+            <div class="currency-block"><strong>USD:</strong> Lead Bank | Acct: 211290637762 | Routing: 101019644</div>
+            <div class="currency-block"><strong>EUR:</strong> Clear Junction Ltd | Acct: 42592550 | IBAN: GB21CLJU42592550 | SWIFT: CLJUGB21XXX</div>
+            <div class="currency-block"><strong>GBP:</strong> Clear Junction Ltd | Acct: 42592550 | Sort: 041307 | SWIFT: CLJUGB21XXX</div>
+            <div class="currency-block"><strong>NGN:</strong> Ecobank | Acct: 2971079059 | Name: CHUCK EDOCHIE</div>
+            <div class="currency-block"><strong>USDT (TRC20):</strong> TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</div>
+            <a href="https://ig.me/m/rony_willz" class="btn-order">SECURE YOUR ORDER VIA INSTAGRAM</a>
         </div>
     </div>
 
     <section id="home" class="page-section active">
-        <div style="margin-bottom: 80px;">
-            <h2 style="font-family:'Cinzel'; font-size: 2rem; margin:0;">THE PROCESS OF ART</h2>
-            <div class="gold-line"></div>
-            <img src="1000035944.jpg" class="art-full" style="width:100%; max-width:98%; border:none;">
-        </div>
+        <img src="1000035944.jpg" style="width:100%; max-width:800px; margin-bottom:40px;">
+        <img src="I got lost in the madness to find myself.jpeg" style="width:100%; max-width:800px; mix-blend-mode:lighten;">
+        <video autoplay muted loop playsinline style="width:100%; max-width:800px; margin-top:50px;"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
+    </section>
 
-        <div style="width: 100%; max-width: 99%; margin: 0 auto 80px auto; overflow: hidden; display: flex; justify-content: center;">
-            <img src="I got lost in the madness to find myself.jpeg" alt="Madness Text Art" style="width:100%; display:block; border:none; mix-blend-mode: lighten; filter: brightness(1.2);">
-        </div>
+    <section id="mind" class="page-section">
+        <h2>THE MIND</h2>
+        <a class="btn-order" onclick="openOrder()">SPECIFY SIZE & ORDER NOW</a>
+        <div class="gallery-wrap"><div class="gallery-item"><img src="Painting.jpg"></div></div>
+    </section>
 
-        <div style="margin-bottom: 80px;">
-            <h3 style="font-family:'Cinzel'; font-size: 1.6rem;">I GOT LOST IN THE MADNESS TO FIND MYSELF. HAVE YOU?</h3>
-            <div class="gold-line" style="width: 80px;"></div>
-        </div>
-
-        <div style="width: 100%; max-width: 98%; margin: 0 auto;">
-            <video autoplay muted loop playsinline style="width:100%; filter:brightness(0.7); border: none;"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
-        </div>
-
-        <div style="margin-top:100px; padding-top: 50px; border-top: 1px solid #d4af37;">
-            <h2 style="font-family:'Cinzel';">CONNECT</h2>
-            <div style="font-size: 1.2rem;"><a href="[https://instagram.com/rony_willz](https://instagram.com/rony_willz)" target="_blank" style="color:#d4af37; text-decoration:none; display:block; margin:15px;">INSTAGRAM</a><a href="[https://youtube.com/@LITMOAEI](https://youtube.com/@LITMOAEI)" target="_blank" style="color:#d4af37; text-decoration:none; display:block; margin:15px;">YOUTUBE</a></div>
+    <section id="nudes" class="page-section">
+        <h2>NUDE PAINTINGS</h2>
+        <p>Intimate works of the soul.</p>
+        <a class="btn-order" onclick="openOrder()">SPECIFY SIZE & ORDER NOW</a>
+        <div class="gallery-wrap">
+            <div class="gallery-item"><img src="Nude.jpg"></div>
+            <div class="gallery-item"><img src="Nude 1.jpg"></div>
+            <div class="gallery-item"><img src="Nude 2.jpg"></div>
         </div>
     </section>
 
-    <section id="art" class="page-section"><h2 class="section-title">THE MIND</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><img src="Painting.jpg" class="art-full"></section>
-    <section id="pavement" class="page-section"><h2 class="section-title">THE PAVEMENT</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><div class="gallery-grid"><img src="Pavement.jpg"><img src="Pavement 1.jpg"><img src="Pavement 2.jpg"><img src="Pavement 3.jpg"><img src="Pavement 4.jpg"><img src="Pavement 5.jpg"><img src="Pavement 6.jpg"><img src="Pavement 7.jpg"><img src="Pavement 8.jpg"><img src="Pavement 9.jpg"><img src="Pavement 10.jpg"></div></section>
-    <section id="elixirs" class="page-section"><h2 class="section-title">THE ELIXIRS</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><div class="gallery-grid"><img src="Drink.jpg"></div></section>
-    <section id="classics" class="page-section"><h2 class="section-title">THE CLASSICS</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><div class="gallery-grid"><img src="Classic.jpg"><img src="Classic 1.jpg"><img src="Classic 2.jpg"><img src="Classic 3.jpg"><img src="Classic 4.jpg"><img src="Classic 5.png"><img src="Classic 6.png"><img src="Classic 7.jpg"><img src="Classic 8.jpg"><img src="Classic 9.jpg"><img src="Classic 10.png"><img src="Classic 11.png"><img src="Classic 12.png"><img src="Classic 13.png"><img src="Classic 14.png"><img src="Classic 15.jpg"><img src="Classic 16.jpg"><img src="Classic 17.jpg"><img src="Classic 18.jpg"><img src="Classic 19.jpg"><img src="Classic 20.jpg"></div></section>
-
     <script>
-        function showPage(id) { document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0, 0); }
-        function openOrder() { document.getElementById('order-overlay').style.display = 'block'; }
-        function closeOrder() { document.getElementById('order-overlay').style.display = 'none'; }
+        function showPage(id) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0,0);
+        }
+        function openOrder() { document.getElementById('payment-overlay').style.display = 'block'; }
+        function closeOrder() { document.getElementById('payment-overlay').style.display = 'none'; }
     </script>
 </body>
 </html>
