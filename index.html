@@ -11,32 +11,49 @@
 
     <style>
         * { box-sizing: border-box; }
-        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; }
-        .page-section { display: none; padding: 50px 20px; }
+        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
+        
+        /* MOVABLE NAVIGATION (Horizontal Scroll) */
+        nav { 
+            width: 100%; 
+            overflow-x: auto; 
+            padding: 10px 0; 
+            border-bottom: 1px solid #333;
+            -webkit-overflow-scrolling: touch; /* Smooth scroll on iPhone */
+        }
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+            padding: 0 20px; 
+            margin: 0; 
+            white-space: nowrap; 
+            gap: 25px; 
+        }
+        nav a { color: #d4af37; text-decoration: none; font-family: 'Cinzel'; font-size: 0.9rem; }
+
+        /* Existing Styles */
+        .page-section { display: none; padding: 50px 0; }
         .page-section.active { display: block; animation: fadeIn 0.8s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* Home Narrative Styling */
-        .art-display { max-width: 400px; width: 100%; margin-top: 20px; border: 1px solid #333; display: block; margin-left: auto; margin-right: auto; }
-        .narrative-scroll { margin-top: 50px; padding: 50px 20px; text-align: center; }
-        .narrative-label { font-family: 'Cinzel'; color: #d4af37; margin-top: 15px; letter-spacing: 2px; display: block; }
-        .final-message { margin-top: 40px; font-family: 'Cinzel'; color: #d4af37; font-size: 1.2rem; margin-bottom: 50px; }
+        .art-display { width: 100%; border: none !important; display: block; margin: 20px 0; }
+        .narrative-scroll { text-align: center; padding: 0; }
+        .narrative-label { font-family: 'Cinzel'; color: #d4af37; margin: 15px 0; letter-spacing: 2px; display: block; }
+        .final-message { padding: 0 20px; margin-top: 40px; font-family: 'Cinzel'; color: #d4af37; font-size: 1.2rem; margin-bottom: 50px; }
         
-        /* Video Section */
-        .bottom-video-section { width: 100%; max-width: 800px; margin: 40px auto; border: 1px solid #333; }
-        .bottom-video-section video { width: 100%; display: block; filter: brightness(0.6); }
+        .bottom-video-section { width: 100%; margin: 40px 0 0 0; border: none !important; overflow: hidden; }
+        .bottom-video-section video { width: 100%; display: block; filter: brightness(0.6); aspect-ratio: 16/9; object-fit: cover; }
 
-        /* Gallery Styling */
-        .pavement-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .item img { width: 100%; }
+        .pavement-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+        .item img { width: 100%; display: block; }
         .section-title { text-align: center; font-family: 'Cinzel'; margin-bottom: 30px; }
     </style>
 </head>
 <body>
 
     <header class="hero">
-        <div class="logo-container" onclick="showPage('home')">
-            <img src="Logo.png" alt="Litmoaei Logo" class="main-logo">
+        <div class="logo-container" onclick="showPage('home')" style="text-align: center; cursor: pointer; padding-top: 40px;">
+            <img src="Logo.png" alt="Litmoaei Logo" class="main-logo" style="width: 80px;">
             <h1>LITMOAEI</h1>
             <p class="slogan">Lost in the madness of an endless insanity</p>
         </div>
@@ -53,18 +70,13 @@
     </nav>
 
     <section id="home" class="page-section active">
-        <div class="welcome-center" style="text-align: center;">
-            <h2 class="cinzel">WELCOME TO THE MADNESS</h2>
-        </div>
         <div class="narrative-scroll">
             <img src="the process of madnness.jpeg" class="art-display" alt="The Process of Madness">
             <span class="narrative-label">THE PROCESS OF MADNESS</span>
-            
             <div style="margin-top: 80px;">
                 <img src="I got lost in the madness to find myself.jpeg" class="art-display" alt="I got lost in the madness to find myself">
                 <p class="final-message">I GOT LOST TO FIND MYSELF, AND SO I ASK, HAVE YOU FOUND YOURSELF?</p>
             </div>
-
             <div class="bottom-video-section">
                 <video autoplay muted loop playsinline>
                     <source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4">
@@ -75,7 +87,7 @@
 
     <section id="art" class="page-section">
         <h2 class="section-title">FROM THE MIND OF A MADMAN</h2>
-        <div class="art-room"><img src="Painting.jpg" class="art-display"></div>
+        <img src="Painting.jpg" class="art-display">
     </section>
 
     <section id="pavement" class="page-section">
