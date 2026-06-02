@@ -10,12 +10,12 @@
         body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
         .gold-line { width: 120px; height: 3px; background: #d4af37; margin: 30px auto; }
         
-        .hero { text-align: center; padding: 80px 20px; cursor: pointer; }
-        .main-logo { width: 450px; max-width: 90%; display: block; margin: 0 auto; }
-        .welcome-text { font-family: 'Cinzel'; font-size: 2rem; margin-top: 20px; letter-spacing: 5px; color: #d4af37; text-transform: uppercase; }
+        .hero { text-align: center; padding: 100px 20px; cursor: pointer; }
+        .main-logo { width: 500px; max-width: 90%; display: block; margin: 0 auto; }
+        .welcome-text { font-family: 'Cinzel'; font-size: 2.2rem; margin-top: 30px; letter-spacing: 6px; color: #d4af37; text-transform: uppercase; }
 
-        nav { width: 100%; padding: 20px 0; border-top: 1px solid #333; border-bottom: 1px solid #333; text-align: center; }
-        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel'; font-size: 1rem; margin: 0 15px; }
+        nav { width: 100%; padding: 25px 0; border-top: 1px solid #333; border-bottom: 1px solid #333; text-align: center; }
+        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel'; font-size: 1.1rem; margin: 0 15px; }
         nav a:hover { color: #d4af37; }
 
         .page-section { display: none; padding: 60px 20px; text-align: center; max-width: 1000px; margin: 0 auto; }
@@ -29,7 +29,7 @@
         .smoke-blend-zone { position: relative; margin-top: -50px; }
         .smoke-layer { position: absolute; top: -100px; width: 100%; height: 300px; background: linear-gradient(to bottom, transparent, #000); pointer-events: none; }
 
-        /* Payment Styles */
+        /* Payment Styles - All Separated into Dedicated Boxes */
         .order-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 1000; padding: 30px; overflow-y: auto; text-align: center; }
         .order-content { max-width: 600px; margin: auto; }
         .currency-box { border: 1px solid #d4af37; padding: 20px; margin-bottom: 20px; text-align: left; background: #080808; }
@@ -60,32 +60,34 @@
             
             <div class="currency-box">
                 <div class="currency-title">UNITED STATES DOLLARS (USD)</div>
-                <p>Bank: Lead Bank<br>Account: 211290637762 | Routing: 101019644</p>
+                <p>Bank: Lead Bank<br>Account Number: 211290637762<br>Routing Number: 101019644</p>
             </div>
 
             <div class="currency-box">
                 <div class="currency-title">EURO (EUR)</div>
-                <p>Bank: Clear Junction<br>IBAN: [Insert IBAN]<br>SWIFT: CLJUGB21XXX</p>
+                <p>Bank: Clear Junction Limited<br>Account Number: 42592550<br>IBAN: GB21CLJU42592550<br>SWIFT: CLJUGB21XXX</p>
             </div>
 
             <div class="currency-box">
                 <div class="currency-title">BRITISH POUNDS (GBP)</div>
-                <p>Bank: Clear Junction<br>Account: 42592550 | Sort: 041307<br>SWIFT: CLJUGB21XXX</p>
+                <p>Bank: Clear Junction Limited<br>Account Number: 42592550<br>Sort Code: 041307<br>SWIFT: CLJUGB21XXX</p>
             </div>
 
             <div class="currency-box">
                 <div class="currency-title">NAIRA (NGN)</div>
-                <p>Bank: Ecobank | Account: 2971079059 | Name: CHUCK EDOCHIE</p>
+                <p>Bank: Ecobank<br>Account Number: 2971079059<br>Account Name: CHUCK EDOCHIE</p>
             </div>
 
             <div class="currency-box" style="text-align: center;">
                 <div class="currency-title" style="text-align: left;">USDT (KUCOIN)</div>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9" style="background:white; padding:5px;">
-                <p style="font-family: monospace; font-size: 0.8rem; background: #111; padding: 10px;">TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
-                <div style="background: #400; padding: 10px;"><p style="color: #fff; font-weight: bold; margin: 0;">WARNING: USE TRC20 NETWORK ONLY.</p></div>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9" style="background:white; padding:5px; margin:15px 0;">
+                <p style="font-family: monospace; font-size: 0.8rem; word-break: break-all; background: #111; padding: 10px;">TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
+                <div style="background: #400; padding: 10px; margin-top: 10px;">
+                    <p style="color: #fff; font-weight: bold; margin: 0;">WARNING: USE TRC20 NETWORK ONLY.</p>
+                </div>
             </div>
 
-            <a href="https://ig.me/m/rony_willz" target="_blank" style="display:block; padding:20px; background: #d4af37; color:#000; font-weight:bold; text-decoration:none;">SEND RECEIPT & SIZE ON INSTAGRAM</a>
+            <a href="https://ig.me/m/rony_willz" target="_blank" style="display:block; text-align:center; padding:15px; background: #d4af37; color:#000; font-weight:bold; text-decoration:none;">SEND RECEIPT & SIZE ON INSTAGRAM</a>
         </div>
     </div>
 
@@ -93,25 +95,39 @@
         <h2 style="font-family:'Cinzel';">THE PROCESS OF ART</h2>
         <div class="gold-line"></div>
         <img src="1000035944.jpg" class="art-full">
+        
         <div class="smoke-blend-zone">
             <div class="smoke-layer"></div>
             <img src="I got lost in the madness to find myself.jpeg" class="art-full">
         </div>
+        
         <video autoplay muted loop playsinline style="width:100%; max-width:800px; margin-top:40px; border: 1px solid #333;"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
+        
+        <div style="margin-top:60px; padding: 50px 0; border-top: 1px solid #d4af37;">
+            <h2 style="font-family:'Cinzel';">CONNECT</h2>
+            <div style="font-size: 1.1rem; color:#d4af37;">
+                <a href="https://instagram.com/rony_willz" target="_blank" style="color:inherit; text-decoration:none; margin:10px;">INSTAGRAM</a>
+                <a href="https://youtube.com/@LITMOAEI" target="_blank" style="color:inherit; text-decoration:none; margin:10px;">YOUTUBE</a>
+            </div>
+        </div>
     </section>
 
-    <section id="art" class="page-section"><h2 style="font-family:'Cinzel';">THE MIND</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><img src="Painting.jpg" class="art-full"></section>
+    <section id="art" class="page-section"><h2 class="section-title">THE MIND</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><img src="Painting.jpg" class="art-full"></section>
     
-    <section id="pavement" class="page-section"><h2 style="font-family:'Cinzel';">THE PAVEMENT</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><div class="gallery-grid"><img src="Pavement.jpg"><img src="Pavement 1.jpg"><img src="Pavement 2.jpg"><img src="Pavement 3.jpg"><img src="Pavement 4.jpg"><img src="Pavement 5.jpg"><img src="Pavement 6.jpg"><img src="Pavement 7.jpg"><img src="Pavement 8.jpg"><img src="Pavement 9.jpg"><img src="Pavement 10.jpg"></div></section>
+    <section id="pavement" class="page-section"><h2 class="section-title">THE PAVEMENT</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><div class="gallery-grid"><img src="Pavement.jpg"><img src="Pavement 1.jpg"><img src="Pavement 2.jpg"><img src="Pavement 3.jpg"><img src="Pavement 4.jpg"><img src="Pavement 5.jpg"><img src="Pavement 6.jpg"><img src="Pavement 7.jpg"><img src="Pavement 8.jpg"><img src="Pavement 9.jpg"><img src="Pavement 10.jpg"></div></section>
 
-    <section id="elixirs" class="page-section"><h2 style="font-family:'Cinzel';">THE ELIXIRS</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><div class="gallery-grid"><img src="Drink.jpg"></div></section>
+    <section id="elixirs" class="page-section"><h2 class="section-title">THE ELIXIRS</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><div class="gallery-grid"><img src="Drink.jpg"></div></section>
 
-    <section id="classics" class="page-section"><h2 style="font-family:'Cinzel';">THE CLASSICS</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><div class="gallery-grid">
+    <section id="classics" class="page-section"><h2 class="section-title">THE CLASSICS</h2><span onclick="openOrder()" style="cursor:pointer; color:#d4af37; text-decoration:underline;">Pre-order with your size</span><div class="gallery-grid">
         <img src="Classic.jpg"><img src="Classic 1.jpg"><img src="Classic 2.jpg"><img src="Classic 3.jpg"><img src="Classic 4.jpg"><img src="Classic 5.png"><img src="Classic 6.png"><img src="Classic 7.jpg"><img src="Classic 8.jpg"><img src="Classic 9.jpg"><img src="Classic 10.png"><img src="Classic 11.png"><img src="Classic 12.png"><img src="Classic 13.png"><img src="Classic 14.png"><img src="Classic 15.jpg"><img src="Classic 16.jpg"><img src="Classic 17.jpg"><img src="Classic 18.jpg"><img src="Classic 19.jpg"><img src="Classic 20.jpg">
     </div></section>
 
     <script>
-        function showPage(id) { document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0, 0); }
+        function showPage(id) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0, 0);
+        }
         function openOrder() { document.getElementById('order-overlay').style.display = 'block'; }
         function closeOrder() { document.getElementById('order-overlay').style.display = 'none'; }
     </script>
