@@ -52,7 +52,6 @@
             display: flex; 
             flex-direction: column; 
         }
-        /* UPDATED: Height set to auto and object-fit to contain to show full images */
         .gallery-item img { width: 100%; height: auto; object-fit: contain; }
 
         /* PAYMENT PROTOCOLS */
@@ -72,7 +71,6 @@
         .goodbye-quote { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #555; margin-bottom: 40px; font-style: italic; }
         .footer-links a { color: #888; margin: 0 25px; font-size: 1rem; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
         
-        /* Mobile adjustment */
         @media (max-width: 600px) { .welcome-text { font-size: 2rem !important; } }
     </style>
 </head>
@@ -126,9 +124,8 @@
 
     <section id="mind" class="page-section">
         <div class="statement-text">THE MIND</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Painting.jpg"><button class="btn-order" onclick="openOrder('Painting')">COMMISSION</button></div>
-        </div>
+        <div id="mind-gallery" class="gallery-wrap">
+            </div>
     </section>
     
     <section id="pavement" class="page-section">
@@ -229,6 +226,41 @@
         }
 
         function closeOrder() { document.getElementById('payment-overlay').style.display = 'none'; }
+
+        // MAPPING YOUR PAINTINGS TO STORIES
+        const artData = [
+            { name: "only if i get paid for every time i fake a smile", url: "https://www.instagram.com/p/DZICSmbsOoS/" },
+            { name: "the old man on a journey", url: "https://www.instagram.com/p/DBE8orlIOwI/" },
+            { name: "you asked how are you From the grave i answered i am great", url: "https://www.instagram.com/p/DEa9kwMNCdW/" },
+            { name: "and the moon said to the sun", url: "https://www.instagram.com/p/DF_LrxPoYqz/" },
+            { name: "if the venom made me feel alive i will go for that snake over and over again", url: "https://www.instagram.com/p/C_tAgRXM0JW/" },
+            { name: "lost in the madness of an endless insanity", url: "https://www.instagram.com/p/DAv3gXIof8B/" },
+            { name: "succubus came for my soul but i took hers", url: "https://www.instagram.com/p/DBKdKS8I2tA/" },
+            { name: "she is the devil favourite and so what", url: "https://www.instagram.com/p/DBV7uddoOTz/" },
+            { name: "sometimes freedom is to be captured by someone who has love in their corner", url: "https://www.instagram.com/p/DB_Kq6JI-qr/" },
+            { name: "o myself in the distance", url: "https://www.instagram.com/p/DDXwN3QI8fU/" },
+            { name: "in a mountain full of flowers many don't have life", url: "https://www.instagram.com/p/DC3xWCsoxQv/" },
+            { name: "love a straner i know so well, or do i really know love", url: "https://www.instagram.com/p/DYzO71ljPsd/" },
+            { name: "what is the greatest trick a monster can play", url: "https://www.instagram.com/p/DGMsmHgoCnw/" },
+            { name: "playing a game with god but i don't know what it's called", url: "https://www.instagram.com/p/DLVePs0sMLt/" },
+            { name: "success is overrated yet underrated", url: "https://www.instagram.com/p/DMo_JQ4sH_k/" },
+            { name: "to battle we march why shall i fear", url: "https://www.instagram.com/p/DTQ0w8BjCPb/" },
+            { name: "the old man advice", url: "https://www.instagram.com/reel/C1nKtv5MRyL/" },
+            { name: "She said I know I am an angel but I want you to take off these wings for tonight", url: "https://www.instagram.com/p/DB4OFzdo245/" },
+            { name: "because their songs doesn't have lies in them", url: "https://www.instagram.com/p/DBudMSBovQE/" },
+            { name: "ooh my reflection", url: "https://instagram.com/p/DDUY0JuI7pn/" },
+            { name: "I got too tired to care and I’m still fine", url: "https://www.instagram.com/p/DBzosumIq-z/" }
+        ];
+
+        const gallery = document.getElementById('mind-gallery');
+        artData.forEach(art => {
+            gallery.innerHTML += `
+                <div class="gallery-item">
+                    <img src="${art.name}.jpg" alt="${art.name}">
+                    <a href="${art.url}" target="_blank" class="btn-order">CLICK TO KNOW THE STORY THE MADNESS SANG TO ME.</a>
+                </div>
+            `;
+        });
     </script>
 </body>
 </html>
