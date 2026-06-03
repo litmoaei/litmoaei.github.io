@@ -33,6 +33,7 @@
         /* ASSETS */
         .flush-img { width: 100%; max-width: 1100px; display: block; margin: 0 auto; border: none !important; }
         .statement-text { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #b76e79; padding: 80px 20px; font-style: italic; max-width: 900px; margin: 0 auto; }
+        .bespoke-text { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #888; margin-bottom: 40px; font-style: italic; letter-spacing: 1px; }
 
         /* NEW IMPROVED GALLERY GRID */
         .gallery-wrap { 
@@ -52,8 +53,13 @@
             display: flex; 
             flex-direction: column; 
         }
-        /* UPDATED: Height set to auto and object-fit to contain to show full images */
         .gallery-item img { width: 100%; height: auto; object-fit: contain; }
+
+        /* CLASSIC SELECTION HUB */
+        .classic-hub { display: flex; justify-content: center; gap: 50px; margin-bottom: 60px; padding: 40px; }
+        .hub-btn { cursor: pointer; text-align: center; transition: transform 0.3s; }
+        .hub-btn:hover { transform: scale(1.05); }
+        .hub-icon { font-size: 4rem; display: block; margin-bottom: 10px; }
 
         /* PAYMENT PROTOCOLS */
         .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 40px; }
@@ -72,7 +78,6 @@
         .goodbye-quote { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #555; margin-bottom: 40px; font-style: italic; }
         .footer-links a { color: #888; margin: 0 25px; font-size: 1rem; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
         
-        /* Mobile adjustment */
         @media (max-width: 600px) { .welcome-text { font-size: 2rem !important; } }
     </style>
 </head>
@@ -176,33 +181,51 @@
     </section>
     
     <section id="classics" class="page-section">
-        <div class="statement-text">THE CLASSICS: FOR HIM</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Classic.jpg"><button class="btn-order" onclick="openOrder('Classic')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 2.jpg"><button class="btn-order" onclick="openOrder('Classic 2')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 3.jpg"><button class="btn-order" onclick="openOrder('Classic 3')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 9.jpg"><button class="btn-order" onclick="openOrder('Classic 9')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 10.png"><button class="btn-order" onclick="openOrder('Classic 10')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 11.png"><button class="btn-order" onclick="openOrder('Classic 11')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 12.png"><button class="btn-order" onclick="openOrder('Classic 12')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 13.png"><button class="btn-order" onclick="openOrder('Classic 13')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 14.png"><button class="btn-order" onclick="openOrder('Classic 14')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 20.jpg"><button class="btn-order" onclick="openOrder('Classic 20')">COMMISSION</button></div>
+        <div class="statement-text">THE CLASSICS</div>
+        <div class="classic-hub">
+            <div class="hub-btn" onclick="document.getElementById('him-section').scrollIntoView()">
+                <span class="hub-icon">👔</span>
+                <h3>FOR HIM</h3>
+            </div>
+            <div class="hub-btn" onclick="document.getElementById('her-section').scrollIntoView()">
+                <span class="hub-icon">👗</span>
+                <h3>FOR HER</h3>
+            </div>
         </div>
 
-        <div class="statement-text">THE CLASSICS: FOR HER</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Classic 1.jpg"><button class="btn-order" onclick="openOrder('Classic 1')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 4.jpg"><button class="btn-order" onclick="openOrder('Classic 4')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 5.png"><button class="btn-order" onclick="openOrder('Classic 5')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 6.png"><button class="btn-order" onclick="openOrder('Classic 6')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 7.jpg"><button class="btn-order" onclick="openOrder('Classic 7')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 8.jpg"><button class="btn-order" onclick="openOrder('Classic 8')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 15.jpg"><button class="btn-order" onclick="openOrder('Classic 15')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 16.jpg"><button class="btn-order" onclick="openOrder('Classic 16')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 17.jpg"><button class="btn-order" onclick="openOrder('Classic 17')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 18.jpg"><button class="btn-order" onclick="openOrder('Classic 18')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 19.jpg"><button class="btn-order" onclick="openOrder('Classic 19')">COMMISSION</button></div>
+        <div id="him-section">
+            <div class="statement-text">FOR HIM</div>
+            <div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
+            <div class="gallery-wrap">
+                <div class="gallery-item"><img src="Classic.jpg"><button class="btn-order" onclick="openOrder('Classic')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 2.jpg"><button class="btn-order" onclick="openOrder('Classic 2')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 3.jpg"><button class="btn-order" onclick="openOrder('Classic 3')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 9.jpg"><button class="btn-order" onclick="openOrder('Classic 9')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 10.png"><button class="btn-order" onclick="openOrder('Classic 10')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 11.png"><button class="btn-order" onclick="openOrder('Classic 11')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 12.png"><button class="btn-order" onclick="openOrder('Classic 12')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 13.png"><button class="btn-order" onclick="openOrder('Classic 13')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 14.png"><button class="btn-order" onclick="openOrder('Classic 14')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 20.jpg"><button class="btn-order" onclick="openOrder('Classic 20')">COMMISSION</button></div>
+            </div>
+        </div>
+
+        <div id="her-section">
+            <div class="statement-text">FOR HER</div>
+            <div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
+            <div class="gallery-wrap">
+                <div class="gallery-item"><img src="Classic 1.jpg"><button class="btn-order" onclick="openOrder('Classic 1')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 4.jpg"><button class="btn-order" onclick="openOrder('Classic 4')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 5.png"><button class="btn-order" onclick="openOrder('Classic 5')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 6.png"><button class="btn-order" onclick="openOrder('Classic 6')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 7.jpg"><button class="btn-order" onclick="openOrder('Classic 7')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 8.jpg"><button class="btn-order" onclick="openOrder('Classic 8')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 15.jpg"><button class="btn-order" onclick="openOrder('Classic 15')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 16.jpg"><button class="btn-order" onclick="openOrder('Classic 16')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 17.jpg"><button class="btn-order" onclick="openOrder('Classic 17')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 18.jpg"><button class="btn-order" onclick="openOrder('Classic 18')">COMMISSION</button></div>
+                <div class="gallery-item"><img src="Classic 19.jpg"><button class="btn-order" onclick="openOrder('Classic 19')">COMMISSION</button></div>
+            </div>
         </div>
     </section>
     
