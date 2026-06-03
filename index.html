@@ -7,11 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* CORE ARCHITECTURAL STYLES */
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
         body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.6; }
 
-        /* HEADER & BRANDING */
         .header-wrapper { padding: 120px 20px; text-align: center; cursor: pointer; border-bottom: 1px solid #1a1a1a; }
         .main-logo { width: 500px; max-width: 90%; display: block; margin: 0 auto; filter: brightness(0.9); }
         .welcome-text { 
@@ -20,33 +18,27 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;
         }
 
-        /* NAVIGATION */
         nav { width: 100%; padding: 40px 0; background: rgba(0, 0, 0, 0.95); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #222; }
         nav ul { display: flex; list-style: none; justify-content: center; gap: 30px; flex-wrap: wrap; }
         nav a { color: #fff; text-decoration: none; font-family: 'Cinzel', serif; font-size: 1.1rem; padding: 10px 15px; transition: all 0.4s ease; border: 1px solid transparent; cursor: pointer; }
         nav a:hover { color: #b76e79; border-bottom: 1px solid #b76e79; }
 
-        /* SECTIONS */
         .page-section { display: none; padding: 40px 20px; min-height: 80vh; text-align: center; opacity: 0; transition: opacity 0.8s ease-in-out; }
         .page-section.active { display: block; opacity: 1; }
 
-        /* ASSETS */
         .flush-img { width: 100%; max-width: 1100px; display: block; margin: 0 auto; border: none !important; }
         .statement-text { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #b76e79; padding: 80px 20px; font-style: italic; max-width: 900px; margin: 0 auto; }
         .bespoke-text { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #888; margin-bottom: 40px; font-style: italic; letter-spacing: 1px; }
 
-        /* GALLERY GRID */
         .gallery-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 20px; justify-items: center; margin-bottom: 50px; }
         .gallery-item { width: 100%; max-width: 400px; background: #0f0f0f; border: 1px solid #1a1a1a; padding: 10px; display: flex; flex-direction: column; }
         .gallery-item img { width: 100%; height: auto; object-fit: contain; }
 
-        /* CLASSIC SELECTION HUB */
-        .classic-hub { display: flex; justify-content: center; gap: 50px; margin-bottom: 60px; padding: 40px; }
+        .classic-hub { display: flex; justify-content: center; gap: 100px; margin-bottom: 60px; padding: 40px; }
         .hub-btn { cursor: pointer; text-align: center; transition: transform 0.3s; }
         .hub-btn:hover { transform: scale(1.05); }
-        .hub-icon { font-size: 4rem; display: block; margin-bottom: 10px; }
+        .hub-icon { font-size: 5rem; display: block; margin-bottom: 10px; }
 
-        /* PAYMENT PROTOCOLS */
         .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 40px; }
         .payment-card { max-width: 900px; margin: 0 auto; border: 1px solid #b76e79; padding: 50px; text-align: left; background: #000; }
         .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
@@ -58,7 +50,6 @@
         .btn-order { display: block; width: 100%; padding: 20px; border: 1px solid #b76e79; color: #fff; text-align: center; text-decoration: none; margin-top: 15px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 1.1rem; transition: background 0.3s ease; background: transparent; }
         .btn-order:hover { background: #b76e79; color: #000; }
 
-        /* FOOTER */
         .footer-section { padding: 100px 20px; text-align: center; border-top: 1px solid #1a1a1a; margin-top: 100px; }
         .goodbye-quote { font-family: 'Cinzel', serif; font-size: 1.5rem; color: #555; margin-bottom: 40px; font-style: italic; }
         .footer-links a { color: #888; margin: 0 25px; font-size: 1rem; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
@@ -109,7 +100,6 @@
     <section id="home" class="page-section active">
         <div class="statement-text">"I got lost in the madness to find myself. So I ask, what about you?"</div>
         <img src="I got lost in the madness to find myself.jpeg" class="flush-img">
-        <video autoplay muted loop playsinline class="flush-img" style="margin-top:20px;"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
     </section>
 
     <section id="mind" class="page-section">
@@ -119,50 +109,9 @@
             <div class="gallery-item"><img src="o myself in the distance.jpg"><a href="https://www.instagram.com/p/DDXwN3QI8fU/" class="btn-order">THE STORY</a></div>
             <div class="gallery-item"><img src="the old man on a journey.jpg"><a href="https://www.instagram.com/p/DBE8orlIOwI/" class="btn-order">THE STORY</a></div>
             <div class="gallery-item"><img src="and the moon said to the sun.jpg"><a href="https://www.instagram.com/p/DF_LrxPoYqz/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="sometimes freedom is to be captured by someone who has love in their corner.jpg"><a href="https://www.instagram.com/p/DB_Kq6JI-qr/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="in a mountain full of flowers many don't have life.jpg"><a href="https://www.instagram.com/p/DC3xWCsoxQv/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="love a straner i know so well, or do i really know love.jpg"><a href="https://www.instagram.com/p/DYzO71ljPsd/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="playing a game with god but i don't know what it's called.jpg"><a href="https://www.instagram.com/p/DLVePs0sMLt/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="what is the greatest trick a monster can play.jpg"><a href="https://www.instagram.com/p/DGMsmHgoCnw/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="success is overrated yet underrated.jpg"><a href="https://www.instagram.com/p/DMo_JQ4sH_k/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="to battle we march why shall i fear.jpg"><a href="https://www.instagram.com/p/DTQ0w8BjCPb/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="the old man advice.jpg"><a href="https://www.instagram.com/reel/C1nKtv5MRyL/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="She said I know I am an angel but I want you to take off these wings for tonight.jpg"><a href="https://www.instagram.com/p/DB4OFzdo245/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="because their songs doesn't have lies in them.jpg"><a href="https://www.instagram.com/p/DBudMSBovQE/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="she is the devil favourite and so what.jpg"><a href="https://www.instagram.com/p/DBV7uddoOTz/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="succubus came for my soul but i took hers.jpg"><a href="https://www.instagram.com/p/DBKdKS8I2tA/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="if the venom made me feel alive i will go for that snake over and over again.jpg"><a href="https://www.instagram.com/p/C_tAgRXM0JW/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="you asked how are you From the grave i answered i am great.jpg"><a href="https://www.instagram.com/p/DEa9kwMNCdW/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="only if i get paid for every time i fake a smile.jpg"><a href="https://www.instagram.com/p/DZICSmbsOoS/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="ooh my reflection.jpg"><a href="https://instagram.com/p/DDUY0JuI7pn/" class="btn-order">THE STORY</a></div>
-            <div class="gallery-item"><img src="I got too tired to care and I’m still fine.jpg"><a href="https://www.instagram.com/p/DBzosumIq-z/" class="btn-order">THE STORY</a></div>
         </div>
     </section>
-    
-    <section id="pavement" class="page-section">
-        <div class="statement-text">THE PAVEMENT</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Pavement.jpg"><button class="btn-order" onclick="openOrder('Pavement')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 1.jpg"><button class="btn-order" onclick="openOrder('Pavement 1')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 2.jpg"><button class="btn-order" onclick="openOrder('Pavement 2')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 3.jpg"><button class="btn-order" onclick="openOrder('Pavement 3')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 4.jpg"><button class="btn-order" onclick="openOrder('Pavement 4')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 5.jpg"><button class="btn-order" onclick="openOrder('Pavement 5')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 6.jpg"><button class="btn-order" onclick="openOrder('Pavement 6')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 7.jpg"><button class="btn-order" onclick="openOrder('Pavement 7')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 8.jpg"><button class="btn-order" onclick="openOrder('Pavement 8')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 9.jpg"><button class="btn-order" onclick="openOrder('Pavement 9')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Pavement 10.jpg"><button class="btn-order" onclick="openOrder('Pavement 10')">COMMISSION</button></div>
-        </div>
-    </section>
-    
-    <section id="elixirs" class="page-section">
-        <div class="statement-text">THE ELIXIRS</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Drink.jpg"><button class="btn-order" onclick="openOrder('Drink')">COMMISSION</button></div>
-        </div>
-    </section>
-    
+
     <section id="classics" class="page-section">
         <div class="statement-text">THE CLASSICS</div>
         <div class="classic-hub">
@@ -178,7 +127,6 @@
 
         <div id="him-section">
             <div class="statement-text">FOR HIM</div>
-            <div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
             <div class="gallery-wrap">
                 <div class="gallery-item"><img src="Classic.jpg"><button class="btn-order" onclick="openOrder('Classic')">COMMISSION</button></div>
                 <div class="gallery-item"><img src="Classic 2.jpg"><button class="btn-order" onclick="openOrder('Classic 2')">COMMISSION</button></div>
@@ -198,7 +146,6 @@
 
         <div id="her-section">
             <div class="statement-text">FOR HER</div>
-            <div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
             <div class="gallery-wrap">
                 <div class="gallery-item"><img src="Classic 1.jpg"><button class="btn-order" onclick="openOrder('Classic 1')">COMMISSION</button></div>
                 <div class="gallery-item"><img src="Classic 5.png"><button class="btn-order" onclick="openOrder('Classic 5')">COMMISSION</button></div>
@@ -209,54 +156,24 @@
                 <div class="gallery-item"><img src="Classic 17.jpg"><button class="btn-order" onclick="openOrder('Classic 17')">COMMISSION</button></div>
                 <div class="gallery-item"><img src="Classic 18.jpg"><button class="btn-order" onclick="openOrder('Classic 18')">COMMISSION</button></div>
                 <div class="gallery-item"><img src="Classic 19.jpg"><button class="btn-order" onclick="openOrder('Classic 19')">COMMISSION</button></div>
-                <div class="gallery-item"><img src="Classic 21.jpg"><button class="btn-order" onclick="openOrder('Classic 21')">COMMISSION</button></div>
                 <div class="gallery-item"><img src="f casual.jpg"><button class="btn-order" onclick="openOrder('f casual')">COMMISSION</button></div>
             </div>
         </div>
     </section>
-    
-    <section id="nudes" class="page-section">
-        <div class="statement-text">NUDE PAINTINGS</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Nude.jpg"><button class="btn-order" onclick="openOrder('Nude')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Nude 1.jpg"><button class="btn-order" onclick="openOrder('Nude 1')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Nude 2.jpg"><button class="btn-order" onclick="openOrder('Nude 2')">COMMISSION</button></div>
-        </div>
-    </section>
-    
-    <section id="music" class="page-section">
-        <div class="statement-text">MUSIC</div>
-    </section>
-
-    <footer class="footer-section">
-        <div class="goodbye-quote">"Remember, the world was created as a gift to you."</div>
-        <div class="footer-links">
-            <a href="https://www.instagram.com/rony_willz/" target="_blank">INSTAGRAM</a>
-            <a href="https://www.youtube.com/@LITMOAEI" target="_blank">YOUTUBE</a>
-            <a href="mailto:Litmoaei@gmail.com">EMAIL</a>
-        </div>
-    </footer>
 
     <script>
         function showPage(id) { 
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(s => s.classList.remove('active')); 
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active')); 
             document.getElementById(id).classList.add('active'); 
             window.scrollTo(0, 0); 
         }
-
         function openOrder(pieceName) { 
             const overlay = document.getElementById('payment-overlay');
             const link = document.getElementById('ig-commission-link');
-            const title = document.getElementById('order-title');
-            
-            title.innerText = `COMMISSION: ${pieceName}`;
-            const msg = `Hello, I would like to commission ${pieceName}.%0A%0ASize:%20_____%0AColor:%20_____%0ACustom%20Details:%20_____`;
-            link.href = `https://ig.me/m/rony_willz?text=${msg}`;
-            
+            document.getElementById('order-title').innerText = `COMMISSION: ${pieceName}`;
+            link.href = `https://ig.me/m/rony_willz?text=Hello, I would like to commission ${pieceName}.`;
             overlay.style.display = 'block'; 
         }
-
         function closeOrder() { document.getElementById('payment-overlay').style.display = 'none'; }
     </script>
 </body>
