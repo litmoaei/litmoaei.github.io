@@ -124,8 +124,7 @@
 
     <section id="mind" class="page-section">
         <div class="statement-text">THE MIND</div>
-        <div id="mind-gallery" class="gallery-wrap">
-            </div>
+        <div id="mind-gallery" class="gallery-wrap"></div>
     </section>
     
     <section id="pavement" class="page-section">
@@ -256,7 +255,7 @@
         artData.forEach(art => {
             gallery.innerHTML += `
                 <div class="gallery-item">
-                    <img src="${art.name}.jpg" alt="${art.name}">
+                    <img src="${art.name}.jpg" onerror="this.onerror=null; this.src='${art.name}.jpeg';" alt="${art.name}">
                     <a href="${art.url}" target="_blank" class="btn-order">CLICK TO KNOW THE STORY THE MADNESS SANG TO ME.</a>
                 </div>
             `;
