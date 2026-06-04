@@ -63,6 +63,21 @@
             margin-bottom: 15px; 
         }
 
+        /* VIDEO STYLING INTEGRATION */
+        .video-wrap {
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .video-element {
+            width: 100%;
+            height: auto;
+            border: 1px solid #1a1a1a;
+            background: #000;
+            box-shadow: 0px 0px 20px rgba(183, 110, 121, 0.15);
+        }
+
         /* CATEGORY SECTION FILTERING */
         .category-section {
             display: none; /* Controlled via Javascript toggle */
@@ -198,6 +213,13 @@
             <span class="hub-icon">👗</span>
             <h3>FOR HER</h3>
         </div>
+    </div>
+
+    <div class="video-wrap">
+        <video class="video-element" controls autoplay loop muted playsinline>
+            <source src="midnight-desire.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
 
     <section id="him-section" class="content-wrap category-section">
