@@ -1,523 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIDNIGHT DESIRES | LITMOAEI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
-   
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-        .back-nav {
-            padding: 40px 20px;
-            position: relative;
-            z-index: 10;
-        }
-        .back-nav a {
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            border: 1px solid #222;
-            padding: 10px 20px;
-            transition: all 0.3s ease;
-        }
-        .back-nav a:hover {
-            background: rgba(183, 110, 121, 0.1);
-            border-color: #b76e79;
-        }
-        .content-wrap {
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-        .statement-text {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: #b76e79;
-            font-style: italic;
-            margin-bottom: 50px;
-            position: relative;
-            z-index: 10;
-        }
-        
-        /* VIDEO HERO SECTION – now the first thing after the nav */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        .video-element {
-            width: 100%;
-            height: 100vh;
-            min-height: 700px;
-            object-fit: cover;
-            display: block;
-            border: none;
-            background: #000;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.35) 0%,
-                rgba(0, 0, 0, 0.75) 45%,
-                rgba(0, 0, 0, 0.95) 75%
-            );
-            z-index: 5;
-            pointer-events: none;
-        }
-        .hero-content {
-            position: absolute;
-            bottom: 18%;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            z-index: 10;
-            max-width: 920px;
-            padding: 0 20px;
-            pointer-events: none;
-        }
-        .hero-content .statement-text {
-            font-size: 3.2rem;
-            margin-bottom: 8px;
-            color: #fff;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
-            line-height: 1.05;
-            font-weight: 700;
-        }
-        .hero-content .tagline {
-            font-family: 'Cinzel', serif;
-            font-size: 1.45rem;
-            color: #b76e79;
-            font-style: italic;
-            text-shadow: 0 2px 15px rgba(183, 110, 121, 0.6);
-            margin-bottom: 60px;
-        }
-        
-        /* CLASSIC HUB – now floating over the video from the bottom */
-        .classic-hub {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            margin: 60px 0;
-            padding: 40px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 10;
-        }
-        .hub-btn {
-            cursor: pointer;
-            text-align: center;
-            transition: transform 0.3s;
-            pointer-events: auto;
-        }
-        .hub-btn:hover {
-            transform: scale(1.08);
-        }
-        .hub-icon {
-            font-size: 5rem;
-            display: block;
-            margin-bottom: 15px;
-        }
-        
-        /* VIDEO STYLING INTEGRATION */
-        .video-wrap {
-            max-width: 800px;
-            margin: 0 auto 60px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .video-element {
-            width: 100%;
-            height: auto;
-            border: 1px solid #1a1a1a;
-            background: #000;
-            box-shadow: 0px 0px 20px rgba(183, 110, 121, 0.15);
-        }
-        
-        /* CATEGORY SECTION FILTERING */
-        .category-section {
-            display: none; /* Controlled via Javascript toggle */
-        }
-        .gallery-wrap {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 20px;
-            justify-items: center;
-            margin-bottom: 80px;
-        }
-        .gallery-item {
-            width: 100%;
-            max-width: 400px;
-            background: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-        .btn-order {
-            display: block;
-            width: 100%;
-            padding: 20px;
-            border: 1px solid #b76e79;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 15px;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: transparent;
-        }
-        .btn-order:hover {
-            background: #b76e79;
-            color: #000;
-        }
-        
-        /* PAYMENT OVERLAY */
-        .overlay-dimmer {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.98);
-            z-index: 2000;
-            overflow-y: auto;
-            padding: 40px;
-        }
-        .payment-card {
-            max-width: 900px;
-            margin: 0 auto;
-            border: 1px solid #b76e79;
-            padding: 50px;
-            text-align: left;
-            background: #000;
-        }
-        .payment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .currency-block {
-            border: 1px solid #222;
-            padding: 20px;
-            background: #0a0a0a;
-            font-size: 0.9rem;
-        }
-        .qr-container {
-            text-align: center;
-            margin-top: 30px;
-            border: 1px solid #222;
-            padding: 25px;
-        }
-        .qr-img {
-            width: 180px;
-            height: 180px;
-            max-width: 100%;
-            background: #fff;
-            margin: 15px auto;
-            padding: 10px;
-        }
-        .qr-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .security-warning {
-            color: #b76e79;
-            border: 1px solid #b76e79;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: center;
-            font-family: 'Cinzel';
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        
-        /* NEW: TOOLS SECTION */
-        #tools-section {
-            margin-bottom: 100px;
-        }
-        
-        @media (max-width: 768px) {
-            .classic-hub { gap: 40px; }
-            .hub-icon { font-size: 4rem; }
-            .payment-card { padding: 25px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIDNIGHT DESIRES | LITMOAEI</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+scroll-behavior: smooth;
+}
+body {
+background-color: #000;
+color: #fff;
+font-family: 'Montserrat', sans-serif;
+overflow-x: hidden;
+line-height: 1.6;
+}
+.back-nav {
+padding: 40px 20px;
+position: absolute; /* Changed to absolute to sit on top of video */
+top: 0;
+left: 0;
+z-index: 100;
+}
+.back-nav a {
+color: #fff;
+text-decoration: none;
+font-family: 'Cinzel', serif;
+font-size: 1.2rem;
+border: 1px solid #222;
+padding: 10px 20px;
+transition: all 0.3s ease;
+background: rgba(0,0,0,0.5);
+}
+.back-nav a:hover {
+background: rgba(183, 110, 121, 0.4);
+border-color: #b76e79;
+}
+
+/* HERO SECTION - VIDEO BACKGROUND FIX */
+.hero-section {
+position: relative;
+width: 100%;
+height: 100vh; /* Keeps video full screen */
+min-height: 700px;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.video-element {
+position: absolute;
+top: 50%;
+left: 50%;
+min-width: 100%; 
+min-height: 100%;
+width: auto;
+height: auto;
+z-index: 1;
+transform: translate(-50%, -50%);
+object-fit: cover;
+background: #000;
+}
+.video-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(
+to bottom,
+rgba(0, 0, 0, 0.4) 0%,
+rgba(0, 0, 0, 0.6) 50%,
+rgba(0, 0, 0, 0.95) 100%
+);
+z-index: 2;
+pointer-events: none;
+}
+.hero-content {
+position: relative;
+z-index: 10; /* Higher than video and overlay */
+text-align: center;
+max-width: 920px;
+padding: 0 20px;
+}
+.hero-content .statement-text {
+font-family: 'Cinzel', serif;
+font-size: 4rem; /* Larger for impact */
+margin-bottom: 10px;
+color: #fff;
+text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+line-height: 1.1;
+font-weight: 900;
+text-transform: uppercase;
+}
+.hero-content .tagline {
+font-family: 'Cinzel', serif;
+font-size: 1.6rem;
+color: #b76e79;
+font-style: italic;
+text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
+margin-top: 10px;
+font-weight: 400;
+}
+
+/* CLASSIC HUB */
+.classic-hub {
+display: flex;
+justify-content: center;
+gap: 80px;
+margin: -50px 0 60px 0; /* Pulls it slightly up over the video fade */
+padding: 40px;
+flex-wrap: wrap;
+position: relative;
+z-index: 20;
+}
+.hub-btn {
+cursor: pointer;
+text-align: center;
+transition: transform 0.3s;
+}
+.hub-btn:hover {
+transform: scale(1.08);
+}
+.hub-icon {
+font-size: 5rem;
+display: block;
+margin-bottom: 15px;
+}
+
+/* CATEGORY SECTIONS */
+.content-wrap {
+padding: 80px 20px;
+text-align: center;
+}
+.category-section .statement-text {
+font-family: 'Cinzel', serif;
+font-size: 2.5rem;
+color: #b76e79;
+margin-bottom: 20px;
+}
+.gallery-wrap {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 25px;
+padding: 20px;
+justify-items: center;
+margin-bottom: 80px;
+}
+.gallery-item {
+width: 100%;
+max-width: 400px;
+background: #0f0f0f;
+border: 1px solid #1a1a1a;
+padding: 10px;
+}
+.gallery-item img {
+width: 100%;
+height: auto;
+}
+.btn-order {
+display: block;
+width: 100%;
+padding: 20px;
+border: 1px solid #b76e79;
+color: #fff;
+text-decoration: none;
+margin-top: 15px;
+cursor: pointer;
+font-family: 'Cinzel', serif;
+background: transparent;
+transition: 0.3s;
+}
+.btn-order:hover {
+background: #b76e79;
+color: #000;
+}
+
+/* PAYMENT OVERLAY */
+.overlay-dimmer {
+display: none;
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
+background: rgba(0,0,0,0.98);
+z-index: 2000;
+overflow-y: auto;
+padding: 40px;
+}
+.payment-card {
+max-width: 900px;
+margin: 0 auto;
+border: 1px solid #b76e79;
+padding: 50px;
+background: #000;
+}
+.payment-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 20px;
+}
+.currency-block {
+border: 1px solid #222;
+padding: 20px;
+background: #0a0a0a;
+}
+.qr-container {
+text-align: center;
+margin-top: 30px;
+border: 1px solid #222;
+padding: 25px;
+}
+.qr-img {
+width: 180px;
+height: 180px;
+margin: 15px auto;
+background: #fff;
+padding: 10px;
+}
+.qr-img img { width: 100%; }
+
+@media (max-width: 768px) {
+.hero-content .statement-text { font-size: 2.5rem; }
+.hero-content .tagline { font-size: 1.1rem; }
+.classic-hub { gap: 30px; }
+}
+</style>
 </head>
 <body>
-    <!-- BACK NAV – unchanged -->
-    <nav class="back-nav">
-        <a href="index.html">← BACK TO THE MADNESS</a>
-    </nav>
+
+<nav class="back-nav">
+<a href="index.html">← BACK TO THE MADNESS</a>
+</nav>
+
+<section class="hero-section">
+    <video class="video-element" id="hero-video" autoplay loop muted playsinline>
+        <source src="midnight-desire.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
     
-    <!-- HERO VIDEO SECTION – the “instantly blown away” moment -->
-    <!-- VIDEO PLAYS IN LOOP AS FULL BACKGROUND -->
-    <section class="hero-section">
-        <video class="video-element" id="hero-video" controls loop muted playsinline>
-            <source src="midnight-desire.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="video-overlay"></div>
-       
-        <!-- Floating text – elegant, non-cheesy, positioned once the page loads -->
-        <div class="hero-content" id="hero-content">
-            <h1 class="statement-text">MIDNIGHT DESIRES</h1>
-            <p class="tagline">SHOW YOUR PARTNER WHAT MADNESS LOOKS LIKE</p>
-        </div>
-    </section>
-
-    <!-- CLASSIC HUB – now floating over the video from the bottom -->
-    <!-- 3 buttons exactly as you wanted -->
-    <div class="classic-hub">
-        <div class="hub-btn" onclick="showCategory('him-section')">
-            <span class="hub-icon">👔</span>
-            <h3>FOR HIM</h3>
-        </div>
-        <div class="hub-btn" onclick="showCategory('her-section')">
-            <span class="hub-icon">👗</span>
-            <h3>FOR HER</h3>
-        </div>
-        <div class="hub-btn" onclick="showCategory('tools-section')">
-            <span class="hub-icon">🧰</span>
-            <h3>TOOLS</h3>
-        </div>
+    <div class="hero-content">
+        <h1 class="statement-text">MIDNIGHT DESIRES</h1>
+        <p class="tagline">SHOW YOUR PARTNER WHAT MADNESS LOOKS LIKE</p>
     </div>
+</section>
 
-    <!-- FOR HIM SECTION -->
-    <section id="him-section" class="content-wrap category-section">
-        <h2 class="statement-text">FOR HIM</h2>
-        <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
-            Bespoke. Once selected, send your size and any unique specifications.
-        </div>
-        <div class="gallery-wrap">
-            <!-- 20 placeholder boxes (replace with your images later) -->
-            <div class="gallery-item">
-                <img src="m midnight desire.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire.JPG')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 1.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire 1.JPG')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 2.WEBP">
-                <button class="btn-order" onclick="openOrder('m midnight desire 2.WEBP')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 3.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire 3.JPG')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 4.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire 4.JPG')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 5.WEBP">
-                <button class="btn-order" onclick="openOrder('m midnight desire 5.WEBP')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 6.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire 6.JPG')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 8.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire 8.JPG')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 9.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire 9.JPG')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 10.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire 10.JPG')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 11.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire 11.JPG')">COMMISSION</button>
-            </div>
-            <div class="gallery-item">
-                <img src="m midnight desire 12.JPG">
-                <button class="btn-order" onclick="openOrder('m midnight desire 12.JPG')">COMMISSION</button>
-            </div>
-            <!-- 8 more placeholders (total 20) -->
-            <div class="gallery-item"><img src="m midnight desire 13.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 13.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="m midnight desire 14.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 14.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="m midnight desire 15.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 15.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="m midnight desire 16.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 16.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="m midnight desire 17.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 17.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="m midnight desire 18.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 18.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="m midnight desire 19.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 19.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="m midnight desire 20.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 20.JPG')">COMMISSION</button></div>
-        </div>
-    </section>
-
-    <!-- FOR HER SECTION -->
-    <section id="her-section" class="content-wrap category-section">
-        <h2 class="statement-text">FOR HER</h2>
-        <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
-            Bespoke. Once selected, send your size and any unique specifications.
-        </div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="f midnight desire.JPG"><button class="btn-order" onclick="openOrder('f midnight desire.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 1.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 1.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 2.heic"><button class="btn-order" onclick="openOrder('f midnight desire 2.heic')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 5.JPG"><button class="btn-order" onclick="openOrder('f midnight desire 5.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 6.JPG"><button class="btn-order" onclick="openOrder('f midnight desire 6.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 7.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 7.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 8.JPG"><button class="btn-order" onclick="openOrder('f midnight desire 8.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 9.heic"><button class="btn-order" onclick="openOrder('f midnight desire 9.heic')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 13.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 13.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 14.WBEP"><button class="btn-order" onclick="openOrder('f midnight desire 14.WBEP')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 15.WBEP"><button class="btn-order" onclick="openOrder('f midnight desire 15.WBEP')">COMMISSION</button></div>
-            <!-- 9 more placeholders (total 20) -->
-            <div class="gallery-item"><img src="f midnight desire 16.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 16.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 17.heic"><button class="btn-order" onclick="openOrder('f midnight desire 17.heic')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 18.JPG"><button class="btn-order" onclick="openOrder('f midnight desire 18.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 19.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 19.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 20.WBEP"><button class="btn-order" onclick="openOrder('f midnight desire 20.WBEP')">COMMISSION</button></div>
-        </div>
-    </section>
-
-    <!-- TOOLS SECTION (new) – exactly same style & protocol -->
-    <section id="tools-section" class="content-wrap category-section">
-        <h2 class="statement-text">TOOLS</h2>
-        <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
-            Bespoke. Once selected, send your size and any unique specifications.
-        </div>
-        <div class="gallery-wrap">
-            <!-- 20 placeholder boxes -->
-            <div class="gallery-item"><img src="tool-1.jpg"><button class="btn-order" onclick="openOrder('tool-1.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-2.jpg"><button class="btn-order" onclick="openOrder('tool-2.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-3.jpg"><button class="btn-order" onclick="openOrder('tool-3.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-4.jpg"><button class="btn-order" onclick="openOrder('tool-4.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-5.jpg"><button class="btn-order" onclick="openOrder('tool-5.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-6.jpg"><button class="btn-order" onclick="openOrder('tool-6.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-7.jpg"><button class="btn-order" onclick="openOrder('tool-7.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-8.jpg"><button class="btn-order" onclick="openOrder('tool-8.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-9.jpg"><button class="btn-order" onclick="openOrder('tool-9.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-10.jpg"><button class="btn-order" onclick="openOrder('tool-10.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-11.jpg"><button class="btn-order" onclick="openOrder('tool-11.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-12.jpg"><button class="btn-order" onclick="openOrder('tool-12.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-13.jpg"><button class="btn-order" onclick="openOrder('tool-13.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-14.jpg"><button class="btn-order" onclick="openOrder('tool-14.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-15.jpg"><button class="btn-order" onclick="openOrder('tool-15.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-16.jpg"><button class="btn-order" onclick="openOrder('tool-16.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-17.jpg"><button class="btn-order" onclick="openOrder('tool-17.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-18.jpg"><button class="btn-order" onclick="openOrder('tool-18.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-19.jpg"><button class="btn-order" onclick="openOrder('tool-19.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="tool-20.jpg"><button class="btn-order" onclick="openOrder('tool-20.jpg')">COMMISSION</button></div>
-        </div>
-    </section>
-
-    <!-- PAYMENT OVERLAY – unchanged -->
-    <div id="payment-overlay" class="overlay-dimmer">
-        <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.8rem;">✕</button>
-       
-        <div class="payment-card">
-            <h2 style="font-family:Cinzel; margin-bottom:30px; text-align:center;">SECURE PAYMENT PROTOCOLS</h2>
-           
-            <div class="payment-grid">
-                <div class="currency-block"><strong>USD Account:</strong><br>Bank: Lead Bank<br>Account: 211290637762<br>Routing: 101019644</div>
-                <div class="currency-block"><strong>GBP Account:</strong><br>Bank: Clear Junction Ltd<br>Account: 42592550<br>Sort Code: 04-13-07</div>
-                <div class="currency-block"><strong>EUR Account:</strong><br>Bank: Clear Junction Ltd<br>IBAN: GB57CLJU04130742592550<br>Swift: CLJUGB21XXX</div>
-                <div class="currency-block"><strong>NGN Account:</strong><br>Bank: Eco Bank<br>Account: 2971079059<br>Account Name: CHUKS EDOCHIE</div>
-            </div>
-            <div class="qr-container">
-                <strong>USDT (TRC20) PAYMENT:</strong>
-                <div class="qr-img"><img src="ustd QR code.jpeg" alt="USDT QR Code"></div>
-                <p style="font-size: 0.85rem; word-break: break-all;">Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
-                <div class="security-warning">⚠️ WARNING: ONLY SEND VIA THE TRC20 NETWORK.</div>
-            </div>
-            <div style="margin-top: 50px; border-top: 1px solid #b76e79; padding-top: 40px; text-align: center;">
-                <h3 id="order-title" style="font-family:Cinzel; color:#fff; margin-bottom:15px;">COMMISSION YOUR PIECE</h3>
-                <a id="ig-commission-link" href="#" target="_blank" class="btn-order" style="background:#b76e79; color:#000; font-weight:bold; letter-spacing:2px;">
-                    SEND SPECIFICATIONS
-                </a>
-            </div>
-        </div>
+<div class="classic-hub">
+    <div class="hub-btn" onclick="showCategory('him-section')">
+        <span class="hub-icon">👔</span>
+        <h3>FOR HIM</h3>
     </div>
+    <div class="hub-btn" onclick="showCategory('her-section')">
+        <span class="hub-icon">👗</span>
+        <h3>FOR HER</h3>
+    </div>
+    <div class="hub-btn" onclick="showCategory('tools-section')">
+        <span class="hub-icon">🧰</span>
+        <h3>TOOLS</h3>
+    </div>
+</div>
 
-    <script>
-        // Hide all categories on page load
-        function initializeCategories() {
-            const categories = document.querySelectorAll('.category-section');
-            categories.forEach(cat => cat.style.display = 'none');
-        }
-        
-        // Show only the selected category
-        function showCategory(categoryId) {
-            const categories = document.querySelectorAll('.category-section');
-            categories.forEach(cat => cat.style.display = 'none');
-            const selectedCategory = document.getElementById(categoryId);
-            selectedCategory.style.display = 'block';
-            selectedCategory.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Open order overlay with pre-filled message
-        function openOrder(pieceName) {
-            const overlay = document.getElementById('payment-overlay');
-            const title = document.getElementById('order-title');
-            const link = document.getElementById('ig-commission-link');
-           
-            title.innerText = `COMMISSION: ${pieceName}`;
-           
-            const msg = `Hello, I would like to commission ${pieceName}.%0A%0ASize:%20_____%0AColor:%20_____%0ACustom%20Details:%20_____`;
-            link.href = `https://ig.me/m/rony_willz?text=${msg}`;
-           
-            overlay.style.display = 'block';
-        }
-        
-        function closeOrder() {
-            document.getElementById('payment-overlay').style.display = 'none';
-        }
-        
-        // Initialize everything
-        window.onload = function() {
-            initializeCategories();
-           
-            // Add a subtle scroll-triggered reveal for the hub (optional elegance)
-            window.addEventListener('scroll', () => {
-                const hub = document.querySelector('.classic-hub');
-                const heroBottom = document.querySelector('.hero-section').offsetHeight;
-                if (window.scrollY > heroBottom - 300) {
-                    hub.style.opacity = '1';
-                }
-            });
-        };
-    </script>
+<section id="him-section" class="content-wrap category-section">
+    <h2 class="statement-text">FOR HIM</h2>
+    <p style="font-family:Cinzel; color:#888; font-style:italic; margin-bottom:40px;">Bespoke. Once selected, send your size and any unique specifications.</p>
+    <div class="gallery-wrap">
+        <div class="gallery-item"><img src="m midnight desire.JPG"><button class="btn-order" onclick="openOrder('m midnight desire.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 1.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 1.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 2.WEBP"><button class="btn-order" onclick="openOrder('m midnight desire 2.WEBP')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 3.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 3.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 4.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 4.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 5.WEBP"><button class="btn-order" onclick="openOrder('m midnight desire 5.WEBP')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 6.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 6.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 8.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 8.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 9.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 9.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 10.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 10.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 11.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 11.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 12.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 12.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 13.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 13.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 14.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 14.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 15.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 15.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 16.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 16.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 17.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 17.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 18.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 18.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 19.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 19.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="m midnight desire 20.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 20.JPG')">COMMISSION</button></div>
+    </div>
+</section>
+
+<section id="her-section" class="content-wrap category-section">
+    <h2 class="statement-text">FOR HER</h2>
+    <p style="font-family:Cinzel; color:#888; font-style:italic; margin-bottom:40px;">Bespoke. Once selected, send your size and any unique specifications.</p>
+    <div class="gallery-wrap">
+        <div class="gallery-item"><img src="f midnight desire.JPG"><button class="btn-order" onclick="openOrder('f midnight desire.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 1.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 1.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 2.heic"><button class="btn-order" onclick="openOrder('f midnight desire 2.heic')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 5.JPG"><button class="btn-order" onclick="openOrder('f midnight desire 5.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 6.JPG"><button class="btn-order" onclick="openOrder('f midnight desire 6.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 7.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 7.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 8.JPG"><button class="btn-order" onclick="openOrder('f midnight desire 8.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 9.heic"><button class="btn-order" onclick="openOrder('f midnight desire 9.heic')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 13.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 13.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 14.WBEP"><button class="btn-order" onclick="openOrder('f midnight desire 14.WBEP')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 15.WBEP"><button class="btn-order" onclick="openOrder('f midnight desire 15.WBEP')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 16.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 16.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 17.heic"><button class="btn-order" onclick="openOrder('f midnight desire 17.heic')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 18.JPG"><button class="btn-order" onclick="openOrder('f midnight desire 18.JPG')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 19.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 19.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="f midnight desire 20.WBEP"><button class="btn-order" onclick="openOrder('f midnight desire 20.WBEP')">COMMISSION</button></div>
+    </div>
+</section>
+
+<section id="tools-section" class="content-wrap category-section">
+    <h2 class="statement-text">TOOLS</h2>
+    <p style="font-family:Cinzel; color:#888; font-style:italic; margin-bottom:40px;">Bespoke. Once selected, send your size and any unique specifications.</p>
+    <div class="gallery-wrap">
+        <div class="gallery-item"><img src="tool-1.jpg"><button class="btn-order" onclick="openOrder('tool-1.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-2.jpg"><button class="btn-order" onclick="openOrder('tool-2.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-3.jpg"><button class="btn-order" onclick="openOrder('tool-3.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-4.jpg"><button class="btn-order" onclick="openOrder('tool-4.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-5.jpg"><button class="btn-order" onclick="openOrder('tool-5.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-6.jpg"><button class="btn-order" onclick="openOrder('tool-6.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-7.jpg"><button class="btn-order" onclick="openOrder('tool-7.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-8.jpg"><button class="btn-order" onclick="openOrder('tool-8.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-9.jpg"><button class="btn-order" onclick="openOrder('tool-9.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-10.jpg"><button class="btn-order" onclick="openOrder('tool-10.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-11.jpg"><button class="btn-order" onclick="openOrder('tool-11.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-12.jpg"><button class="btn-order" onclick="openOrder('tool-12.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-13.jpg"><button class="btn-order" onclick="openOrder('tool-13.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-14.jpg"><button class="btn-order" onclick="openOrder('tool-14.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-15.jpg"><button class="btn-order" onclick="openOrder('tool-15.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-16.jpg"><button class="btn-order" onclick="openOrder('tool-16.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-17.jpg"><button class="btn-order" onclick="openOrder('tool-17.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-18.jpg"><button class="btn-order" onclick="openOrder('tool-18.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-19.jpg"><button class="btn-order" onclick="openOrder('tool-19.jpg')">COMMISSION</button></div>
+        <div class="gallery-item"><img src="tool-20.jpg"><button class="btn-order" onclick="openOrder('tool-20.jpg')">COMMISSION</button></div>
+    </div>
+</section>
+
+<div id="payment-overlay" class="overlay-dimmer">
+<button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.8rem;">✕</button>
+<div class="payment-card">
+<h2 style="font-family:Cinzel; margin-bottom:30px; text-align:center;">SECURE PAYMENT PROTOCOLS</h2>
+<div class="payment-grid">
+<div class="currency-block"><strong>USD Account:</strong><br>Bank: Lead Bank<br>Account: 211290637762<br>Routing: 101019644</div>
+<div class="currency-block"><strong>GBP Account:</strong><br>Bank: Clear Junction Ltd<br>Account: 42592550<br>Sort Code: 04-13-07</div>
+<div class="currency-block"><strong>EUR Account:</strong><br>Bank: Clear Junction Ltd<br>IBAN: GB57CLJU04130742592550<br>Swift: CLJUGB21XXX</div>
+<div class="currency-block"><strong>NGN Account:</strong><br>Bank: Eco Bank<br>Account: 2971079059<br>Account Name: CHUKS EDOCHIE</div>
+</div>
+<div class="qr-container">
+<strong>USDT (TRC20) PAYMENT:</strong>
+<div class="qr-img"><img src="ustd QR code.jpeg" alt="USDT QR Code"></div>
+<p style="font-size: 0.85rem; word-break: break-all;">Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
+<div class="security-warning">⚠️ WARNING: ONLY SEND VIA THE TRC20 NETWORK.</div>
+</div>
+<div style="margin-top: 50px; border-top: 1px solid #b76e79; padding-top: 40px; text-align: center;">
+<h3 id="order-title" style="font-family:Cinzel; color:#fff; margin-bottom:15px;">COMMISSION YOUR PIECE</h3>
+<a id="ig-commission-link" href="#" target="_blank" class="btn-order" style="background:#b76e79; color:#000; font-weight:bold; letter-spacing:2px;">
+SEND SPECIFICATIONS
+</a>
+</div>
+</div>
+</div>
+
+<script>
+function initializeCategories() {
+const categories = document.querySelectorAll('.category-section');
+categories.forEach(cat => cat.style.display = 'none');
+}
+function showCategory(categoryId) {
+const categories = document.querySelectorAll('.category-section');
+categories.forEach(cat => cat.style.display = 'none');
+const selectedCategory = document.getElementById(categoryId);
+selectedCategory.style.display = 'block';
+selectedCategory.scrollIntoView({ behavior: 'smooth' });
+}
+function openOrder(pieceName) {
+const overlay = document.getElementById('payment-overlay');
+const title = document.getElementById('order-title');
+const link = document.getElementById('ig-commission-link');
+title.innerText = `COMMISSION: ${pieceName}`;
+const msg = `Hello, I would like to commission ${pieceName}.%0A%0ASize:%20_____%0AColor:%20_____%0ACustom%20Details:%20_____`;
+link.href = `https://ig.me/m/rony_willz?text=${msg}`;
+overlay.style.display = 'block';
+}
+function closeOrder() {
+document.getElementById('payment-overlay').style.display = 'none';
+}
+window.onload = function() {
+initializeCategories();
+};
+</script>
 </body>
 </html>
