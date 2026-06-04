@@ -8,40 +8,193 @@
     
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden; 
+            line-height: 1.6;
+        }
 
-        .back-nav { padding: 40px 20px; }
-        .back-nav a { color: #fff; text-decoration: none; font-family: 'Cinzel', serif; font-size: 1.2rem; border: 1px solid #222; padding: 10px 20px; }
-        
-        .content-wrap { padding: 80px 20px; text-align: center; }
-        .statement-text { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #b76e79; font-style: italic; margin-bottom: 50px; }
-        
-        .gallery-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 20px; justify-items: center; margin-bottom: 50px; }
-        .gallery-item { width: 100%; max-width: 400px; background: #0f0f0f; border: 1px solid #1a1a1a; padding: 10px; display: flex; flex-direction: column; }
-        .gallery-item img { width: 100%; height: auto; object-fit: contain; }
+        .back-nav { 
+            padding: 40px 20px; 
+        }
+        .back-nav a { 
+            color: #fff; 
+            text-decoration: none; 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.2rem; 
+            border: 1px solid #222; 
+            padding: 10px 20px; 
+        }
 
-        .btn-order { display: block; width: 100%; padding: 20px; border: 1px solid #b76e79; color: #fff; text-align: center; text-decoration: none; margin-top: 15px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 1.1rem; transition: background 0.3s ease; background: transparent; }
-        .btn-order:hover { background: #b76e79; color: #000; }
+        .content-wrap { 
+            padding: 80px 20px; 
+            text-align: center; 
+        }
+        .statement-text { 
+            font-family: 'Cinzel', serif; 
+            font-size: 2.5rem; 
+            color: #b76e79; 
+            font-style: italic; 
+            margin-bottom: 50px; 
+        }
 
-        /* PAYMENT PROTOCOLS (Matches Homepage) */
-        .overlay-dimmer { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; overflow-y: auto; padding: 40px; }
-        .payment-card { max-width: 900px; margin: 0 auto; border: 1px solid #b76e79; padding: 50px; text-align: left; background: #000; }
-        .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-        .currency-block { border: 1px solid #222; padding: 20px; background: #0a0a0a; font-size: 0.9rem; }
-        .security-warning { color: #b76e79; border: 1px solid #b76e79; padding: 20px; margin-top: 20px; text-align: center; font-family: 'Cinzel'; font-weight: bold; }
+        /* CLASSIC HUB - SAME AS HOMEPAGE */
+        .classic-hub { 
+            display: flex; 
+            justify-content: center; 
+            gap: 80px; 
+            margin: 60px 0; 
+            padding: 40px; 
+            flex-wrap: wrap;
+        }
+        .hub-btn { 
+            cursor: pointer; 
+            text-align: center; 
+            transition: transform 0.3s; 
+        }
+        .hub-btn:hover { 
+            transform: scale(1.08); 
+        }
+        .hub-icon { 
+            font-size: 5rem; 
+            display: block; 
+            margin-bottom: 15px; 
+        }
+
+        .gallery-wrap { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; 
+            padding: 20px; 
+            justify-items: center;
+            margin-bottom: 80px;
+        }
+        .gallery-item { 
+            width: 100%; 
+            max-width: 400px; 
+            background: #0f0f0f; 
+            border: 1px solid #1a1a1a; 
+            padding: 10px; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .gallery-item img { 
+            width: 100%; 
+            height: auto; 
+            object-fit: contain; 
+        }
+
+        .btn-order { 
+            display: block; 
+            width: 100%; 
+            padding: 20px; 
+            border: 1px solid #b76e79; 
+            color: #fff; 
+            text-align: center; 
+            text-decoration: none; 
+            margin-top: 15px; 
+            cursor: pointer; 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.1rem; 
+            transition: all 0.3s ease; 
+            background: transparent; 
+        }
+        .btn-order:hover { 
+            background: #b76e79; 
+            color: #000; 
+        }
+
+        /* PAYMENT OVERLAY */
+        .overlay-dimmer { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.98); 
+            z-index: 2000; 
+            overflow-y: auto; 
+            padding: 40px; 
+        }
+        .payment-card { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            border: 1px solid #b76e79; 
+            padding: 50px; 
+            text-align: left; 
+            background: #000; 
+        }
+        .payment-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            margin-top: 20px; 
+        }
+        .currency-block { 
+            border: 1px solid #222; 
+            padding: 20px; 
+            background: #0a0a0a; 
+            font-size: 0.9rem; 
+        }
+        .qr-container { 
+            text-align: center; 
+            margin-top: 30px; 
+            border: 1px solid #222; 
+            padding: 25px; 
+        }
+        .qr-img { 
+            width: 220px; 
+            height: 220px; 
+            background: #fff; 
+            margin: 15px auto; 
+            padding: 10px; 
+        }
+        .security-warning { 
+            color: #b76e79; 
+            border: 1px solid #b76e79; 
+            padding: 20px; 
+            margin-top: 20px; 
+            text-align: center; 
+            font-family: 'Cinzel'; 
+            font-weight: bold; 
+            font-size: 1.1rem; 
+        }
+
+        @media (max-width: 768px) {
+            .classic-hub { gap: 40px; }
+            .hub-icon { font-size: 4rem; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="back-nav"><a href="index.html">← BACK TO THE MADNESS</a></nav>
+    <nav class="back-nav">
+        <a href="index.html">← BACK TO THE MADNESS</a>
+    </nav>
 
     <div class="content-wrap">
-        <h1 class="statement-text">MIDNIGHT DESIRES SHOW YOUR PARTNER WHAT MADNESS LOOKS LIKE</h1>
+        <h1 class="statement-text">MIDNIGHT DESIRES<br>SHOW YOUR PARTNER WHAT MADNESS LOOKS LIKE</h1>
+    </div>
+
+    <!-- HUB -->
+    <div class="classic-hub">
+        <div class="hub-btn" onclick="document.getElementById('him-section').scrollIntoView({ behavior: 'smooth' })">
+            <span class="hub-icon">👔</span>
+            <h3>FOR HIM</h3>
+        </div>
+        <div class="hub-btn" onclick="document.getElementById('her-section').scrollIntoView({ behavior: 'smooth' })">
+            <span class="hub-icon">👗</span>
+            <h3>FOR HER</h3>
+        </div>
     </div>
 
     <!-- FOR HIM -->
     <section id="him-section" class="content-wrap">
         <h2 class="statement-text">FOR HIM</h2>
+        <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
+            Bespoke. Once selected, send your size and any unique specifications.
+        </div>
         <div class="gallery-wrap">
             <div class="gallery-item"><img src="m midnight desire.JPG"><button class="btn-order" onclick="openOrder('m midnight desire.JPG')">COMMISSION</button></div>
             <div class="gallery-item"><img src="m midnight desire 1.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 1.JPG')">COMMISSION</button></div>
@@ -61,6 +214,9 @@
     <!-- FOR HER -->
     <section id="her-section" class="content-wrap">
         <h2 class="statement-text">FOR HER</h2>
+        <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
+            Bespoke. Once selected, send your size and any unique specifications.
+        </div>
         <div class="gallery-wrap">
             <div class="gallery-item"><img src="midnight desire.JPG"><button class="btn-order" onclick="openOrder('midnight desire.JPG')">COMMISSION</button></div>
             <div class="gallery-item"><img src="f midnight desire.JPG"><button class="btn-order" onclick="openOrder('f midnight desire.JPG')">COMMISSION</button></div>
@@ -77,25 +233,52 @@
         </div>
     </section>
 
-    <!-- PAYMENT OVERLAY -->
+    <!-- FULL PAYMENT OVERLAY -->
     <div id="payment-overlay" class="overlay-dimmer">
-        <button onclick="document.getElementById('payment-overlay').style.display='none'" style="float:right; background:none; border:none; color:#fff; cursor:pointer; font-size: 1.5rem;">CLOSE X</button>
+        <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.8rem;">✕</button>
+        
         <div class="payment-card">
-            <h2 id="order-title" style="font-family:Cinzel; margin-bottom:20px;">COMMISSION</h2>
+            <h2 style="font-family:Cinzel; margin-bottom:30px; text-align:center;">SECURE PAYMENT PROTOCOLS</h2>
+            
             <div class="payment-grid">
                 <div class="currency-block"><strong>USD Account:</strong><br>Bank: Lead Bank<br>Account: 211290637762<br>Routing: 101019644</div>
-                <div class="currency-block"><strong>NGN Account:</strong><br>Bank: Eco Bank<br>Account: 2971079059<br>Name: CHUKS EDOCHIE</div>
+                <div class="currency-block"><strong>GBP Account:</strong><br>Bank: Clear Junction Ltd<br>Account: 42592550<br>Sort Code: 04-13-07</div>
+                <div class="currency-block"><strong>EUR Account:</strong><br>Bank: Clear Junction Ltd<br>IBAN: GB57CLJU04130742592550<br>Swift: CLJUGB21XXX</div>
+                <div class="currency-block"><strong>NGN Account:</strong><br>Bank: Eco Bank<br>Account: 2971079059<br>Account Name: CHUKS EDOCHIE</div>
             </div>
-            <a id="ig-commission-link" href="#" target="_blank" class="btn-order" style="background:#b76e79; color:#000;">SEND SPECIFICATIONS</a>
+
+            <div class="qr-container">
+                <strong>USDT (TRC20) PAYMENT:</strong>
+                <div class="qr-img"><img src="ustd QR code.jpeg" alt="USDT QR Code"></div>
+                <p style="font-size: 0.85rem; word-break: break-all;">Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
+                <div class="security-warning">⚠️ WARNING: ONLY SEND VIA THE TRC20 NETWORK.</div>
+            </div>
+
+            <div style="margin-top: 50px; border-top: 1px solid #b76e79; padding-top: 40px; text-align: center;">
+                <h3 id="order-title" style="font-family:Cinzel; color:#fff; margin-bottom:15px;">COMMISSION YOUR PIECE</h3>
+                <a id="ig-commission-link" href="#" target="_blank" class="btn-order" style="background:#b76e79; color:#000; font-weight:bold; letter-spacing:2px;">
+                    SEND SPECIFICATIONS
+                </a>
+            </div>
         </div>
     </div>
 
     <script>
         function openOrder(pieceName) { 
             const overlay = document.getElementById('payment-overlay');
-            document.getElementById('order-title').innerText = `COMMISSION: ${pieceName}`;
-            document.getElementById('ig-commission-link').href = `https://ig.me/m/rony_willz?text=Hello, I want to commission ${pieceName}. Size: _____.`;
-            overlay.style.display = 'block'; 
+            const title = document.getElementById('order-title');
+            const link = document.getElementById('ig-commission-link');
+            
+            title.innerText = `COMMISSION: ${pieceName}`;
+            
+            const msg = `Hello, I would like to commission ${pieceName}.%0A%0ASize:%20_____%0AColor:%20_____%0ACustom%20Details:%20_____`;
+            link.href = `https://ig.me/m/rony_willz?text=${msg}`;
+            
+            overlay.style.display = 'block';
+        }
+
+        function closeOrder() { 
+            document.getElementById('payment-overlay').style.display = 'none'; 
         }
     </script>
 </body>
