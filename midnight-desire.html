@@ -63,6 +63,11 @@
             margin-bottom: 15px; 
         }
 
+        /* CATEGORY SECTION FILTERING */
+        .category-section {
+            display: none; /* Controlled via Javascript toggle */
+        }
+
         .gallery-wrap { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -144,11 +149,17 @@
             padding: 25px; 
         }
         .qr-img { 
-            width: 220px; 
-            height: 220px; 
+            width: 180px;      /* Slightly reduced to prevent text truncation */
+            height: 180px;     /* Match width aspect ratio */
+            max-width: 100%;   /* Fluid adjustments */
             background: #fff; 
             margin: 15px auto; 
             padding: 10px; 
+        }
+        .qr-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
         .security-warning { 
             color: #b76e79; 
@@ -164,6 +175,7 @@
         @media (max-width: 768px) {
             .classic-hub { gap: 40px; }
             .hub-icon { font-size: 4rem; }
+            .payment-card { padding: 25px; }
         }
     </style>
 </head>
@@ -177,20 +189,18 @@
         <h1 class="statement-text">MIDNIGHT DESIRES<br>SHOW YOUR PARTNER WHAT MADNESS LOOKS LIKE</h1>
     </div>
 
-    <!-- HUB -->
     <div class="classic-hub">
-        <div class="hub-btn" onclick="document.getElementById('him-section').scrollIntoView({ behavior: 'smooth' })">
+        <div class="hub-btn" onclick="showCategory('him-section')">
             <span class="hub-icon">👔</span>
             <h3>FOR HIM</h3>
         </div>
-        <div class="hub-btn" onclick="document.getElementById('her-section').scrollIntoView({ behavior: 'smooth' })">
+        <div class="hub-btn" onclick="showCategory('her-section')">
             <span class="hub-icon">👗</span>
             <h3>FOR HER</h3>
         </div>
     </div>
 
-    <!-- FOR HIM -->
-    <section id="him-section" class="content-wrap">
+    <section id="him-section" class="content-wrap category-section">
         <h2 class="statement-text">FOR HIM</h2>
         <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
             Bespoke. Once selected, send your size and any unique specifications.
@@ -211,8 +221,7 @@
         </div>
     </section>
 
-    <!-- FOR HER -->
-    <section id="her-section" class="content-wrap">
+    <section id="her-section" class="content-wrap category-section">
         <h2 class="statement-text">FOR HER</h2>
         <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
             Bespoke. Once selected, send your size and any unique specifications.
@@ -233,7 +242,6 @@
         </div>
     </section>
 
-    <!-- FULL PAYMENT OVERLAY -->
     <div id="payment-overlay" class="overlay-dimmer">
         <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.8rem;">✕</button>
         
@@ -264,6 +272,19 @@
     </div>
 
     <script>
+        function showCategory(categoryId) {
+            // Hide all categories
+            const categories = document.querySelectorAll('.category-section');
+            categories.forEach(cat => cat.style.display = 'none');
+            
+            // Show only the selected category
+            const selectedCategory = document.getElementById(categoryId);
+            selectedCategory.style.display = 'block';
+            
+            // Smoothly scroll down directly to it
+            selectedCategory.scrollIntoView({ behavior: 'smooth' });
+        }
+
         function openOrder(pieceName) { 
             const overlay = document.getElementById('payment-overlay');
             const title = document.getElementById('order-title');
