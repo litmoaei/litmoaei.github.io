@@ -7,12 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
     
     <style>
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            scroll-behavior: smooth; 
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
         body { 
             background-color: #000; 
             color: #fff; 
@@ -53,41 +48,35 @@
             position: relative;
             z-index: 10;
         }
-        /* VIDEO HERO SECTION – now the first thing after the nav */
+        /* HERO VIDEO – full-screen, instant capture, NO UI controls */
         .hero-section {
             position: relative;
             width: 100%;
+            height: 100vh;
             margin: 0;
             padding: 0;
             overflow: hidden;
         }
         .video-element {
             width: 100%;
-            height: 100vh;
-            min-height: 700px;
+            height: 100%;
             object-fit: cover;
             display: block;
             border: none;
             background: #000;
+            pointer-events: none;
         }
         .video-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.35) 0%,
-                rgba(0, 0, 0, 0.75) 45%,
-                rgba(0, 0, 0, 0.95) 75%
-            );
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.75) 42%, rgba(0,0,0,0.95) 72%);
             z-index: 5;
             pointer-events: none;
         }
+        /* TEXT LAYERS – positioned only in the top half of the video (upper 60% of screen = bottom half of video) */
         .hero-content {
             position: absolute;
-            bottom: 18%;
+            top: 12%;          /* top of video */
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
@@ -97,47 +86,47 @@
             pointer-events: none;
         }
         .hero-content .statement-text {
-            font-size: 3.2rem;
-            margin-bottom: 8px;
+            font-size: 3.4rem;
+            margin-bottom: 6px;
             color: #fff;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.85);
             line-height: 1.05;
             font-weight: 700;
         }
         .hero-content .tagline {
             font-family: 'Cinzel', serif;
-            font-size: 1.45rem;
+            font-size: 1.5rem;
             color: #b76e79;
             font-style: italic;
-            text-shadow: 0 2px 15px rgba(183, 110, 121, 0.6);
-            margin-bottom: 60px;
+            text-shadow: 0 2px 15px rgba(183, 110, 121, 0.65);
+            margin-bottom: 40px;
         }
-        /* CLASSIC HUB – now positioned below video on the page */
-        .classic-hub { 
-            display: flex; 
-            justify-content: center; 
-            gap: 80px; 
-            margin: 60px 0; 
-            padding: 40px; 
+        /* FOR HIM & FOR HER BUTTONS – floating on video, bottom half visible */
+        .classic-hub {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin: 40px 0 60px 0;
+            padding: 40px 20px;
             flex-wrap: wrap;
             position: relative;
             z-index: 10;
         }
-        .hub-btn { 
-            cursor: pointer; 
-            text-align: center; 
-            transition: transform 0.3s; 
+        .hub-btn {
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s ease;
             pointer-events: auto;
         }
-        .hub-btn:hover { 
-            transform: scale(1.08); 
+        .hub-btn:hover {
+            transform: scale(1.08);
         }
-        .hub-icon { 
-            font-size: 5rem; 
-            display: block; 
-            margin-bottom: 15px; 
+        .hub-icon {
+            font-size: 5.2rem;
+            display: block;
+            margin-bottom: 12px;
         }
-        /* VIDEO STYLING INTEGRATION – kept exactly as original */
+        /* VIDEO WRAP – optional subtle carousel below (kept from original) */
         .video-wrap {
             max-width: 800px;
             margin: 0 auto 60px auto;
@@ -151,9 +140,9 @@
             background: #000;
             box-shadow: 0px 0px 20px rgba(183, 110, 121, 0.15);
         }
-        /* CATEGORY SECTION FILTERING */
+        /* CATEGORIES */
         .category-section {
-            display: none; /* Controlled via Javascript toggle */
+            display: none;
         }
         .gallery-wrap { 
             display: grid; 
@@ -234,9 +223,9 @@
             padding: 25px; 
         }
         .qr-img { 
-            width: 180px;     /* Slightly reduced to prevent text truncation */
-            height: 180px;     /* Match width aspect ratio */
-            max-width: 100%;   /* Fluid adjustments */
+            width: 180px; 
+            height: 180px; 
+            max-width: 100%; 
             background: #fff; 
             margin: 15px auto; 
             padding: 10px; 
@@ -264,39 +253,39 @@
     </style>
 </head>
 <body>
-    <!-- BACK NAV – unchanged -->
+    <!-- BACK NAV -->
     <nav class="back-nav">
         <a href="index.html">← BACK TO THE MADNESS</a>
     </nav>
 
-    <!-- HERO VIDEO SECTION – the “instantly blown away” moment -->
+    <!-- HERO VIDEO – full-screen, instant capture, NO controls, bottom half of video fully visible -->
     <section class="hero-section">
-        <video class="video-element" id="hero-video" controls autoplay loop muted playsinline>
+        <video class="video-element" id="hero-video" autoplay loop muted playsinline>
             <source src="midnight-desire.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="video-overlay"></div>
         
-        <!-- Floating text – elegant, non-cheesy, positioned once the page loads -->
+        <!-- TOP HALF OF VIDEO – elegant floating text (upper 60% of screen) -->
         <div class="hero-content" id="hero-content">
             <h1 class="statement-text">MIDNIGHT DESIRES</h1>
             <p class="tagline">SHOW YOUR PARTNER WHAT MADNESS LOOKS LIKE</p>
         </div>
+
+        <!-- FOR HIM & FOR HER BUTTONS – floating on the video, bottom half fully visible -->
+        <div class="classic-hub">
+            <div class="hub-btn" onclick="showCategory('him-section')">
+                <span class="hub-icon">👔</span>
+                <h3>FOR HIM</h3>
+            </div>
+            <div class="hub-btn" onclick="showCategory('her-section')">
+                <span class="hub-icon">👗</span>
+                <h3>FOR HER</h3>
+            </div>
+        </div>
     </section>
 
-    <!-- CLASSIC HUB – now floating over the video from the bottom -->
-    <div class="classic-hub">
-        <div class="hub-btn" onclick="showCategory('him-section')">
-            <span class="hub-icon">👔</span>
-            <h3>FOR HIM</h3>
-        </div>
-        <div class="hub-btn" onclick="showCategory('her-section')">
-            <span class="hub-icon">👗</span>
-            <h3>FOR HER</h3>
-        </div>
-    </div>
-
-    <!-- FOR HIM SECTION – unchanged except positioning -->
+    <!-- FOR HIM SECTION – separate from FOR HER -->
     <section id="him-section" class="content-wrap category-section">
         <h2 class="statement-text">FOR HIM</h2>
         <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
@@ -305,10 +294,10 @@
         <div class="gallery-wrap">
             <div class="gallery-item"><img src="m midnight desire.JPG"><button class="btn-order" onclick="openOrder('m midnight desire.JPG')">COMMISSION</button></div>
             <div class="gallery-item"><img src="m midnight desire 1.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 1.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="m midnight desire 2.WEBP"><button class="btn-order" onclick="openOrder('m midnight desire 2.WE')">COMMISSION</button></div>
+            <div class="gallery-item"><img src="m midnight desire 2.WEBP"><button class="btn-order" onclick="openOrder('m midnight desire 2.WEBP')">COMMISSION</button></div>
             <div class="gallery-item"><img src="m midnight desire 3.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 3.JPG')">COMMISSION</button></div>
             <div class="gallery-item"><img src="m midnight desire 4.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 4.JPG')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="m midnight desire 5.WEBP"><button class="btn-order" onclick="openOrder('m midnight desire 5.WE')">COMMISSION</button></div>
+            <div class="gallery-item"><img src="m midnight desire 5.WEBP"><button class="btn-order" onclick="openOrder('m midnight desire 5.WEBP')">COMMISSION</button></div>
             <div class="gallery-item"><img src="m midnight desire 6.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 6.JPG')">COMMISSION</button></div>
             <div class="gallery-item"><img src="m midnight desire 8.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 8.JPG')">COMMISSION</button></div>
             <div class="gallery-item"><img src="m midnight desire 9.JPG"><button class="btn-order" onclick="openOrder('m midnight desire 9.JPG')">COMMISSION</button></div>
@@ -318,7 +307,7 @@
         </div>
     </section>
 
-    <!-- FOR HER SECTION – unchanged except positioning -->
+    <!-- FOR HER SECTION – separate from FOR HIM -->
     <section id="her-section" class="content-wrap category-section">
         <h2 class="statement-text">FOR HER</h2>
         <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
@@ -334,8 +323,8 @@
             <div class="gallery-item"><img src="f midnight desire 8.JPG"><button class="btn-order" onclick="openOrder('f midnight desire 8.JPG')">COMMISSION</button></div>
             <div class="gallery-item"><img src="f midnight desire 9.heic"><button class="btn-order" onclick="openOrder('f midnight desire 9.heic')">COMMISSION</button></div>
             <div class="gallery-item"><img src="f midnight desire 13.jpg"><button class="btn-order" onclick="openOrder('f midnight desire 13.jpg')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 14.WEBP"><button class="btn-order" onclick="openOrder('f midnight desire 14.WE')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f midnight desire 15.WEBP"><button class="btn-order" onclick="openOrder('f midnight desire 15 .W')">COMMISSION</button></div>
+            <div class="gallery-item"><img src="f midnight desire 14.WEBP"><button class="btn-order" onclick="openOrder('f midnight desire 14.WEBP')">COMMISSION</button></div>
+            <div class="gallery-item"><img src="f midnight desire 15 .WEBP"><button class="btn-order" onclick="openOrder('f midnight desire 15.WEBP')">COMMISSION</button></div>
         </div>
     </section>
 
@@ -368,23 +357,20 @@
     </div>
 
     <script>
-        // Hide all categories on page load
         function initializeCategories() {
             const categories = document.querySelectorAll('.category-section');
             categories.forEach(cat => cat.style.display = 'none');
         }
 
-        // Show only the selected category
         function showCategory(categoryId) {
             const categories = document.querySelectorAll('.category-section');
             categories.forEach(cat => cat.style.display = 'none');
-            const selectedCategory = document.getElementById(categoryId);
-            selectedCategory.style.display = 'block';
-            selectedCategory.scrollIntoView({ behavior: 'smooth' });
+            const selected = document.getElementById(categoryId);
+            selected.style.display = 'block';
+            selected.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Open order overlay with pre-filled message
-        function openOrder(pieceName) { 
+        function openOrder(pieceName) {
             const overlay = document.getElementById('payment-overlay');
             const title = document.getElementById('order-title');
             const link = document.getElementById('ig-commission-link');
@@ -397,15 +383,14 @@
             overlay.style.display = 'block';
         }
 
-        function closeOrder() { 
-            document.getElementById('payment-overlay').style.display = 'none'; 
+        function closeOrder() {
+            document.getElementById('payment-overlay').style.display = 'none';
         }
 
-        // Initialize everything
         window.onload = function() {
             initializeCategories();
             
-            // Add a subtle scroll-triggered reveal for the hub (optional elegance)
+            // Subtle scroll reveal for the floating buttons (kept for elegance)
             window.addEventListener('scroll', () => {
                 const hub = document.querySelector('.classic-hub');
                 const heroBottom = document.querySelector('.hero-section').offsetHeight;
