@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDNIGHT DESIRES | LITMOAEI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CORE RESET */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; }
+        
+        /* THE SUBTLE BACK BUTTON */
+        .back-nav { position: fixed; top: 20px; left: 20px; opacity: 0.1; transition: opacity 0.3s; z-index: 1000; }
+        .back-nav:hover { opacity: 1; }
+        .back-nav a { color: #fff; text-decoration: none; font-size: 2rem; font-family: 'Cinzel'; }
 
+        /* PAGE CONTENT */
+        .content-wrap { padding: 100px 20px; text-align: center; }
+        .statement-text { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #b76e79; font-style: italic; margin-bottom: 50px; }
+        
+        /* CATEGORY SELECTORS */
+        .category-hub { display: flex; justify-content: center; gap: 100px; margin-top: 50px; }
+        .cat-btn { cursor: pointer; text-align: center; transition: transform 0.3s; }
+        .cat-btn:hover { transform: scale(1.05); }
+        .cat-icon { font-size: 5rem; display: block; margin-bottom: 20px; }
+
+        /* SEXY RED STYLES */
+        .btn-sexy { 
+            display: block; width: 200px; padding: 15px; margin: 20px auto;
+            border: 2px solid #8b0000; color: #fff; background: transparent;
+            font-family: 'Cinzel', serif; cursor: pointer; transition: 0.3s; 
+        }
+        .btn-sexy:hover { background: #8b0000; color: #fff; }
+        .gallery-wrap { padding: 50px 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="back-nav"><a href="index.html">←</a></nav>
+
+    <div class="content-wrap">
+        <h1 class="statement-text">MIDNIGHT DESIRES</h1>
+        
+        <div class="category-hub">
+            <div class="cat-btn" onclick="document.getElementById('him-section').scrollIntoView()">
+                <span class="cat-icon">🩲</span>
+                <h3>FOR HIM</h3>
+            </div>
+            <div class="cat-btn" onclick="document.getElementById('her-section').scrollIntoView()">
+                <span class="cat-icon">👙</span>
+                <h3>FOR HER</h3>
+            </div>
+        </div>
+    </div>
+
+    <section id="him-section" class="content-wrap">
+        <h2 class="statement-text">FOR HIM</h2>
+        <div class="gallery-wrap">
+            <button class="btn-sexy" onclick="openOrder('Boxer Red')">COMMISSION</button>
+        </div>
+    </section>
+
+    <section id="her-section" class="content-wrap">
+        <h2 class="statement-text">FOR HER</h2>
+        <div class="gallery-wrap">
+            <button class="btn-sexy" onclick="openOrder('Panties Red')">COMMISSION</button>
+        </div>
+    </section>
+
+</body>
+</html>
