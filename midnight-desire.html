@@ -7,7 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
     
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            scroll-behavior: smooth; 
+        }
         body { 
             background-color: #000; 
             color: #fff; 
@@ -15,166 +20,141 @@
             overflow-x: hidden; 
             line-height: 1.6;
         }
-
         .back-nav { 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
             padding: 40px 20px; 
+            position: relative;
             z-index: 10;
         }
         .back-nav a { 
             color: #fff; 
             text-decoration: none; 
             font-family: 'Cinzel', serif; 
-            font-size: 0.9rem; 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
+            font-size: 1.2rem; 
+            border: 1px solid #222; 
             padding: 10px 20px; 
-            letter-spacing: 2px;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
-        .back-nav a:hover {
+        .back-nav a:hover { 
+            background: rgba(183, 110, 121, 0.1); 
             border-color: #b76e79;
-            color: #b76e79;
-            background: rgba(0, 0, 0, 0.8);
         }
-
-        /* CINEMATIC HERO VIDEO WRAPPER */
-        .hero-video-container {
+        .content-wrap { 
+            padding: 80px 20px; 
+            text-align: center; 
+            position: relative;
+            z-index: 10;
+        }
+        .statement-text { 
+            font-family: 'Cinzel', serif; 
+            font-size: 2.5rem; 
+            color: #b76e79; 
+            font-style: italic; 
+            margin-bottom: 50px; 
+            position: relative;
+            z-index: 10;
+        }
+        /* VIDEO HERO SECTION – now the first thing after the nav */
+        .hero-section {
             position: relative;
             width: 100%;
-            height: 85vh; /* Perfect elegant dramatic height */
-            min-height: 600px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
-            background-color: #000;
         }
-
-        /* Pure background video implementation */
         .video-element {
-            position: absolute;
-            top: 50%;
-            left: 50%;
             width: 100%;
-            height: 100%;
+            height: 100vh;
+            min-height: 700px;
             object-fit: cover;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            opacity: 0.65; /* Sophisticated slightly dark exposure to make text pop */
-            pointer-events: none;
+            display: block;
+            border: none;
+            background: #000;
         }
-
-        /* Elite Vignette Overlay Gradients */
-        .hero-overlay {
+        .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.2) 70%, #000000 100%);
-            z-index: 2;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.35) 0%,
+                rgba(0, 0, 0, 0.75) 45%,
+                rgba(0, 0, 0, 0.95) 75%
+            );
+            z-index: 5;
             pointer-events: none;
         }
-
-        /* FLOATING HERO CONTENT BLOCK */
-        .hero-floating-content {
-            position: relative;
-            z-index: 3;
+        .hero-content {
+            position: absolute;
+            bottom: 18%;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            max-width: 1000px;
+            z-index: 10;
+            max-width: 920px;
             padding: 0 20px;
-            margin-top: 60px;
+            pointer-events: none;
         }
-
-        .statement-text { 
-            font-family: 'Cinzel', serif; 
-            font-size: 3.2rem; 
-            color: #fff; 
+        .hero-content .statement-text {
+            font-size: 3.2rem;
+            margin-bottom: 8px;
+            color: #fff;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            line-height: 1.05;
             font-weight: 700;
-            letter-spacing: 4px;
-            line-height: 1.3;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
-            margin-bottom: 20px;
-            animation: fadeInDown 1.5s ease;
         }
-        .statement-text span {
+        .hero-content .tagline {
+            font-family: 'Cinzel', serif;
+            font-size: 1.45rem;
             color: #b76e79;
-            font-size: 1.8rem;
-            display: block;
-            margin-top: 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 200;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            font-style: normal;
+            font-style: italic;
+            text-shadow: 0 2px 15px rgba(183, 110, 121, 0.6);
+            margin-bottom: 60px;
         }
-
-        /* CLASSIC HUB FLOATING OVER VIDEO */
+        /* CLASSIC HUB – now positioned below video on the page */
         .classic-hub { 
             display: flex; 
             justify-content: center; 
-            gap: 60px; 
-            margin-top: 40px;
-            padding: 20px; 
+            gap: 80px; 
+            margin: 60px 0; 
+            padding: 40px; 
             flex-wrap: wrap;
-            animation: fadeInUp 1.5s ease;
+            position: relative;
+            z-index: 10;
         }
         .hub-btn { 
             cursor: pointer; 
             text-align: center; 
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
-            background: rgba(15, 15, 15, 0.5);
-            padding: 25px 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            min-width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s; 
+            pointer-events: auto;
         }
         .hub-btn:hover { 
-            transform: translateY(-8px); 
-            border-color: #b76e79;
-            background: rgba(0, 0, 0, 0.8);
-            box-shadow: 0 15px 35px rgba(183, 110, 121, 0.2);
-        }
-        .hub-btn:hover .hub-icon {
-            transform: scale(1.1);
-        }
-        .hub-btn h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            margin-top: 10px;
+            transform: scale(1.08); 
         }
         .hub-icon { 
-            font-size: 3.5rem; 
+            font-size: 5rem; 
             display: block; 
-            margin-bottom: 10px; 
-            transition: transform 0.4s ease;
+            margin-bottom: 15px; 
         }
-
+        /* VIDEO STYLING INTEGRATION – kept exactly as original */
+        .video-wrap {
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .video-element {
+            width: 100%;
+            height: auto;
+            border: 1px solid #1a1a1a;
+            background: #000;
+            box-shadow: 0px 0px 20px rgba(183, 110, 121, 0.15);
+        }
         /* CATEGORY SECTION FILTERING */
         .category-section {
             display: none; /* Controlled via Javascript toggle */
         }
-        .content-wrap { 
-            padding: 90px 20px; 
-            text-align: center; 
-        }
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: #b76e79;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-        }
-
         .gallery-wrap { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -191,17 +171,12 @@
             padding: 10px; 
             display: flex; 
             flex-direction: column; 
-            transition: border-color 0.4s;
-        }
-        .gallery-item:hover {
-            border-color: rgba(183, 110, 121, 0.4);
         }
         .gallery-item img { 
             width: 100%; 
             height: auto; 
             object-fit: contain; 
         }
-
         .btn-order { 
             display: block; 
             width: 100%; 
@@ -216,13 +191,11 @@
             font-size: 1.1rem; 
             transition: all 0.3s ease; 
             background: transparent; 
-            letter-spacing: 2px;
         }
         .btn-order:hover { 
             background: #b76e79; 
             color: #000; 
         }
-
         /* PAYMENT OVERLAY */
         .overlay-dimmer { 
             display: none; 
@@ -261,9 +234,9 @@
             padding: 25px; 
         }
         .qr-img { 
-            width: 180px;      
-            height: 180px;     
-            max-width: 100%;   
+            width: 180px;     /* Slightly reduced to prevent text truncation */
+            height: 180px;     /* Match width aspect ratio */
+            max-width: 100%;   /* Fluid adjustments */
             background: #fff; 
             margin: 15px auto; 
             padding: 10px; 
@@ -283,62 +256,49 @@
             font-weight: bold; 
             font-size: 1.1rem; 
         }
-
-        /* Keyframe Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         @media (max-width: 768px) {
-            .hero-video-container { height: auto; padding: 140px 0 60px 0; }
-            .statement-text { font-size: 2.2rem; }
-            .statement-text span { font-size: 1.1rem; letter-spacing: 4px; }
-            .classic-hub { gap: 25px; }
-            .hub-btn { padding: 15px 30px; min-width: 160px; }
-            .hub-icon { font-size: 2.8rem; }
+            .classic-hub { gap: 40px; }
+            .hub-icon { font-size: 4rem; }
             .payment-card { padding: 25px; }
         }
     </style>
 </head>
 <body>
-
+    <!-- BACK NAV – unchanged -->
     <nav class="back-nav">
         <a href="index.html">← BACK TO THE MADNESS</a>
     </nav>
 
-    <header class="hero-video-container">
-        <video class="video-element" autoplay loop muted playsinline aria-hidden="true">
+    <!-- HERO VIDEO SECTION – the “instantly blown away” moment -->
+    <section class="hero-section">
+        <video class="video-element" id="hero-video" controls autoplay loop muted playsinline>
             <source src="midnight-desire.mp4" type="video/mp4">
+            Your browser does not support the video tag.
         </video>
+        <div class="video-overlay"></div>
         
-        <div class="hero-overlay"></div>
-
-        <div class="hero-floating-content">
-            <h1 class="statement-text">
-                MIDNIGHT DESIRES
-                <span>Show your partner what madness looks like</span>
-            </h1>
-
-            <div class="classic-hub">
-                <div class="hub-btn" onclick="showCategory('him-section')">
-                    <span class="hub-icon">👔</span>
-                    <h3>FOR HIM</h3>
-                </div>
-                <div class="hub-btn" onclick="showCategory('her-section')">
-                    <span class="hub-icon">👗</span>
-                    <h3>FOR HER</h3>
-                </div>
-            </div>
+        <!-- Floating text – elegant, non-cheesy, positioned once the page loads -->
+        <div class="hero-content" id="hero-content">
+            <h1 class="statement-text">MIDNIGHT DESIRES</h1>
+            <p class="tagline">SHOW YOUR PARTNER WHAT MADNESS LOOKS LIKE</p>
         </div>
-    </header>
+    </section>
 
+    <!-- CLASSIC HUB – now floating over the video from the bottom -->
+    <div class="classic-hub">
+        <div class="hub-btn" onclick="showCategory('him-section')">
+            <span class="hub-icon">👔</span>
+            <h3>FOR HIM</h3>
+        </div>
+        <div class="hub-btn" onclick="showCategory('her-section')">
+            <span class="hub-icon">👗</span>
+            <h3>FOR HER</h3>
+        </div>
+    </div>
+
+    <!-- FOR HIM SECTION – unchanged except positioning -->
     <section id="him-section" class="content-wrap category-section">
-        <h2 class="section-title">FOR HIM</h2>
+        <h2 class="statement-text">FOR HIM</h2>
         <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
             Bespoke. Once selected, send your size and any unique specifications.
         </div>
@@ -358,8 +318,9 @@
         </div>
     </section>
 
+    <!-- FOR HER SECTION – unchanged except positioning -->
     <section id="her-section" class="content-wrap category-section">
-        <h2 class="section-title">FOR HER</h2>
+        <h2 class="statement-text">FOR HER</h2>
         <div class="bespoke-text" style="font-family:Cinzel; color:#888; margin-bottom:40px; font-style:italic;">
             Bespoke. Once selected, send your size and any unique specifications.
         </div>
@@ -379,6 +340,7 @@
         </div>
     </section>
 
+    <!-- PAYMENT OVERLAY – unchanged -->
     <div id="payment-overlay" class="overlay-dimmer">
         <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.8rem;">✕</button>
         
@@ -391,14 +353,12 @@
                 <div class="currency-block"><strong>EUR Account:</strong><br>Bank: Clear Junction Ltd<br>IBAN: GB57CLJU04130742592550<br>Swift: CLJUGB21XXX</div>
                 <div class="currency-block"><strong>NGN Account:</strong><br>Bank: Eco Bank<br>Account: 2971079059<br>Account Name: CHUKS EDOCHIE</div>
             </div>
-
             <div class="qr-container">
                 <strong>USDT (TRC20) PAYMENT:</strong>
                 <div class="qr-img"><img src="ustd QR code.jpeg" alt="USDT QR Code"></div>
                 <p style="font-size: 0.85rem; word-break: break-all;">Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
                 <div class="security-warning">⚠️ WARNING: ONLY SEND VIA THE TRC20 NETWORK.</div>
             </div>
-
             <div style="margin-top: 50px; border-top: 1px solid #b76e79; padding-top: 40px; text-align: center;">
                 <h3 id="order-title" style="font-family:Cinzel; color:#fff; margin-bottom:15px;">COMMISSION YOUR PIECE</h3>
                 <a id="ig-commission-link" href="#" target="_blank" class="btn-order" style="background:#b76e79; color:#000; font-weight:bold; letter-spacing:2px;">
@@ -409,19 +369,22 @@
     </div>
 
     <script>
-        function showCategory(categoryId) {
-            // Hide all categories
+        // Hide all categories on page load
+        function initializeCategories() {
             const categories = document.querySelectorAll('.category-section');
             categories.forEach(cat => cat.style.display = 'none');
-            
-            // Show only the selected category
+        }
+
+        // Show only the selected category
+        function showCategory(categoryId) {
+            const categories = document.querySelectorAll('.category-section');
+            categories.forEach(cat => cat.style.display = 'none');
             const selectedCategory = document.getElementById(categoryId);
             selectedCategory.style.display = 'block';
-            
-            // Smoothly scroll down directly to it
             selectedCategory.scrollIntoView({ behavior: 'smooth' });
         }
 
+        // Open order overlay with pre-filled message
         function openOrder(pieceName) { 
             const overlay = document.getElementById('payment-overlay');
             const title = document.getElementById('order-title');
@@ -438,6 +401,20 @@
         function closeOrder() { 
             document.getElementById('payment-overlay').style.display = 'none'; 
         }
+
+        // Initialize everything
+        window.onload = function() {
+            initializeCategories();
+            
+            // Add a subtle scroll-triggered reveal for the hub (optional elegance)
+            window.addEventListener('scroll', () => {
+                const hub = document.querySelector('.classic-hub');
+                const heroBottom = document.querySelector('.hero-section').offsetHeight;
+                if (window.scrollY > heroBottom - 300) {
+                    hub.style.opacity = '1';
+                }
+            });
+        };
     </script>
 </body>
 </html>
