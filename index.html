@@ -428,7 +428,12 @@
 
     <section id="nudes" class="page-section">
         <div class="statement-text">NUDE PAINTINGS OF THE ARTIST HIMSELF</div>
-        <p style="color:#666; font-family:'Cinzel'; letter-spacing:2px;">EXHIBITION PIECES LOADING FROM THE SHADOWS...</p>
+        <div class="gallery-wrap">
+            <div class="gallery-item"><img src="nude1.jpg"><button class="btn-order" onclick="openOrder('Nude 1')">COMMISSION</button></div>
+            <div class="gallery-item"><img src="nude2.jpg"><button class="btn-order" onclick="openOrder('Nude 2')">COMMISSION</button></div>
+            <div class="gallery-item"><img src="nude3.jpg"><button class="btn-order" onclick="openOrder('Nude 3')">COMMISSION</button></div>
+            <div class="gallery-item"><img src="nude4.jpg"><button class="btn-order" onclick="openOrder('Nude 4')">COMMISSION</button></div>
+        </div>
     </section>
 
     <section id="music" class="page-section">
@@ -481,7 +486,6 @@
                 setTimeout(() => {
                     target.style.opacity = '1';
                 }, 50);
-                // Fixed: Scroll only to the top of the content container/header area
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
