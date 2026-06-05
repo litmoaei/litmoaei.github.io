@@ -59,22 +59,26 @@
         </div>
     </section>
 
-    <div id="payment-overlay" class="overlay-dimmer">
-        <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; cursor:pointer; font-size: 1.5rem;">CLOSE X</button>
+     <div id="payment-overlay" class="overlay-dimmer">
+        <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.5rem;">CLOSE X</button>
         <div class="payment-card">
-            <h2 style="font-family:Cinzel; color:#fff;">SECURE PAYMENT PROTOCOLS</h2>
+            <h2 style="font-family:Cinzel; margin-bottom:20px;">SECURE PAYMENT PROTOCOLS</h2>
             <div class="payment-grid">
                 <div class="currency-block"><strong>USD Account:</strong><br>Bank: Lead Bank<br>Account: 211290637762<br>Routing: 101019644</div>
                 <div class="currency-block"><strong>GBP Account:</strong><br>Bank: Clear Junction Ltd<br>Account: 42592550<br>Sort Code: 04-13-07</div>
+                <div class="currency-block"><strong>EUR Account:</strong><br>Bank: Clear Junction Ltd<br>IBAN: GB57CLJU04130742592550<br>Swift: CLJUGB21XXX</div>
+                <div class="currency-block"><strong>NGN Account:</strong><br>Bank: Eco Bank<br>Account: 2971079059<br>Account Name: CHUKS EDOCHIE</div>
             </div>
             <div class="qr-container">
                 <strong>USDT (TRC20) PAYMENT:</strong>
-                <div class="qr-img"><img src="ustd QR code.jpeg" alt="QR" style="width:100%; height:100%;"></div>
-                <p>Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
+                <div class="qr-img"><img src="ustd QR code.jpeg" alt="USDT QR Code" style="width:100%; height:100%;"></div>
+                <p style="font-size: 0.8rem; word-break: break-all;">Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
                 <div class="security-warning">⚠️ WARNING: ONLY SEND VIA THE TRC20 NETWORK.</div>
             </div>
-            <h3 id="order-title" style="font-family:Cinzel; margin-top:20px;">COMMISSION YOUR PIECE</h3>
-            <a id="ig-commission-link" href="https://www.instagram.com/rony_willz/" target="_blank" style="display:block; padding:20px; background:#b76e79; color:#000; text-decoration:none; font-family:'Cinzel'; font-weight:bold; margin-top:10px;">SEND SPECIFICATIONS</a>
+            <div style="margin-top: 40px; border-top: 1px solid #b76e79; padding-top: 30px; text-align: center;">
+                <h3 id="order-title" style="font-family:Cinzel; color:#fff; margin-bottom:10px;">COMMISSION YOUR PIECE</h3>
+                <a id="ig-commission-link" href="#" target="_blank" style="display:block; padding:20px; background:#b76e79; color:#000; text-decoration:none; font-family:'Cinzel'; font-weight:bold; letter-spacing:2px; font-size:1.1rem;">SEND SPECIFICATIONS</a>
+            </div>
         </div>
     </div>
 
