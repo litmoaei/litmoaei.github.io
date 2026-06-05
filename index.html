@@ -5,36 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LITMOAEI | A CALM MADNESS</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
-   
+  
     <style>
         /* CORE ARCHITECTURAL STYLES */
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
         body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.6; }
-       
+      
         /* HEADER & BRANDING */
-        .header-wrapper { padding: 120px 20px; text-align: center; cursor: pointer; border-bottom: 1px solid #1a1a1a; }
+        .header-wrapper { padding: 120px 20px; text-align: center; cursor: pointer; border-bottom: 1px solid #1a1a1a; position: relative; }
         .main-logo { width: 500px; max-width: 90%; display: block; margin: 0 auto; filter: brightness(0.9); }
         .welcome-text {
             font-family: 'Cinzel', serif; font-size: 3.5rem; margin-top: 40px; letter-spacing: 12px; text-transform: uppercase;
             background: linear-gradient(to right, #ffffff, #b76e79, #d4af37);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;
         }
-       
+      
         /* NAVIGATION */
-        nav { width: 100%; padding: 40px 0; background: rgba(0, 0, 0, 0.95); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #222; }
-        nav ul { display: flex; list-style: none; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        nav { width: 100%; padding: 40px 20px; background: rgba(0, 0, 0, 0.95); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #222; }
+        .nav-container { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 30px; max-width: 1400px; margin: 0 auto; }
+        nav ul { display: flex; list-style: none; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 0; }
         nav a { color: #fff; text-decoration: none; font-family: 'Cinzel', serif; font-size: 1.1rem; padding: 10px 15px; transition: all 0.4s ease; border: 1px solid transparent; cursor: pointer; }
         nav a:hover { color: #b76e79; border-bottom: 1px solid #b76e79; }
-       
+      
+        /* LANGUAGE SELECTOR */
+        .lang-selector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 1000;
+            min-width: 80px;
+        }
+        .lang-selector:hover .lang-dropdown { display: block; }
+        .lang-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #b76e79;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .lang-main:hover {
+            background: rgba(183, 110, 121, 0.2);
+        }
+        .us-flag {
+            width: 32px;
+            height: 24px;
+            background: linear-gradient(to bottom, #fff 33%, #fff 33%, #b22234 66%, #b22234 66%);
+            border: 1px solid #fff;
+            position: relative;
+            margin-bottom: 4px;
+        }
+        .us-flag::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                #3c3b6e,
+                #3c3b6e 4px,
+                transparent 4px,
+                transparent 8px
+            );
+        }
+        .globe-icon {
+            font-size: 18px;
+            line-height: 1;
+        }
+        .lang-label {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: #b76e79;
+            font-family: 'Cinzel', serif;
+        }
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #111;
+            border: 1px solid #b76e79;
+            border-radius: 6px;
+            padding: 10px 0;
+            margin-top: 8px;
+            z-index: 1001;
+            min-width: 160px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .lang-option {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .lang-option:hover {
+            background: #b76e79;
+            color: #000;
+        }
+
         /* SECTIONS */
         .page-section { display: none; padding: 40px 20px; min-height: 80vh; text-align: center; opacity: 0; transition: opacity 0.8s ease-in-out; }
         .page-section.active { display: block; opacity: 1; }
-       
+      
         /* ASSETS */
         .flush-img { width: 100%; max-width: 1100px; display: block; margin: 0 auto; border: none !important; }
         .statement-text { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #b76e79; padding: 80px 20px; font-style: italic; max-width: 900px; margin: 0 auto; }
         .bespoke-text { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #888; margin-bottom: 40px; font-style: italic; letter-spacing: 1px; }
-       
+      
         /* GALLERY GRID */
         .gallery-wrap {
             display: grid;
@@ -54,7 +142,7 @@
             flex-direction: column;
         }
         .gallery-item img { width: 100%; height: auto; object-fit: contain; }
-       
+      
         /* CLASSIC SELECTION HUB */
         .classic-hub {
             display: flex;
@@ -71,7 +159,7 @@
         }
         .hub-btn:hover { transform: scale(1.05); }
         .hub-icon { font-size: 4rem; display: block; margin-bottom: 10px; }
-       
+      
         /* BACK BUTTON */
         .back-btn {
             display: inline-block;
@@ -88,7 +176,7 @@
             background: #b76e79;
             color: #000;
         }
-       
+      
         /* MUSIC SECTION STYLES */
         .music-section {
             display: grid;
@@ -130,7 +218,7 @@
             color: #000;
             transform: translateY(-2px);
         }
-       
+      
         /* PAYMENT PROTOCOLS */
         .overlay-dimmer {
             display: none;
@@ -186,7 +274,7 @@
             background: #fff;
             margin: 10px auto;
         }
-      
+     
         .btn-order {
             display: block;
             width: 100%;
@@ -206,7 +294,6 @@
             background: #b76e79;
             color: #000;
         }
-
         /* FOOTER */
         .footer-section {
             padding: 100px 20px;
@@ -229,10 +316,11 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-      
+     
         @media (max-width: 600px) {
             .welcome-text { font-size: 2rem !important; }
             .music-section { grid-template-columns: 1fr; gap: 20px; }
+            .nav-container { gap: 15px; }
         }
     </style>
 </head>
@@ -242,16 +330,40 @@
     </header>
 
     <nav>
-        <ul>
-            <li><a onclick="showPage('home')">⌂ HOME</a></li>
-            <li><a onclick="showPage('mind')">THE MIND</a></li>
-            <li><a onclick="showPage('pavement')">THE PAVEMENT</a></li>
-            <li><a onclick="showPage('classics')">THE CLASSICS</a></li>
-            <li><a href="midnight-desire.html">MIDNIGHT DESIRES</a></li>
-            <li><a onclick="showPage('nudes')">NUDE PAINTINGS OF THE ARTIST HIMSELF</a></li>
-            <li><a onclick="showPage('music')">MUSIC</a></li>
-            <li><a onclick="showPage('elixirs')">ELIXIRS</a></li>
-        </ul>
+        <div class="nav-container">
+            <ul>
+                <li><a onclick="showPage('home')">⌂ HOME</a></li>
+                <li><a onclick="showPage('mind')">THE MIND</a></li>
+                <li><a onclick="showPage('pavement')">THE PAVEMENT</a></li>
+                <li><a onclick="showPage('classics')">THE CLASSICS</a></li>
+                <li><a href="midnight-desire.html">MIDNIGHT DESIRES</a></li>
+                <li><a onclick="showPage('nudes')">NUDE PAINTINGS OF THE ARTIST HIMSELF</a></li>
+                <li><a onclick="showPage('music')">MUSIC</a></li>
+                <li><a onclick="showPage('elixirs')">ELIXIRS</a></li>
+            </ul>
+
+            <!-- Language Selector -->
+            <div class="lang-selector">
+                <div class="lang-main" onclick="toggleLangDropdown()">
+                    <div class="us-flag"></div>
+                    <span class="globe-icon">🌍</span>
+                    <span class="lang-label">LANG</span>
+                </div>
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <div class="lang-option" onclick="translatePage('en')">🇺🇸 English</div>
+                    <div class="lang-option" onclick="translatePage('es')">🇪🇸 Español</div>
+                    <div class="lang-option" onclick="translatePage('fr')">🇫🇷 Français</div>
+                    <div class="lang-option" onclick="translatePage('de')">🇩🇪 Deutsch</div>
+                    <div class="lang-option" onclick="translatePage('pt')">🇵🇹 Português</div>
+                    <div class="lang-option" onclick="translatePage('it')">🇮🇹 Italiano</div>
+                    <div class="lang-option" onclick="translatePage('ru')">🇷🇺 Русский</div>
+                    <div class="lang-option" onclick="translatePage('zh-CN')">🇨🇳 中文</div>
+                    <div class="lang-option" onclick="translatePage('ja')">🇯🇵 日本語</div>
+                    <div class="lang-option" onclick="translatePage('ar')">🇸🇦 العربية</div>
+                    <div class="lang-option" onclick="translatePage('hi')">🇮🇳 हिन्दी</div>
+                </div>
+            </div>
+        </div>
     </nav>
 
     <div id="payment-overlay" class="overlay-dimmer">
@@ -309,7 +421,7 @@
             <div class="gallery-item"><img src="I got too tired to care and I’m still fine.jpg"><a href="https://www.instagram.com/p/DBzosumIq-z/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
         </div>
     </section>
-  
+ 
     <section id="pavement" class="page-section">
         <div class="statement-text">THE PAVEMENT</div>
         <div class="gallery-wrap">
@@ -326,7 +438,7 @@
             <div class="gallery-item"><img src="Pavement 10.jpg"><button class="btn-order" onclick="openOrder('Pavement 10')">COMMISSIONCOMMISSION</button></div>
         </div>
     </section>
-  
+ 
     <section id="elixirs" class="page-section">
         <div class="statement-text">THE ELIXIRS</div>
         <div class="gallery-wrap">
@@ -354,6 +466,7 @@
         <div class="statement-text">FOR HIM</div>
         <div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
         <div class="gallery-wrap">
+            <!-- Existing content unchanged -->
             <div class="gallery-item"><img src="Classic.jpg"><button class="btn-order" onclick="openOrder('Classic')">COMMISSION</button></div>
             <div class="gallery-item"><img src="casual 1.jpg"><button class="btn-order" onclick="openOrder('casual 1')">COMMISSION</button></div>
             <div class="gallery-item"><img src="Classic 2.jpg"><button class="btn-order" onclick="openOrder('Classic 2')">COMMISSION</button></div>
@@ -392,6 +505,7 @@
         <div class="statement-text">FOR HER</div>
         <div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
         <div class="gallery-wrap">
+            <!-- Existing content unchanged -->
             <div class="gallery-item"><img src="f classic 23.JPG"><button class="btn-order" onclick="openOrder('f classic 23')">COMMISSION</button></div>
             <div class="gallery-item"><img src="Classic 15.jpg"><button class="btn-order" onclick="openOrder('Classic 15')">COMMISSION</button></div>
             <div class="gallery-item"><img src="f casual 3.WEBP"><button class="btn-order" onclick="openOrder('f casual 3')">COMMISSION</button></div>
@@ -471,6 +585,18 @@
         </div>
     </footer>
 
+    <!-- Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,fr,de,pt,it,ru,zh-CN,ja,ar,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script>
         function showPage(id) {
             const sections = document.querySelectorAll('.page-section');
@@ -483,17 +609,53 @@
             const overlay = document.getElementById('payment-overlay');
             const link = document.getElementById('ig-commission-link');
             const title = document.getElementById('order-title');
-          
+         
             title.innerText = `COMMISSION: ${pieceName}`;
             const msg = `Hello, I would like to commission ${pieceName}.%0A%0ASize:%20_____%0AColor:%20_____%0ACustom%20Details:%20_____`;
             link.href = `https://ig.me/m/rony_willz?text=${msg}`;
-          
+         
             overlay.style.display = 'block';
         }
 
         function closeOrder() {
             document.getElementById('payment-overlay').style.display = 'none';
         }
+
+        // Language functions
+        function toggleLangDropdown() {
+            const dropdown = document.getElementById('lang-dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function translatePage(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            } else {
+                // Fallback: reload with Google Translate parameter
+                const url = new URL(window.location.href);
+                url.searchParams.set('googtrans', '/' + lang);
+                window.location.href = url.toString();
+            }
+            document.getElementById('lang-dropdown').style.display = 'none';
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const langSelector = document.querySelector('.lang-selector');
+            if (!langSelector.contains(e.target)) {
+                document.getElementById('lang-dropdown').style.display = 'none';
+            }
+        });
+
+        // Initialize Google Translate container (hidden but functional)
+        window.onload = function() {
+            const translateDiv = document.createElement('div');
+            translateDiv.id = 'google_translate_element';
+            translateDiv.style.display = 'none';
+            document.body.appendChild(translateDiv);
+        };
     </script>
 </body>
 </html>
