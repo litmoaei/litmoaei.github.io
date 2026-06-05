@@ -1,661 +1,484 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LITMOAEI | A CALM MADNESS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
-  
-    <style>
-        /* CORE ARCHITECTURAL STYLES */
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-        body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.6; }
-      
-        /* HEADER & BRANDING */
-        .header-wrapper { padding: 120px 20px; text-align: center; cursor: pointer; border-bottom: 1px solid #1a1a1a; position: relative; }
-        .main-logo { width: 500px; max-width: 90%; display: block; margin: 0 auto; filter: brightness(0.9); }
-        .welcome-text {
-            font-family: 'Cinzel', serif; font-size: 3.5rem; margin-top: 40px; letter-spacing: 12px; text-transform: uppercase;
-            background: linear-gradient(to right, #ffffff, #b76e79, #d4af37);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;
-        }
-      
-        /* NAVIGATION */
-        nav { width: 100%; padding: 40px 20px; background: rgba(0, 0, 0, 0.95); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #222; }
-        .nav-container { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 30px; max-width: 1400px; margin: 0 auto; }
-        nav ul { display: flex; list-style: none; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 0; }
-        nav a { color: #fff; text-decoration: none; font-family: 'Cinzel', serif; font-size: 1.1rem; padding: 10px 15px; transition: all 0.4s ease; border: 1px solid transparent; cursor: pointer; }
-        nav a:hover { color: #b76e79; border-bottom: 1px solid #b76e79; }
-      
-        /* LANGUAGE SELECTOR */
-        .lang-selector {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            position: relative;
-            z-index: 1000;
-            min-width: 80px;
-        }
-        .lang-selector:hover .lang-dropdown { display: block; }
-        .lang-main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 8px 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid #b76e79;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        .lang-main:hover {
-            background: rgba(183, 110, 121, 0.2);
-        }
-        .us-flag {
-            width: 32px;
-            height: 24px;
-            background: linear-gradient(to bottom, #fff 33%, #fff 33%, #b22234 66%, #b22234 66%);
-            border: 1px solid #fff;
-            position: relative;
-            margin-bottom: 4px;
-        }
-        .us-flag::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 40%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                90deg,
-                #3c3b6e,
-                #3c3b6e 4px,
-                transparent 4px,
-                transparent 8px
-            );
-        }
-        .globe-icon {
-            font-size: 18px;
-            line-height: 1;
-        }
-        .lang-label {
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            color: #b76e79;
-            font-family: 'Cinzel', serif;
-        }
-        .lang-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #111;
-            border: 1px solid #b76e79;
-            border-radius: 6px;
-            padding: 10px 0;
-            margin-top: 8px;
-            z-index: 1001;
-            min-width: 160px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-        .lang-option {
-            padding: 10px 20px;
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-        .lang-option:hover {
-            background: #b76e79;
-            color: #000;
-        }
-
-        /* SECTIONS */
-        .page-section { display: none; padding: 40px 20px; min-height: 80vh; text-align: center; opacity: 0; transition: opacity 0.8s ease-in-out; }
-        .page-section.active { display: block; opacity: 1; }
-      
-        /* ASSETS */
-        .flush-img { width: 100%; max-width: 1100px; display: block; margin: 0 auto; border: none !important; }
-        .statement-text { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #b76e79; padding: 80px 20px; font-style: italic; max-width: 900px; margin: 0 auto; }
-        .bespoke-text { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #888; margin-bottom: 40px; font-style: italic; letter-spacing: 1px; }
-      
-        /* GALLERY GRID */
-        .gallery-wrap {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 20px;
-            justify-items: center;
-            margin-bottom: 50px;
-        }
-        .gallery-item {
-            width: 100%;
-            max-width: 400px;
-            background: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-        .gallery-item img { width: 100%; height: auto; object-fit: contain; }
-      
-        /* CLASSIC SELECTION HUB */
-        .classic-hub {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-bottom: 60px;
-            padding: 40px;
-            flex-wrap: wrap;
-        }
-        .hub-btn {
-            cursor: pointer;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .hub-btn:hover { transform: scale(1.05); }
-        .hub-icon { font-size: 4rem; display: block; margin-bottom: 10px; }
-      
-        /* BACK BUTTON */
-        .back-btn {
-            display: inline-block;
-            margin: 60px 0 40px 0;
-            padding: 18px 40px;
-            border: 1px solid #b76e79;
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            transition: all 0.4s ease;
-        }
-        .back-btn:hover {
-            background: #b76e79;
-            color: #000;
-        }
-      
-        /* MUSIC SECTION STYLES */
-        .music-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 40px 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .music-item {
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .music-item:hover { transform: scale(1.03); }
-        .music-img {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #1a1a1a;
-            background: #0f0f0f;
-            object-fit: contain;
-            margin-bottom: 20px;
-        }
-        .listen-box {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.95);
-            border: 2px solid #b76e79;
-            padding: 14px 32px;
-            font-family: 'Cinzel', serif;
-            font-size: 1.15rem;
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            letter-spacing: 1px;
-        }
-        .listen-box:hover {
-            background: #b76e79;
-            color: #000;
-            transform: translateY(-2px);
-        }
-      
-        /* PAYMENT PROTOCOLS */
-        .overlay-dimmer {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.98);
-            z-index: 2000;
-            overflow-y: auto;
-            padding: 40px;
-        }
-        .payment-card {
-            max-width: 900px;
-            margin: 0 auto;
-            border: 1px solid #b76e79;
-            padding: 50px;
-            text-align: left;
-            background: #000;
-        }
-        .payment-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .currency-block {
-            border: 1px solid #222;
-            padding: 20px;
-            background: #0a0a0a;
-            font-size: 0.9rem;
-        }
-        .security-warning {
-            color: #b76e79;
-            border: 1px solid #b76e79;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: center;
-            font-family: 'Cinzel';
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        .qr-container {
-            text-align: center;
-            margin-top: 30px;
-            border: 1px solid #222;
-            padding: 20px;
-        }
-        .qr-img {
-            width: 200px;
-            height: 200px;
-            background: #fff;
-            margin: 10px auto;
-        }
-     
-        .btn-order {
-            display: block;
-            width: 100%;
-            padding: 20px;
-            border: 1px solid #b76e79;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 15px;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            transition: background 0.3s ease;
-            background: transparent;
-        }
-        .btn-order:hover {
-            background: #b76e79;
-            color: #000;
-        }
-        /* FOOTER */
-        .footer-section {
-            padding: 100px 20px;
-            text-align: center;
-            border-top: 1px solid #1a1a1a;
-            margin-top: 100px;
-        }
-        .goodbye-quote {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: #555;
-            margin-bottom: 40px;
-            font-style: italic;
-        }
-        .footer-links a {
-            color: #888;
-            margin: 0 25px;
-            font-size: 1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-     
-        @media (max-width: 600px) {
-            .welcome-text { font-size: 2rem !important; }
-            .music-section { grid-template-columns: 1fr; gap: 20px; }
-            .nav-container { gap: 15px; }
-        }
-    </style>
+&nbsp;&nbsp;&nbsp;&nbsp;<meta charset="UTF-8">
+&nbsp;&nbsp;&nbsp;&nbsp;<meta name="viewport" content="width=device-width, initial-scale=1.0">
+&nbsp;&nbsp;&nbsp;&nbsp;<title>LITMOAEI | A CALM MADNESS</title>
+&nbsp;&nbsp;&nbsp;&nbsp;<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;400;700&display=swap" rel="stylesheet">
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<style>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* CORE ARCHITECTURAL STYLES */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body { background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.6; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* HEADER & BRANDING */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.header-wrapper { padding: 120px 20px; text-align: center; cursor: pointer; border-bottom: 1px solid #1a1a1a; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.main-logo { width: 500px; max-width: 90%; display: block; margin: 0 auto; filter: brightness(0.9); }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.welcome-text {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family: 'Cinzel', serif; font-size: 3.5rem; margin-top: 40px; letter-spacing: 12px; text-transform: uppercase;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: linear-gradient(to right, #ffffff, #b76e79, #d4af37);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* NAVIGATION */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nav { width: 100%; padding: 40px 0; background: rgba(0, 0, 0, 0.95); position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #222; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nav ul { display: flex; list-style: none; justify-content: center; gap: 30px; flex-wrap: wrap; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nav a { color: #fff; text-decoration: none; font-family: 'Cinzel', serif; font-size: 1.1rem; padding: 10px 15px; transition: all 0.4s ease; border: 1px solid transparent; cursor: pointer; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nav a:hover { color: #b76e79; border-bottom: 1px solid #b76e79; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* SECTIONS */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.page-section { display: none; padding: 40px 20px; min-height: 80vh; text-align: center; opacity: 0; transition: opacity 0.8s ease-in-out; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.page-section.active { display: block; opacity: 1; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* ASSETS */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.flush-img { width: 100%; max-width: 1100px; display: block; margin: 0 auto; border: none !important; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.statement-text { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #b76e79; padding: 80px 20px; font-style: italic; max-width: 900px; margin: 0 auto; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.bespoke-text { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #888; margin-bottom: 40px; font-style: italic; letter-spacing: 1px; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* GALLERY GRID */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.gallery-wrap {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: grid;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gap: 25px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;justify-items: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-bottom: 50px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.gallery-item {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100%;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max-width: 400px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #0f0f0f;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #1a1a1a;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 10px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flex-direction: column;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.gallery-item img { width: 100%; height: auto; object-fit: contain; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* CLASSIC SELECTION HUB */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.classic-hub {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;justify-content: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gap: 50px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-bottom: 60px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 40px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flex-wrap: wrap;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.hub-btn {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cursor: pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transition: transform 0.3s;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.hub-btn:hover { transform: scale(1.05); }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.hub-icon { font-size: 4rem; display: block; margin-bottom: 10px; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* BACK BUTTON */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.back-btn {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: inline-block;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 60px 0 40px 0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 18px 40px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #b76e79;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #fff;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-decoration: none;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family: 'Cinzel', serif;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 1.2rem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transition: all 0.4s ease;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.back-btn:hover {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #b76e79;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* MUSIC SECTION STYLES */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.music-section {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: grid;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gap: 30px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 40px 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max-width: 1400px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 0 auto;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.music-item {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transition: transform 0.3s ease;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.music-item:hover { transform: scale(1.03); }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.music-img {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100%;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max-width: 100%;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: auto;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #1a1a1a;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #0f0f0f;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object-fit: contain;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-bottom: 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.listen-box {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: inline-block;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: rgba(0, 0, 0, 0.95);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 2px solid #b76e79;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 14px 32px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family: 'Cinzel', serif;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 1.15rem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #fff;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-decoration: none;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transition: all 0.4s ease;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cursor: pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;letter-spacing: 1px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.listen-box:hover {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #b76e79;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transform: translateY(-2px);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* PAYMENT PROTOCOLS */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.overlay-dimmer {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: none;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position: fixed;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top: 0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;left: 0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100%;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100%;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: rgba(0,0,0,0.98);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z-index: 2000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;overflow-y: auto;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 40px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.payment-card {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max-width: 900px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 0 auto;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #b76e79;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 50px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align: left;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.payment-grid {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: grid;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns: 1fr 1fr;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gap: 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-top: 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.currency-block {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #222;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #0a0a0a;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 0.9rem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.security-warning {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #b76e79;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #b76e79;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-top: 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family: 'Cinzel';
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 1.1rem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.qr-container {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-top: 30px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #222;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.qr-img {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 200px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 200px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #fff;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 10px auto;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-order {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: block;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100%;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #b76e79;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #fff;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-decoration: none;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-top: 15px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cursor: pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family: 'Cinzel', serif;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 1.1rem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transition: background 0.3s ease;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: transparent;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-order:hover {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #b76e79;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* FOOTER */
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.footer-section {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 100px 20px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-top: 1px solid #1a1a1a;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-top: 100px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.goodbye-quote {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family: 'Cinzel', serif;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 1.5rem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #555;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-bottom: 40px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-style: italic;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.footer-links a {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #888;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 0 25px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 1rem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-decoration: none;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-transform: uppercase;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;letter-spacing: 2px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@media (max-width: 600px) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.welcome-text { font-size: 2rem !important; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.music-section { grid-template-columns: 1fr; gap: 20px; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;</style>
 </head>
 <body>
-    <header class="header-wrapper" onclick="showPage('home')">
-        <img src="Logo.jpg" alt="Litmoaei" class="main-logo" style="transition: filter 0.4s ease;">
-    </header>
-
-    <nav>
-        <div class="nav-container">
-            <ul>
-                <li><a onclick="showPage('home')">⌂ HOME</a></li>
-                <li><a onclick="showPage('mind')">THE MIND</a></li>
-                <li><a onclick="showPage('pavement')">THE PAVEMENT</a></li>
-                <li><a onclick="showPage('classics')">THE CLASSICS</a></li>
-                <li><a href="midnight-desire.html">MIDNIGHT DESIRES</a></li>
-                <li><a onclick="showPage('nudes')">NUDE PAINTINGS OF THE ARTIST HIMSELF</a></li>
-                <li><a onclick="showPage('music')">MUSIC</a></li>
-                <li><a onclick="showPage('elixirs')">ELIXIRS</a></li>
-            </ul>
-
-            <!-- Language Selector -->
-            <div class="lang-selector">
-                <div class="lang-main" onclick="toggleLangDropdown()">
-                    <div class="us-flag"></div>
-                    <span class="globe-icon">🌍</span>
-                    <span class="lang-label">LANG</span>
-                </div>
-                <div class="lang-dropdown" id="lang-dropdown">
-                    <div class="lang-option" onclick="translatePage('en')">🇺🇸 English</div>
-                    <div class="lang-option" onclick="translatePage('es')">🇪🇸 Español</div>
-                    <div class="lang-option" onclick="translatePage('fr')">🇫🇷 Français</div>
-                    <div class="lang-option" onclick="translatePage('de')">🇩🇪 Deutsch</div>
-                    <div class="lang-option" onclick="translatePage('pt')">🇵🇹 Português</div>
-                    <div class="lang-option" onclick="translatePage('it')">🇮🇹 Italiano</div>
-                    <div class="lang-option" onclick="translatePage('ru')">🇷🇺 Русский</div>
-                    <div class="lang-option" onclick="translatePage('zh-CN')">🇨🇳 中文</div>
-                    <div class="lang-option" onclick="translatePage('ja')">🇯🇵 日本語</div>
-                    <div class="lang-option" onclick="translatePage('ar')">🇸🇦 العربية</div>
-                    <div class="lang-option" onclick="translatePage('hi')">🇮🇳 हिन्दी</div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div id="payment-overlay" class="overlay-dimmer">
-        <button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.5rem;">CLOSE X</button>
-        <div class="payment-card">
-            <h2 style="font-family:Cinzel; margin-bottom:20px;">SECURE PAYMENT PROTOCOLS</h2>
-            <div class="payment-grid">
-                <div class="currency-block"><strong>USD Account:</strong><br>Bank: Lead Bank<br>Account: 211290637762<br>Routing: 101019644</div>
-                <div class="currency-block"><strong>GBP Account:</strong><br>Bank: Clear Junction Ltd<br>Account: 42592550<br>Sort Code: 04-13-07</div>
-                <div class="currency-block"><strong>EUR Account:</strong><br>Bank: Clear Junction Ltd<br>IBAN: GB57CLJU04130742592550<br>Swift: CLJUGB21XXX</div>
-                <div class="currency-block"><strong>NGN Account:</strong><br>Bank: Eco Bank<br>Account: 2971079059<br>Account Name: CHUKS EDOCHIE</div>
-            </div>
-            <div class="qr-container">
-                <strong>USDT (TRC20) PAYMENT:</strong>
-                <div class="qr-img"><img src="ustd QR code.jpeg" alt="USDT QR Code" style="width:100%; height:100%;"></div>
-                <p style="font-size: 0.8rem; word-break: break-all;">Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
-                <div class="security-warning">⚠️ WARNING: ONLY SEND VIA THE TRC20 NETWORK.</div>
-            </div>
-            <div style="margin-top: 40px; border-top: 1px solid #b76e79; padding-top: 30px; text-align: center;">
-                <h3 id="order-title" style="font-family:Cinzel; color:#fff; margin-bottom:10px;">COMMISSION YOUR PIECE</h3>
-                <a id="ig-commission-link" href="#" target="_blank" style="display:block; padding:20px; background:#b76e79; color:#000; text-decoration:none; font-family:'Cinzel'; font-weight:bold; letter-spacing:2px; font-size:1.1rem;">SEND SPECIFICATIONS</a>
-            </div>
-        </div>
-    </div>
-
-    <section id="home" class="page-section active">
-        <div class="statement-text">"I got lost in the madness to find myself. So I ask, what about you?"</div>
-        <img src="I got lost in the madness to find myself.jpeg" class="flush-img">
-        <video autoplay muted loop playsinline class="flush-img" style="margin-top:20px;"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
-    </section>
-
-    <section id="mind" class="page-section">
-        <div class="statement-text">Browse through the mind<br>of a soul lost in the madness of an endless insanity.</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="lost in the madness of an endless insanity.jpg"><a href="https://www.instagram.com/p/DAv3gXIof8B/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="o myself in the distance.jpg"><a href="https://www.instagram.com/p/DDXwN3QI8fU/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="the old man on a journey.jpg"><a href="https://www.instagram.com/p/DBE8orlIOwI/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="and the moon said to the sun.jpg"><a href="https://www.instagram.com/p/DF_LrxPoYqz/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="sometimes freedom is to be captured by someone who has love in their corner.jpg"><a href="https://www.instagram.com/p/DB_Kq6JI-qr/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="in a mountain full of flowers many don't have life.jpg"><a href="https://www.instagram.com/p/DC3xWCsoxQv/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="love a straner i know so well, or do i really know love.jpg"><a href="https://www.instagram.com/p/DYzO71ljPsd/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="playing a game with god but i don't know what it's called.jpg"><a href="https://www.instagram.com/p/DLVePs0sMLt/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="what is the greatest trick a monster can play.jpg"><a href="https://www.instagram.com/p/DGMsmHgoCnw/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="success is overrated yet underrated.jpg"><a href="https://www.instagram.com/p/DMo_JQ4sH_k/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="to battle we march why shall i fear.jpg"><a href="https://www.instagram.com/p/DTQ0w8BjCPb/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="the old man advice.jpg"><a href="https://www.instagram.com/reel/C1nKtv5MRyL/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="She said I know I am an angel but I want you to take off these wings for tonight.jpg"><a href="https://www.instagram.com/p/DB4OFzdo245/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="because their songs doesn't have lies in them.jpg"><a href="https://www.instagram.com/p/DBudMSBovQE/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="she is the devil favourite and so what.jpg"><a href="https://www.instagram.com/p/DBV7uddoOTz/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="succubus came for my soul but i took hers.jpg"><a href="https://www.instagram.com/p/DBKdKS8I2tA/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="if the venom made me feel alive i will go for that snake over and over again.jpg"><a href="https://www.instagram.com/p/C_tAgRXM0JW/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="you asked how are you From the grave i answered i am great.jpg"><a href="https://www.instagram.com/p/DEa9kwMNCdW/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="only if i get paid for every time i fake a smile.jpg"><a href="https://www.instagram.com/p/DZICSmbsOoS/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="ooh my reflection.jpg"><a href="https://instagram.com/p/DDUY0JuI7pn/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-            <div class="gallery-item"><img src="I got too tired to care and I’m still fine.jpg"><a href="https://www.instagram.com/p/DBzosumIq-z/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
-        </div>
-    </section>
- 
-    <section id="pavement" class="page-section">
-        <div class="statement-text">THE PAVEMENT</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Pavement.jpg"><button class="btn-order" onclick="openOrder('Pavement')">COMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 1.jpg"><button class="btn-order" onclick="openOrder('Pavement 1')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 2.jpg"><button class="btn-order" onclick="openOrder('Pavement 2')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 3.jpg"><button class="btn-order" onclick="openOrder('Pavement 3')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 4.jpg"><button class="btn-order" onclick="openOrder('Pavement 4')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 5.jpg"><button class="btn-order" onclick="openOrder('Pavement 5')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 6.jpg"><button class="btn-order" onclick="openOrder('Pavement 6')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 7.jpg"><button class="btn-order" onclick="openOrder('Pavement 7')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 8.jpg"><button class="btn-order" onclick="openOrder('Pavement 8')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 9.jpg"><button class="btn-order" onclick="openOrder('Pavement 9')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
-            <div class="gallery-item"><img src="Pavement 10.jpg"><button class="btn-order" onclick="openOrder('Pavement 10')">COMMISSIONCOMMISSION</button></div>
-        </div>
-    </section>
- 
-    <section id="elixirs" class="page-section">
-        <div class="statement-text">THE ELIXIRS</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Drink.jpg"><button class="btn-order" onclick="openOrder('Drink')">COMMISSION</button></div>
-        </div>
-    </section>
-
-    <!-- ==================== CLASSICS HUB ==================== -->
-    <section id="classics" class="page-section">
-        <div class="statement-text">THE CLASSICS</div>
-        <div class="classic-hub">
-            <div class="hub-btn" onclick="showPage('classics-him')">
-                <span class="hub-icon">👔</span>
-                <h3>FOR HIM</h3>
-            </div>
-            <div class="hub-btn" onclick="showPage('classics-her')">
-                <span class="hub-icon">👗</span>
-                <h3>FOR HER</h3>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== FOR HIM (Separate Room) ==================== -->
-    <section id="classics-him" class="page-section">
-        <div class="statement-text">FOR HIM</div>
-        <div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
-        <div class="gallery-wrap">
-            <!-- Existing content unchanged -->
-            <div class="gallery-item"><img src="Classic.jpg"><button class="btn-order" onclick="openOrder('Classic')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 1.jpg"><button class="btn-order" onclick="openOrder('casual 1')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 2.jpg"><button class="btn-order" onclick="openOrder('Classic 2')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual.JPG"><button class="btn-order" onclick="openOrder('casual ')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 3.jpg"><button class="btn-order" onclick="openOrder('Classic 3')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 9.jpg"><button class="btn-order" onclick="openOrder('Classic 9')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 2.WEBP"><button class="btn-order" onclick="openOrder('casual 2')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 10.png"><button class="btn-order" onclick="openOrder('Classic 10')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 11.png"><button class="btn-order" onclick="openOrder('Classic 11')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 11.jpg"><button class="btn-order" onclick="openOrder('CASUAL 11')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 12.png"><button class="btn-order" onclick="openOrder('Classic 12')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 4.JPG"><button class="btn-order" onclick="openOrder('casual 4')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 3.WEBP"><button class="btn-order" onclick="openOrder('casual 3')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 6.WEBP"><button class="btn-order" onclick="openOrder('casual 6')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 13.png"><button class="btn-order" onclick="openOrder('Classic 13')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 7.JPG"><button class="btn-order" onclick="openOrder('casual 7')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 4.jpg"><button class="btn-order" onclick="openOrder('Classic 4')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 14.png"><button class="btn-order" onclick="openOrder('Classic 14')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 5.JPG"><button class="btn-order" onclick="openOrder('casual 5')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 9.WEBP"><button class="btn-order" onclick="openOrder('casual 4')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 7.jpg"><button class="btn-order" onclick="openOrder('Classic 7')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 10.jpg"><button class="btn-order" onclick="openOrder('casual 10')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 6.WEBP"><button class="btn-order" onclick="openOrder('CASUAL 6')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 8.WEBP"><button class="btn-order" onclick="openOrder('casual 8')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 12.jpg"><button class="btn-order" onclick="openOrder('casual 12')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 20.jpg"><button class="btn-order" onclick="openOrder('Classic 20')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 13.JPG"><button class="btn-order" onclick="openOrder('casual 13')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 14.JPG"><button class="btn-order" onclick="openOrder('casual 14')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="casual 15.JPG"><button class="btn-order" onclick="openOrder('CASUAL 15')">COMMISSION</button></div>
-        </div>
-        <a href="#" onclick="showPage('classics'); return false;" class="back-btn">← BACK TO CLASSICS</a>
-    </section>
-
-    <!-- ==================== FOR HER (Separate Room) ==================== -->
-    <section id="classics-her" class="page-section">
-        <div class="statement-text">FOR HER</div>
-        <div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
-        <div class="gallery-wrap">
-            <!-- Existing content unchanged -->
-            <div class="gallery-item"><img src="f classic 23.JPG"><button class="btn-order" onclick="openOrder('f classic 23')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 15.jpg"><button class="btn-order" onclick="openOrder('Classic 15')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f casual 3.WEBP"><button class="btn-order" onclick="openOrder('f casual 3')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 1.jpg"><button class="btn-order" onclick="openOrder('Classic 1')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 29.jpg"><button class="btn-order" onclick="openOrder('f classic 29')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f casual 1.JPG"><button class="btn-order" onclick="openOrder('f casual 1')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 18.jpg"><button class="btn-order" onclick="openOrder('Classic 18')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 21.JPG"><button class="btn-order" onclick="openOrder('f classic 21')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f casual 9.WEBP"><button class="btn-order" onclick="openOrder('f casual 9')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 6.png"><button class="btn-order" onclick="openOrder('Classic 6')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 27.JPG"><button class="btn-order" onclick="openOrder('f classic 27')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f casual 5.WEBP"><button class="btn-order" onclick="openOrder('f casual 5')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 19.jpg"><button class="btn-order" onclick="openOrder('Classic 19')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 32.AVIF"><button class="btn-order" onclick="openOrder('f classic 32')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f casual 2.WEBP"><button class="btn-order" onclick="openOrder('f casual 2')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 25.JPG"><button class="btn-order" onclick="openOrder('f classic 25')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 5.png"><button class="btn-order" onclick="openOrder('Classic 5')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 31.jpg"><button class="btn-order" onclick="openOrder('f classic 31')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f casual 8.WEBP"><button class="btn-order" onclick="openOrder('f casual 8')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 8.jpg"><button class="btn-order" onclick="openOrder('Classic 8')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 22.JPG"><button class="btn-order" onclick="openOrder('f classic 22')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f casual 10.WEBP"><button class="btn-order" onclick="openOrder('f casual 10')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 28.jpg"><button class="btn-order" onclick="openOrder('f classic 28')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 16.jpg"><button class="btn-order" onclick="openOrder('Classic 16')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f casual 4.WEBP"><button class="btn-order" onclick="openOrder('f casual 4')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 24.JPG"><button class="btn-order" onclick="openOrder('f classic 24')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Classic 17.jpg"><button class="btn-order" onclick="openOrder('Classic 17')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 30.jpg"><button class="btn-order" onclick="openOrder('f classic 30')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="f classic 26.JPG"><button class="btn-order" onclick="openOrder('f classic 26')">COMMISSION</button></div>
-        </div>
-        <a href="#" onclick="showPage('classics'); return false;" class="back-btn">← BACK TO CLASSICS</a>
-    </section>
-
-    <section id="nudes" class="page-section">
-        <div class="statement-text">NUDE PAINTINGS</div>
-        <div class="gallery-wrap">
-            <div class="gallery-item"><img src="Nude.jpg"><button class="btn-order" onclick="openOrder('Nude')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Nude 1.jpg"><button class="btn-order" onclick="openOrder('Nude 1')">COMMISSION</button></div>
-            <div class="gallery-item"><img src="Nude 2.jpg"><button class="btn-order" onclick="openOrder('Nude 2')">COMMISSION</button></div>
-        </div>
-    </section>
-
-    <!-- ==================== MUSIC SECTION - NEW SONGS ==================== -->
-    <section id="music" class="page-section">
-        <div class="statement-text">MUSIC</div>
-        <div class="music-section">
-            <div class="music-item">
-                <img src="bed-of-lies.jpg" class="music-img" alt="bed of lies">
-                <a href="https://youtu.be/VZEKBsaUB6E?si=LmucFtM_IzhY6Rik" class="listen-box" target="_blank">LISTEN</a>
-            </div>
-            <div class="music-item">
-                <img src="enough tears to keep me cool in hell song.jpg" class="music-img" alt="enough tears to keep me cool in hell">
-                <a href="https://youtu.be/Ru5tZlU-BBs?si=jFZE31i3VWzc5g-P" class="listen-box" target="_blank">LISTEN</a>
-            </div>
-            <div class="music-item">
-                <img src="i-just-wanna-be-loved.jpg" class="music-img" alt="i just wanna be loved">
-                <a href="https://youtu.be/9bdCD1KQ5kI?si=Ix-aEpxT4mR6xJUv" class="listen-box" target="_blank">LISTEN</a>
-            </div>
-            <div class="music-item">
-                <img src="ooh-mama.JPG" class="music-img" alt="ooh mama">
-                <a href="https://youtu.be/rzU01gN6pOs?si=fQvVl2uw9izQWI_L" class="listen-box" target="_blank">LISTEN</a>
-            </div>
-            <div class="music-item">
-                <img src="dear-me.jpg" class="music-img" alt="dear me">
-                <a href="https://youtu.be/0soD8dsNU94?si=Gl8OKFuKfPFbYsmf" class="listen-box" target="_blank">LISTEN</a>
-            </div>
-        </div>
-        <a href="#" onclick="showPage('classics'); return false;" class="back-btn">← BACK TO CLASSICS</a>
-    </section>
-
-    <footer class="footer-section">
-        <div class="goodbye-quote">"Remember,the world was created as a gift to you."</div>
-        <div class="footer-links">
-            <a href="https://www.instagram.com/rony_willz/" target="_blank">INSTAGRAM</a>
-            <a href="https://www.youtube.com/@LITMOAEI" target="_blank">YOUTUBE</a>
-            <a href="mailto:Litmoaei@gmail.com">EMAIL</a>
-        </div>
-    </footer>
-
-    <!-- Google Translate -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,es,fr,de,pt,it,ru,zh-CN,ja,ar,hi',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <script>
-        function showPage(id) {
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        function openOrder(pieceName) {
-            const overlay = document.getElementById('payment-overlay');
-            const link = document.getElementById('ig-commission-link');
-            const title = document.getElementById('order-title');
-         
-            title.innerText = `COMMISSION: ${pieceName}`;
-            const msg = `Hello, I would like to commission ${pieceName}.%0A%0ASize:%20_____%0AColor:%20_____%0ACustom%20Details:%20_____`;
-            link.href = `https://ig.me/m/rony_willz?text=${msg}`;
-         
-            overlay.style.display = 'block';
-        }
-
-        function closeOrder() {
-            document.getElementById('payment-overlay').style.display = 'none';
-        }
-
-        // Language functions
-        function toggleLangDropdown() {
-            const dropdown = document.getElementById('lang-dropdown');
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function translatePage(lang) {
-            const select = document.querySelector('.goog-te-combo');
-            if (select) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-            } else {
-                // Fallback: reload with Google Translate parameter
-                const url = new URL(window.location.href);
-                url.searchParams.set('googtrans', '/' + lang);
-                window.location.href = url.toString();
-            }
-            document.getElementById('lang-dropdown').style.display = 'none';
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            const langSelector = document.querySelector('.lang-selector');
-            if (!langSelector.contains(e.target)) {
-                document.getElementById('lang-dropdown').style.display = 'none';
-            }
-        });
-
-        // Initialize Google Translate container (hidden but functional)
-        window.onload = function() {
-            const translateDiv = document.createElement('div');
-            translateDiv.id = 'google_translate_element';
-            translateDiv.style.display = 'none';
-            document.body.appendChild(translateDiv);
-        };
-    </script>
+&nbsp;&nbsp;&nbsp;&nbsp;<header class="header-wrapper" onclick="showPage('home')">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="Logo.jpg" alt="Litmoaei" class="main-logo" style="transition: filter 0.4s ease;">
+&nbsp;&nbsp;&nbsp;&nbsp;</header>
+&nbsp;&nbsp;&nbsp;&nbsp;<nav>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a onclick="showPage('home')">⌂ HOME</a></li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a onclick="showPage('mind')">THE MIND</a></li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a onclick="showPage('pavement')">THE PAVEMENT</a></li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a onclick="showPage('classics')">THE CLASSICS</a></li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href="midnight-desire.html">MIDNIGHT DESIRES</a></li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a onclick="showPage('nudes')">NUDE PAINTINGS OF THE ARTIST HIMSELF</a></li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a onclick="showPage('music')">MUSIC</a></li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a onclick="showPage('elixirs')">ELIXIRS</a></li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;</nav>
+&nbsp;&nbsp;&nbsp;&nbsp;<div id="payment-overlay" class="overlay-dimmer">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="closeOrder()" style="float:right; background:none; border:none; color:#fff; padding:10px; cursor:pointer; font-size: 1.5rem;">CLOSE X</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="payment-card">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2 style="font-family:Cinzel; margin-bottom:20px;">SECURE PAYMENT PROTOCOLS</h2>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="payment-grid">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="currency-block"><strong>USD Account:</strong><br>Bank: Lead Bank<br>Account: 211290637762<br>Routing: 101019644</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="currency-block"><strong>GBP Account:</strong><br>Bank: Clear Junction Ltd<br>Account: 42592550<br>Sort Code: 04-13-07</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="currency-block"><strong>EUR Account:</strong><br>Bank: Clear Junction Ltd<br>IBAN: GB57CLJU04130742592550<br>Swift: CLJUGB21XXX</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="currency-block"><strong>NGN Account:</strong><br>Bank: Eco Bank<br>Account: 2971079059<br>Account Name: CHUKS EDOCHIE</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="qr-container">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>USDT (TRC20) PAYMENT:</strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="qr-img"><img src="ustd QR code.jpeg" alt="USDT QR Code" style="width:100%; height:100%;"></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p style="font-size: 0.8rem; word-break: break-all;">Address: TPGwSuiMSB2oYgL6JyKA9QHgPMZi4VjLX9</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="security-warning">⚠️ WARNING: ONLY SEND VIA THE TRC20 NETWORK.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="margin-top: 40px; border-top: 1px solid #b76e79; padding-top: 30px; text-align: center;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 id="order-title" style="font-family:Cinzel; color:#fff; margin-bottom:10px;">COMMISSION YOUR PIECE</h3>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="ig-commission-link" href="#" target="_blank" style="display:block; padding:20px; background:#b76e79; color:#000; text-decoration:none; font-family:'Cinzel'; font-weight:bold; letter-spacing:2px; font-size:1.1rem;">SEND SPECIFICATIONS</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<section id="home" class="page-section active">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="statement-text">"I got lost in the madness to find myself. So I ask, what about you?"</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="I got lost in the madness to find myself.jpeg" class="flush-img">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<video autoplay muted loop playsinline class="flush-img" style="margin-top:20px;"><source src="THE MAD HALL, ART ROOM.mp4" type="video/mp4"></video>
+&nbsp;&nbsp;&nbsp;&nbsp;</section>
+&nbsp;&nbsp;&nbsp;&nbsp;<section id="mind" class="page-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="statement-text">Browse through the mind<br>of a soul lost in the madness of an endless insanity.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-wrap">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="lost in the madness of an endless insanity.jpg"><a href="https://www.instagram.com/p/DAv3gXIof8B/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="o myself in the distance.jpg"><a href="https://www.instagram.com/p/DDXwN3QI8fU/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="the old man on a journey.jpg"><a href="https://www.instagram.com/p/DBE8orlIOwI/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="and the moon said to the sun.jpg"><a href="https://www.instagram.com/p/DF_LrxPoYqz/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="sometimes freedom is to be captured by someone who has love in their corner.jpg"><a href="https://www.instagram.com/p/DB_Kq6JI-qr/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="in a mountain full of flowers many don't have life.jpg"><a href="https://www.instagram.com/p/DC3xWCsoxQv/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="love a straner i know so well, or do i really know love.jpg"><a href="https://www.instagram.com/p/DYzO71ljPsd/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="playing a game with god but i don't know what it's called.jpg"><a href="https://www.instagram.com/p/DLVePs0sMLt/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="what is the greatest trick a monster can play.jpg"><a href="https://www.instagram.com/p/DGMsmHgoCnw/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="success is overrated yet underrated.jpg"><a href="https://www.instagram.com/p/DMo_JQ4sH_k/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="to battle we march why shall i fear.jpg"><a href="https://www.instagram.com/p/DTQ0w8BjCPb/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="the old man advice.jpg"><a href="https://www.instagram.com/reel/C1nKtv5MRyL/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="She said I know I am an angel but I want you to take off these wings for tonight.jpg"><a href="https://www.instagram.com/p/DB4OFzdo245/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="because their songs doesn't have lies in them.jpg"><a href="https://www.instagram.com/p/DBudMSBovQE/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="she is the devil favourite and so what.jpg"><a href="https://www.instagram.com/p/DBV7uddoOTz/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="succubus came for my soul but i took hers.jpg"><a href="https://www.instagram.com/p/DBKdKS8I2tA/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="if the venom made me feel alive i will go for that snake over and over again.jpg"><a href="https://www.instagram.com/p/C_tAgRXM0JW/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="you asked how are you From the grave i answered i am great.jpg"><a href="https://www.instagram.com/p/DEa9kwMNCdW/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="only if i get paid for every time i fake a smile.jpg"><a href="https://www.instagram.com/p/DZICSmbsOoS/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="ooh my reflection.jpg"><a href="https://instagram.com/p/DDUY0JuI7pn/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="I got too tired to care and I’m still fine.jpg"><a href="https://www.instagram.com/p/DBzosumIq-z/" class="btn-order">THE STORY THE MADNESS SHOWED ME</a></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;</section>
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<section id="pavement" class="page-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="statement-text">THE PAVEMENT</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-wrap">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement.jpg"><button class="btn-order" onclick="openOrder('Pavement')">COMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 1.jpg"><button class="btn-order" onclick="openOrder('Pavement 1')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 2.jpg"><button class="btn-order" onclick="openOrder('Pavement 2')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 3.jpg"><button class="btn-order" onclick="openOrder('Pavement 3')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 4.jpg"><button class="btn-order" onclick="openOrder('Pavement 4')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 5.jpg"><button class="btn-order" onclick="openOrder('Pavement 5')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 6.jpg"><button class="btn-order" onclick="openOrder('Pavement 6')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 7.jpg"><button class="btn-order" onclick="openOrder('Pavement 7')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 8.jpg"><button class="btn-order" onclick="openOrder('Pavement 8')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 9.jpg"><button class="btn-order" onclick="openOrder('Pavement 9')">COMMISSIONCOMMISSION AND BEGIN YOUR MANIFESTATION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Pavement 10.jpg"><button class="btn-order" onclick="openOrder('Pavement 10')">COMMISSIONCOMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;</section>
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<section id="elixirs" class="page-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="statement-text">THE ELIXIRS</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-wrap">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Drink.jpg"><button class="btn-order" onclick="openOrder('Drink')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;</section>
+&nbsp;&nbsp;&nbsp;&nbsp;<!-- ==================== CLASSICS HUB ==================== -->
+&nbsp;&nbsp;&nbsp;&nbsp;<section id="classics" class="page-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="statement-text">THE CLASSICS</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="classic-hub">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="hub-btn" onclick="showPage('classics-him')">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hub-icon">👔</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3>FOR HIM</h3>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="hub-btn" onclick="showPage('classics-her')">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hub-icon">👗</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3>FOR HER</h3>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;</section>
+&nbsp;&nbsp;&nbsp;&nbsp;<!-- ==================== FOR HIM (Separate Room) ==================== -->
+&nbsp;&nbsp;&nbsp;&nbsp;<section id="classics-him" class="page-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="statement-text">FOR HIM</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-wrap">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic.jpg"><button class="btn-order" onclick="openOrder('Classic')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 1.jpg"><button class="btn-order" onclick="openOrder('casual 1')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 2.jpg"><button class="btn-order" onclick="openOrder('Classic 2')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual.JPG"><button class="btn-order" onclick="openOrder('casual ')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 3.jpg"><button class="btn-order" onclick="openOrder('Classic 3')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 9.jpg"><button class="btn-order" onclick="openOrder('Classic 9')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 2.WEBP"><button class="btn-order" onclick="openOrder('casual 2')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 10.png"><button class="btn-order" onclick="openOrder('Classic 10')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 11.png"><button class="btn-order" onclick="openOrder('Classic 11')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 11.jpg"><button class="btn-order" onclick="openOrder('CASUAL 11')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 12.png"><button class="btn-order" onclick="openOrder('Classic 12')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 4.JPG"><button class="btn-order" onclick="openOrder('casual 4')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 3.WEBP"><button class="btn-order" onclick="openOrder('casual 3')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 6.WEBP"><button class="btn-order" onclick="openOrder('casual 6')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 13.png"><button class="btn-order" onclick="openOrder('Classic 13')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 7.JPG"><button class="btn-order" onclick="openOrder('casual 7')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 4.jpg"><button class="btn-order" onclick="openOrder('Classic 4')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 14.png"><button class="btn-order" onclick="openOrder('Classic 14')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 5.JPG"><button class="btn-order" onclick="openOrder('casual 5')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 9.WEBP"><button class="btn-order" onclick="openOrder('casual 4')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 7.jpg"><button class="btn-order" onclick="openOrder('Classic 7')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 10.jpg"><button class="btn-order" onclick="openOrder('casual 10')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 6.WEBP"><button class="btn-order" onclick="openOrder('CASUAL 6')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 8.WEBP"><button class="btn-order" onclick="openOrder('casual 8')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 12.jpg"><button class="btn-order" onclick="openOrder('casual 12')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 20.jpg"><button class="btn-order" onclick="openOrder('Classic 20')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 13.JPG"><button class="btn-order" onclick="openOrder('casual 13')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 14.JPG"><button class="btn-order" onclick="openOrder('casual 14')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="casual 15.JPG"><button class="btn-order" onclick="openOrder('CASUAL 15')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="showPage('classics'); return false;" class="back-btn">← BACK TO CLASSICS</a>
+&nbsp;&nbsp;&nbsp;&nbsp;</section>
+&nbsp;&nbsp;&nbsp;&nbsp;<!-- ==================== FOR HER (Separate Room) ==================== -->
+&nbsp;&nbsp;&nbsp;&nbsp;<section id="classics-her" class="page-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="statement-text">FOR HER</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="bespoke-text">Bespoke, once you have selected your choice send your size and any unique specification you may have.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-wrap">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 23.JPG"><button class="btn-order" onclick="openOrder('f classic 23')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 15.jpg"><button class="btn-order" onclick="openOrder('Classic 15')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f casual 3.WEBP"><button class="btn-order" onclick="openOrder('f casual 3')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 1.jpg"><button class="btn-order" onclick="openOrder('Classic 1')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 29.jpg"><button class="btn-order" onclick="openOrder('f classic 29')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f casual 1.JPG"><button class="btn-order" onclick="openOrder('f casual 1')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 18.jpg"><button class="btn-order" onclick="openOrder('Classic 18')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 21.JPG"><button class="btn-order" onclick="openOrder('f classic 21')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f casual 9.WEBP"><button class="btn-order" onclick="openOrder('f casual 9')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 6.png"><button class="btn-order" onclick="openOrder('Classic 6')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 27.JPG"><button class="btn-order" onclick="openOrder('f classic 27')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f casual 5.WEBP"><button class="btn-order" onclick="openOrder('f casual 5')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 19.jpg"><button class="btn-order" onclick="openOrder('Classic 19')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 32.AVIF"><button class="btn-order" onclick="openOrder('f classic 32')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f casual 2.WEBP"><button class="btn-order" onclick="openOrder('f casual 2')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 25.JPG"><button class="btn-order" onclick="openOrder('f classic 25')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 5.png"><button class="btn-order" onclick="openOrder('Classic 5')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 31.jpg"><button class="btn-order" onclick="openOrder('f classic 31')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f casual 8.WEBP"><button class="btn-order" onclick="openOrder('f casual 8')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 8.jpg"><button class="btn-order" onclick="openOrder('Classic 8')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 22.JPG"><button class="btn-order" onclick="openOrder('f classic 22')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f casual 10.WEBP"><button class="btn-order" onclick="openOrder('f casual 10')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 28.jpg"><button class="btn-order" onclick="openOrder('f classic 28')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 16.jpg"><button class="btn-order" onclick="openOrder('Classic 16')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f casual 4.WEBP"><button class="btn-order" onclick="openOrder('f casual 4')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 24.JPG"><button class="btn-order" onclick="openOrder('f classic 24')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Classic 17.jpg"><button class="btn-order" onclick="openOrder('Classic 17')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 30.jpg"><button class="btn-order" onclick="openOrder('f classic 30')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="f classic 26.JPG"><button class="btn-order" onclick="openOrder('f classic 26')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="showPage('classics'); return false;" class="back-btn">← BACK TO CLASSICS</a>
+&nbsp;&nbsp;&nbsp;&nbsp;</section>
+&nbsp;&nbsp;&nbsp;&nbsp;<section id="nudes" class="page-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="statement-text">NUDE PAINTINGS</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-wrap">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Nude.jpg"><button class="btn-order" onclick="openOrder('Nude')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Nude 1.jpg"><button class="btn-order" onclick="openOrder('Nude 1')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="gallery-item"><img src="Nude 2.jpg"><button class="btn-order" onclick="openOrder('Nude 2')">COMMISSION</button></div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;</section>
+&nbsp;&nbsp;&nbsp;&nbsp;<!-- ==================== MUSIC SECTION - NEW SONGS ==================== -->
+&nbsp;&nbsp;&nbsp;&nbsp;<section id="music" class="page-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="statement-text">MUSIC</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="music-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="music-item">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="bed-of-lies.jpg" class="music-img" alt="bed of lies">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://youtu.be/VZEKBsaUB6E?si=LmucFtM_IzhY6Rik" class="listen-box" target="_blank">LISTEN</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="music-item">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="enough tears to keep me cool in hell song.jpg" class="music-img" alt="enough tears to keep me cool in hell">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://youtu.be/Ru5tZlU-BBs?si=jFZE31i3VWzc5g-P" class="listen-box" target="_blank">LISTEN</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="music-item">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="i-just-wanna-be-loved.jpg" class="music-img" alt="i just wanna be loved">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://youtu.be/9bdCD1KQ5kI?si=Ix-aEpxT4mR6xJUv" class="listen-box" target="_blank">LISTEN</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="music-item">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="ooh-mama.JPG" class="music-img" alt="ooh mama">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://youtu.be/rzU01gN6pOs?si=fQvVl2uw9izQWI_L" class="listen-box" target="_blank">LISTEN</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="music-item">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="dear-me.jpg" class="music-img" alt="dear me">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://youtu.be/0soD8dsNU94?si=Gl8OKFuKfPFbYsmf" class="listen-box" target="_blank">LISTEN</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="showPage('classics'); return false;" class="back-btn">← BACK TO CLASSICS</a>
+&nbsp;&nbsp;&nbsp;&nbsp;</section>
+&nbsp;&nbsp;&nbsp;&nbsp;<footer class="footer-section">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="goodbye-quote">"Remember,the world was created as a gift to you."</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="footer-links">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.instagram.com/rony_willz/" target="_blank">INSTAGRAM</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.youtube.com/@LITMOAEI" target="_blank">YOUTUBE</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:Litmoaei@gmail.com">EMAIL</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;&nbsp;&nbsp;</footer>
+&nbsp;&nbsp;&nbsp;&nbsp;<script>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function showPage(id) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const sections = document.querySelectorAll('.page-section');
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sections.forEach(s => s.classList.remove('active'));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById(id).classList.add('active');
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.scrollTo(0, 0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function openOrder(pieceName) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const overlay = document.getElementById('payment-overlay');
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const link = document.getElementById('ig-commission-link');
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const title = document.getElementById('order-title');
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title.innerText = `COMMISSION: ${pieceName}`;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const msg = `Hello, I would like to commission ${pieceName}.%0A%0ASize:%20_____%0AColor:%20_____%0ACustom%20Details:%20_____`;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link.href = `https://ig.me/m/rony_willz?text=${msg}`;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;overlay.style.display = 'block';
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function closeOrder() {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('payment-overlay').style.display = 'none';
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;</script>
 </body>
 </html>
