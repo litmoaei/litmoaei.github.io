@@ -25,7 +25,12 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;
         }
       
-     
+        /* NEW TRANSLATOR TAB POSITIONING: RIGHT UNDER LOGO EXTREME RIGHT CORNER */
+        .header-translator-container {
+            position: absolute;
+            bottom: 15px;
+            right: 25px;
+            z-index: 1005;
         }
 
         /* NAVIGATION */
@@ -604,7 +609,7 @@
         function showPage(sectionId) {
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(sec => {
-                sec.classList.remove(active);
+                sec.classList.remove('active');
                 sec.style.opacity = '0';
             });
             
@@ -636,7 +641,7 @@
                 googleSelect.value = langCode;
                 // Dispatch native change events to trigger the automated system translation layers
                 googleSelect.dispatchEvent(new Event('change'));
-            
+            } else {
             }
         }
     </script>
