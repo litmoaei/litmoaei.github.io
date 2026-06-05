@@ -336,7 +336,7 @@
             .welcome-text { font-size: 2rem !important; }
             .music-section { grid-template-columns: 1fr; gap: 20px; }
             .nav-container { gap: 15px; }
-            .header-translator-container { position: absolute; bottom: 5px; right: 10px; }
+            .header-translator-container { position: relative; margin: 20px auto 0 auto; right: auto; bottom: auto; display: inline-block; }
         }
     </style>
 </head>
@@ -538,7 +538,6 @@
             <div class="gallery-item"><img src="f classic 25.JPG"><button class="btn-order" onclick="openOrder('f classic 25')">COMMISSION</button></div>
             <div class="gallery-item"><img src="Classic 5.png"><button class="btn-order" onclick="openOrder('Classic 5')">COMMISSION</button></div>
             <div class="gallery-item"><img src="f classic 31.jpg"><button class="btn-order" onclick="openOrder('f classic 31')">COMMISSION</button></div>
-            
             <div class="gallery-item"><img src="f casual 8.WEBP"><button class="btn-order" onclick="openOrder('f casual 8')">COMMISSION</button></div>
             <div class="gallery-item"><img src="Classic 8.jpg"><button class="btn-order" onclick="openOrder('Classic 8')">COMMISSION</button></div>
             <div class="gallery-item"><img src="f classic 22.JPG"><button class="btn-order" onclick="openOrder('f classic 22')">COMMISSION</button></div>
@@ -618,22 +617,15 @@
             document.getElementById('payment-overlay').style.display = 'none';
         }
 
-        // Self-Healing Translation Engine Controller
+        // Dynamic System Cross-Iframe Execution Engine for Translation Dropdown
         function executeSystemTranslation(langCode) {
             const googleSelect = document.querySelector('.goog-te-combo');
-            
             if (googleSelect) {
                 googleSelect.value = langCode;
+                // Dispatch native change events to trigger the automated system translation layers
                 googleSelect.dispatchEvent(new Event('change'));
             } else {
-                // Instantly checks down the line for structural container generation loops
-                setTimeout(function() {
-                    const retrySelect = document.querySelector('.goog-te-combo');
-                    if (retrySelect) {
-                        retrySelect.value = langCode;
-                        retrySelect.dispatchEvent(new Event('change'));
-                    }
-                }, 450);
+                alert("Translation Engine is configuring backend structures. Please re-select language choice in a second.");
             }
         }
     </script>
