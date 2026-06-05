@@ -244,6 +244,7 @@
     <div id="google_translate_element" style="display:none; position:absolute;"></div>
     <header class="header-wrapper" onclick="showPage('home')">
         <img src="Logo.jpg" alt="Litmoaei" class="main-logo" style="transition: filter 0.4s ease;">
+      
         <div class="welcome-text">"I got lost in the madness to find myself. So I ask, what about you?"</div>
     </header>
     <nav>
@@ -479,7 +480,7 @@
             const target = document.getElementById(sectionId);
             if (target) {
                 target.classList.add('active');
-                // SCROLL INSTANTLY TO THE TOP OF THE NEW SECTION (NO MORE SCROLLING TO TOP OF LOGO)
+                // SCROLL INSTANTLY TO THE TOP OF THE NEW SECTION - NO MORE SCROLLING TO TOP OF LOGO
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
@@ -500,7 +501,6 @@
             const googleSelect = document.querySelector('.goog-te-combo');
             if (googleSelect) {
                 googleSelect.value = langCode;
-                // Dispatch native change events to trigger the automated system translation layers
                 googleSelect.dispatchEvent(new Event('change'));
             } else {
             }
